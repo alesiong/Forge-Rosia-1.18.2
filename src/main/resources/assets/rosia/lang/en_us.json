@@ -1,3 +1,12 @@
 {
-  "item.rosia.copper_wire": "Copper Wire"
+  "item.rosia.copper_wire": "Copper Wire",
+  "item.rosia.copper_coil": "Copper Coil",
+  "item.rosia.nichrome_ingot": "Nichrome Ingot",
+  "item.rosia.nichrome_wire": "Nichrome Wire",
+  "item.rosia.heat_coil": "Heat Coil",
+  "item.rosia.magnetite_powder": "Magnetite Powder",
+  "item.rosia.compressed_magnetite": "Compressed Magnetite",
+  "item.rosia.unfired_fireclay_ingot": "Unfired Fire Clay Ingot Mold",
+  "item.rosia.ingot_fireclay_empty": "Hardened Ingot Mold",
+  "item.rosia.magnet": "Magnet"
 }
