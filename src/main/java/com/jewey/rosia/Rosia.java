@@ -1,5 +1,6 @@
 package com.jewey.rosia;
 
+import com.jewey.rosia.block.ModBlocks;
 import com.jewey.rosia.item.ModItems;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.level.block.Block;
@@ -35,6 +36,7 @@ public class Rosia
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(eventBus);
+        ModBlocks.register(eventBus);
 
         eventBus.addListener(this::setup);
 

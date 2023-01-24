@@ -8,5 +8,7 @@
   "item.rosia.compressed_magnetite": "Compressed Magnetite",
   "item.rosia.unfired_fireclay_ingot": "Unfired Fire Clay Ingot Mold",
   "item.rosia.ingot_fireclay_empty": "Hardened Ingot Mold",
-  "item.rosia.magnet": "Magnet"
+  "item.rosia.magnet": "Magnet",
+
+  "block.rosia.testblock": "Test Block"
 }
