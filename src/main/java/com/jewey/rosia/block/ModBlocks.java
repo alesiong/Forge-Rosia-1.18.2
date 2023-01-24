@@ -1,6 +1,7 @@
 package com.jewey.rosia.block;
 
 import com.jewey.rosia.Rosia;
+import com.jewey.rosia.item.ModCreativeModeTab;
 import com.jewey.rosia.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -22,7 +23,7 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> TESTBLOCK = registerBlock("testblock",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(9f).requiresCorrectToolForDrops()),
-            CreativeModeTab.TAB_MISC);
+            ModCreativeModeTab.ROSIA_TAB);
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {

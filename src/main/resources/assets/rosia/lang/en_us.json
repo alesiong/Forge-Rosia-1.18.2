@@ -10,5 +10,7 @@
   "item.rosia.ingot_fireclay_empty": "Hardened Ingot Mold",
   "item.rosia.magnet": "Magnet",
 
-  "block.rosia.testblock": "Test Block"
+  "block.rosia.testblock": "Test Block",
+
+  "itemGroup.rosiatab": "Rosia"
 }
