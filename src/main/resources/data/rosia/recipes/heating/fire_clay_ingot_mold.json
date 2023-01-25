@@ -1,0 +1,10 @@
+{
+  "type": "tfc:heating",
+  "ingredient": {
+    "item": "rosia:unfired_fireclay_mold"
+  },
+  "result_item": {
+    "item": "rosia:ingot_fireclay_empty"
+  },
+  "temperature": 1399
+}

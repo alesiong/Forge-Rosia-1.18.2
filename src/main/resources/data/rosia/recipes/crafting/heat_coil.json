@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "rosia:nichrome_wire"
+    }
+  },
+  "result": {
+    "item": "rosia:heat_coil",
+    "count": 2
+  }
+}

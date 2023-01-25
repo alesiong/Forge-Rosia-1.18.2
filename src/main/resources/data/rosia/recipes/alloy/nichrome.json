@@ -1,0 +1,16 @@
+{
+  "type": "tfc:alloy",
+  "result": "rosia:nichrome_ingot",
+  "contents": [
+    {
+      "metal": "tfc:nickel",
+      "min": 0.75,
+      "max": 0.85
+    },
+    {
+      "metal": "tfc:black_steel",
+      "min": 0.15,
+      "max": 0.25
+    }
+  ]
+}

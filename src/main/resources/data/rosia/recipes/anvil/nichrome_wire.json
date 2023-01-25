@@ -1,0 +1,16 @@
+{
+  "type": "tfc:anvil",
+  "input": {
+    "item": "rosia:nichrome_ingot"
+  },
+  "result": {
+    "item": "rosia:nichrome_wire",
+    "count": 3
+  },
+  "tier": 5,
+  "rules": [
+    "draw_last",
+    "draw_second_last",
+    "hit_third_last"
+  ]
+}

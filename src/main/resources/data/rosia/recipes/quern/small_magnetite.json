@@ -1,0 +1,10 @@
+{
+  "type": "tfc:quern",
+  "ingredient": {
+    "item": "tfc:ore/small_magnetite"
+  },
+  "result": {
+    "item": "rosia:magnetite_powder",
+    "count": 2
+  }
+}
