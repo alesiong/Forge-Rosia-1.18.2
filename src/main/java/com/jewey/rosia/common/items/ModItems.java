@@ -1,4 +1,4 @@
-package com.jewey.rosia.item;
+package com.jewey.rosia.common.items;
 
 import com.jewey.rosia.Rosia;
 import net.minecraft.world.item.Item;
@@ -18,7 +18,7 @@ public class ModItems {
     public static final RegistryObject<Item> COPPER_COIL = ITEMS.register("copper_coil",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
-    public static final RegistryObject<Item> NICHROME = ITEMS.register("nichrome_ingot",
+    public static final RegistryObject<Item> NICHROME_INGOT = ITEMS.register("nichrome_ingot",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
     public static final RegistryObject<Item> NICHROME_WIRE = ITEMS.register("nichrome_wire",

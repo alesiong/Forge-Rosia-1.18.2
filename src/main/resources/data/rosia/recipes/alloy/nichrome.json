@@ -1,6 +1,6 @@
 {
   "type": "tfc:alloy",
-  "result": "rosia:nichrome_ingot",
+  "result": "rosia:nichrome_fluid",
   "contents": [
     {
       "metal": "tfc:nickel",

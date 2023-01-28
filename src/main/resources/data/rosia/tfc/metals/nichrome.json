@@ -1,10 +1,9 @@
 {
   "tier": 5,
-  "fluid": "rosia:nichrome",
-  "melt_temperature": 1490,
+  "fluid": "rosia:nichrome_fluid",
+  "melt_temperature": 1485,
   "specific_heat_capacity": 0.00857,
   "ingots": {
-    "item": "rosia:nichrome"
+    "item": "rosia:nichrome_ingot"
   }
   }
-}

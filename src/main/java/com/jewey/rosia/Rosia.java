@@ -1,8 +1,11 @@
 package com.jewey.rosia;
 
-import com.jewey.rosia.block.ModBlocks;
-import com.jewey.rosia.item.ModItems;
+import com.jewey.rosia.common.blocks.ModBlocks;
+import com.jewey.rosia.common.fluids.ModFluids;
+import com.jewey.rosia.common.items.ModItems;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,12 +32,21 @@ public class Rosia
 
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
+        ModFluids.register(eventBus);
 
         eventBus.addListener(this::setup);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
+
+    private void clientSetup(final FMLCommonSetupEvent event) {
+
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_BLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_FLUID.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_FLOWING.get(), RenderType.translucent());
+    }
+
 
     private void setup(final FMLCommonSetupEvent event)
     {

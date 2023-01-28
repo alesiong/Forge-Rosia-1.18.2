@@ -1,8 +1,8 @@
-package com.jewey.rosia.block;
+package com.jewey.rosia.common.blocks;
 
 import com.jewey.rosia.Rosia;
-import com.jewey.rosia.item.ModCreativeModeTab;
-import com.jewey.rosia.item.ModItems;
+import com.jewey.rosia.common.items.ModCreativeModeTab;
+import com.jewey.rosia.common.items.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;

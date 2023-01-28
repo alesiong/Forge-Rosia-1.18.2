@@ -1,4 +1,4 @@
-package com.jewey.rosia.item;
+package com.jewey.rosia.common.items;
 
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;

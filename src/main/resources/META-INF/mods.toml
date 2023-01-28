@@ -61,9 +61,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia magn
     ordering="NONE"
     side="BOTH"
 [[dependencies.rosia]]
-modId="TerraFirmaCraft"
-mandatory=false
+modId="tfc"
+mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
-versionRange="[1.18.2]"
+versionRange="[2.2.4]"
 ordering="NONE"
 side="BOTH"

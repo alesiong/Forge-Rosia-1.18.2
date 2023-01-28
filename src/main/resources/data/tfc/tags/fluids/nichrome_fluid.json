@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "rosia:nichrome_fluid",
+    "rosia:nichrome_flowing"
+  ]
+}
