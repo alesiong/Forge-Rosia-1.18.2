@@ -21,6 +21,8 @@ public class ModItems {
     public static final RegistryObject<Item> NICHROME_INGOT = ITEMS.register("nichrome_ingot",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
+    public static final RegistryObject<Item> NICHROME_SHEET = ITEMS.register("nichrome_sheet",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
     public static final RegistryObject<Item> NICHROME_WIRE = ITEMS.register("nichrome_wire",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 

@@ -1,6 +1,6 @@
 {
   "ingredient": {
-    "tag": "forge:ingots"
+    "item": "rosia:nichrome_ingot"
   },
   "size": "large",
   "weight": "medium",

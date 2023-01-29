@@ -5,5 +5,8 @@
   "specific_heat_capacity": 0.00857,
   "ingots": {
     "item": "rosia:nichrome_ingot"
+  },
+  "sheets": {
+    "item": "rosia:nichrome_sheet"
   }
   }
