@@ -2,6 +2,7 @@
   "item.rosia.copper_wire": "Copper Wire",
   "item.rosia.copper_coil": "Copper Coil",
   "item.rosia.nichrome_ingot": "Nichrome Ingot",
+  "item.rosia.nichrome_double_ingot": "Nichrome Double Ingot",
   "item.rosia.nichrome_sheet": "Nichrome Sheet",
   "item.rosia.nichrome_wire": "Nichrome Wire",
   "item.rosia.heat_coil": "Heat Coil",
@@ -12,6 +13,7 @@
   "item.rosia.magnet": "Magnet",
 
   "block.rosia.testblock": "Test Block",
+  "block.rosia.auto_quern": "Auto-Quern",
 
   "fluid.rosia.nichrome_fluid": "Molten Nichrome",
   "metal.rosia.nichrome": "Nichrome",

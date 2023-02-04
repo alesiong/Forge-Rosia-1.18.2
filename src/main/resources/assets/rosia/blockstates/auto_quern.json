@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "rosia:block/auto_quern",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "rosia:block/auto_quern"
+    },
+    "facing=south": {
+      "model": "rosia:block/auto_quern",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "rosia:block/auto_quern",
+      "y": 270
+    }
+  }
+}

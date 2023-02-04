@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "rosia:item/nichrome"
+    "layer0": "rosia:item/metal/sheet/nichrome"
   }
 }

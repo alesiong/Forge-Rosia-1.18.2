@@ -1,6 +1,6 @@
 {
   "replace": false,
   "values": [
-    "#forge:sheets/nichrome_sheet"
+    "rosia:nichrome_sheet"
   ]
 }

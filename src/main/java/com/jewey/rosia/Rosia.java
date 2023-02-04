@@ -42,9 +42,9 @@ public class Rosia
 
     private void clientSetup(final FMLCommonSetupEvent event) {
 
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_BLOCK.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_FLUID.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_FLOWING.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_BLOCK.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_FLUID.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_FLOWING.get(), RenderType.solid());
     }
 
 

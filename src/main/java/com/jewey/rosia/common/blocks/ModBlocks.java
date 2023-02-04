@@ -1,6 +1,7 @@
 package com.jewey.rosia.common.blocks;
 
 import com.jewey.rosia.Rosia;
+import com.jewey.rosia.common.blocks.custom.auto_quern;
 import com.jewey.rosia.common.items.ModCreativeModeTab;
 import com.jewey.rosia.common.items.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -23,6 +24,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> TESTBLOCK = registerBlock("testblock",
             () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(1f).requiresCorrectToolForDrops()),
+            ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> AUTO_QUERN = registerBlock("auto_quern",
+            () -> new auto_quern(BlockBehaviour.Properties.of(Material.METAL).strength(1f).requiresCorrectToolForDrops()),
             ModCreativeModeTab.ROSIA_TAB);
 
 
