@@ -1,0 +1,12 @@
+{
+  "type": "rosia:quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/normal_magnetite"
+    }
+  ],
+  "output": {
+    "item": "rosia:magnetite_powder",
+    "count": 5
+  }
+}

@@ -1,15 +1,22 @@
 package com.jewey.rosia;
 
 import com.jewey.rosia.common.blocks.ModBlocks;
+import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.fluids.ModFluids;
 import com.jewey.rosia.common.items.ModItems;
+import com.jewey.rosia.recipe.ModRecipes;
+import com.jewey.rosia.screen.AutoQuernScreen;
+import com.jewey.rosia.screen.ModMenuTypes;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
@@ -34,13 +41,25 @@ public class Rosia
         ModBlocks.register(eventBus);
         ModFluids.register(eventBus);
 
+        ModBlockEntities.register(eventBus);
+        ModMenuTypes.register(eventBus);
+
+        ModRecipes.register(eventBus);
+
         eventBus.addListener(this::setup);
+        eventBus.addListener(this::clientSetup);
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void clientSetup(final FMLCommonSetupEvent event) {
+    private void clientSetup(final FMLClientSetupEvent event) {
+        MenuScreens.register(ModMenuTypes.AUTO_QUERN_MENU.get(), AutoQuernScreen::new);
+    }
+
+
+
+    private void setup(final FMLCommonSetupEvent event) {
 
         ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_BLOCK.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_FLUID.get(), RenderType.solid());
@@ -48,10 +67,4 @@ public class Rosia
     }
 
 
-    private void setup(final FMLCommonSetupEvent event)
-    {
-        // some preinit code
-        LOGGER.info("HELLO FROM PREINIT");
-        LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());
-    }
 }
