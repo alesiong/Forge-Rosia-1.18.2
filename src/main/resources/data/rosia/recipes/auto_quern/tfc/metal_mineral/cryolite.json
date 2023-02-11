@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/cryolite"
+    }
+  ],
+  "output": {
+    "item": "minecraft:redstone",
+    "count": 8
+  }
+}

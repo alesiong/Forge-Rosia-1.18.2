@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/poor_hematite"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/hematite",
+    "count": 3
+  }
+}

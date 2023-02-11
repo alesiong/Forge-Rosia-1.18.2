@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "tag": "tfc:fluxstone"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/flux",
+    "count": 2
+  }
+}

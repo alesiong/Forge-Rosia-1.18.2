@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/opal"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/opal",
+    "count": 4
+  }
+}

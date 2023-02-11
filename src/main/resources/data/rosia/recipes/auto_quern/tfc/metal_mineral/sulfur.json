@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/sulfur"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/sulfur",
+    "count": 4
+  }
+}

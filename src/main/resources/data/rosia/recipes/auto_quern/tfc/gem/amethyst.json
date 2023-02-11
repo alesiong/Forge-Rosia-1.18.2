@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/amethyst"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/amethyst",
+    "count": 4
+  }
+}

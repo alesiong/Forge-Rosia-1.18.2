@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/poor_malachite"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/malachite",
+    "count": 3
+  }
+}

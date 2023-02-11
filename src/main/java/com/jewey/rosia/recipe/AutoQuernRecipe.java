@@ -26,7 +26,12 @@ public class AutoQuernRecipe implements Recipe<SimpleContainer> {
     }
     @Override
     public boolean matches(SimpleContainer pContainer, Level pLevel) {
-        return recipeItems.get(0).test(pContainer.getItem(1));
+        return recipeItems.get(0).test(pContainer.getItem(0));
+    }
+
+    @Override
+    public NonNullList<Ingredient> getIngredients() {
+        return recipeItems;
     }
 
     @Override
@@ -62,11 +67,11 @@ public class AutoQuernRecipe implements Recipe<SimpleContainer> {
     public static class Type implements RecipeType<AutoQuernRecipe> {
         private Type() { }
         public static final Type INSTANCE = new Type();
-        public static final String ID = "quern";
+        public static final String ID = "auto_quern";
     }
     public static class Serializer implements RecipeSerializer<AutoQuernRecipe> {
         public static final Serializer INSTANCE = new Serializer();
-        public static final ResourceLocation ID = new ResourceLocation(Rosia.MOD_ID, "quern");
+        public static final ResourceLocation ID = new ResourceLocation(Rosia.MOD_ID, "auto_quern");
 
         @Override
         public AutoQuernRecipe fromJson(ResourceLocation id, JsonObject json) {

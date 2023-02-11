@@ -1,0 +1,18 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/rice_grain"
+      }
+    }
+  ],
+  "output": {
+    "item": "tfc:food/rice_flour",
+    "count": 1,
+    "modifiers": [
+      "tfc:copy_food"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/graphite"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/graphite",
+    "count": 4
+  }
+}

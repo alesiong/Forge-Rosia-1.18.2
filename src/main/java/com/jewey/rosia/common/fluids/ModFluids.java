@@ -39,9 +39,8 @@ public class ModFluids {
 
     public static final ForgeFlowingFluid.Properties NICHROME_PROPERTIES = new ForgeFlowingFluid.Properties(
             () -> NICHROME_FLUID.get(), () -> NICHROME_FLOWING.get(), FluidAttributes.builder(LAVA_STILL_RL, LAVA_FLOW_RL)
-            .color(0xFFFFFFFF).density(3000).luminosity(15).viscosity(6000).temperature(1300).sound(SoundEvents.BUCKET_EMPTY_LAVA).overlay(WATER_OVERLAY_RL))
-            .slopeFindDistance(2).levelDecreasePerBlock(2)
-            .block(() -> ModFluids.NICHROME_BLOCK.get());
+            .color(0xff364236).density(3000).luminosity(15).viscosity(6000).temperature(1300).sound(SoundEvents.BUCKET_EMPTY_LAVA).overlay(WATER_OVERLAY_RL))
+            .slopeFindDistance(3).levelDecreasePerBlock(3).block(() -> ModFluids.NICHROME_BLOCK.get());
 
     public static final RegistryObject<LiquidBlock> NICHROME_BLOCK = ModBlocks.BLOCKS.register("nichrome_fluid",
             () -> new LiquidBlock(() -> ModFluids.NICHROME_FLUID.get(), BlockBehaviour.Properties.of(Material.LAVA)

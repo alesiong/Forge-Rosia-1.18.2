@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/small_limonite"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/limonite",
+    "count": 2
+  }
+}

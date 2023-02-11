@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "minecraft:charcoal"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/charcoal",
+    "count": 4
+  }
+}

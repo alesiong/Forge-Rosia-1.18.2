@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/sapphire"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/sapphire",
+    "count": 4
+  }
+}

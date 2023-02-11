@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/saltpeter"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/saltpeter",
+    "count": 4
+  }
+}

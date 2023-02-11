@@ -27,7 +27,7 @@ public class AutoQuernScreen extends AbstractContainerScreen<AutoQuernMenu> {
         this.blit(pPoseStack, x, y, 0, -2, imageWidth, imageHeight);
 
         if(menu.isCrafting()) {
-            blit(pPoseStack, x + 101, y + 48, 176, 0, menu.getScaledProgress(), 17);
+            blit(pPoseStack, x + 101, y + 50, 176, 0, menu.getScaledProgress(), 17);
         }
 
     }

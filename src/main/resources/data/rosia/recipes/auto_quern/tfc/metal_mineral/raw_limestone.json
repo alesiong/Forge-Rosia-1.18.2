@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:rock/raw/limestone"
+    }
+  ],
+  "output": {
+    "item": "tfc:ore/gypsum",
+    "count": 1
+  }
+}

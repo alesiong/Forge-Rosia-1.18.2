@@ -1,5 +1,6 @@
 package com.jewey.rosia.common.blocks.entity.custom;
 
+import com.ibm.icu.impl.duration.impl.DataRecord;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.items.ModItems;
 import com.jewey.rosia.recipe.AutoQuernRecipe;
@@ -17,6 +18,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
@@ -52,17 +54,17 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
         super(ModBlockEntities.AUTO_QUERN_BLOCK_ENTITY.get(), pPos, pBlockState);
         this.data = new ContainerData() {
             public int get(int index) {
-                switch (index) {
-                    case 0: return AutoQuernBlockEntity.this.progress;
-                    case 1: return AutoQuernBlockEntity.this.maxProgress;
-                    default: return 0;
-                }
+                return switch (index) {
+                    case 0 -> AutoQuernBlockEntity.this.progress;
+                    case 1 -> AutoQuernBlockEntity.this.maxProgress;
+                    default -> 0;
+                };
             }
 
             public void set(int index, int value) {
-                switch(index) {
-                    case 0: AutoQuernBlockEntity.this.progress = value; break;
-                    case 1: AutoQuernBlockEntity.this.maxProgress = value; break;
+                switch (index) {
+                    case 0 -> AutoQuernBlockEntity.this.progress = value;
+                    case 1 -> AutoQuernBlockEntity.this.maxProgress = value;
                 }
             }
 
@@ -158,7 +160,7 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
 
 
     private static boolean hasToolsInToolSlot(AutoQuernBlockEntity entity) {
-        return entity.itemHandler.getStackInSlot(1).getItem() == ModItems.NICHROME_INGOT.get();
+        return entity.itemHandler.getStackInSlot(1).getItem() == ModItems.STEEL_GRINDSTONE.get();
     }
 
     private static void craftItem(AutoQuernBlockEntity entity) {
@@ -173,10 +175,12 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
 
         if(match.isPresent()) {
             entity.itemHandler.extractItem(0,1, false);
-            entity.itemHandler.extractItem(1,1, false);
+            if(entity.itemHandler.getStackInSlot(1).hurt(1, new Random(), null)) {
+                entity.itemHandler.extractItem(1,1, false);
+            }
 
             entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(),
-                    entity.itemHandler.getStackInSlot(2).getCount() + 1));
+                    entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount()));
 
             entity.resetProgress();
         }
@@ -187,7 +191,7 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {
-        return inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(3).isEmpty();
+        return inventory.getItem(2).getItem() == output.getItem() || inventory.getItem(2).isEmpty();
     }
 
     private static boolean canInsertAmountIntoOutputSlot(SimpleContainer inventory) {

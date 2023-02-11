@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/kaolinite"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/kaolinite",
+    "count": 4
+  }
+}

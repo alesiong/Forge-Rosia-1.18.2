@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:ore/pyrite"
+    }
+  ],
+  "output": {
+    "item": "tfc:powder/pyrite",
+    "count": 4
+  }
+}

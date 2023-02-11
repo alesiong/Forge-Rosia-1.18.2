@@ -1,0 +1,18 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "type": "tfc:not_rotten",
+      "ingredient": {
+        "item": "tfc:food/barley_grain"
+      }
+    }
+  ],
+  "output": {
+    "item": "tfc:food/barley_flour",
+    "count": 1,
+    "modifiers": [
+      "tfc:copy_food"
+    ]
+  }
+}

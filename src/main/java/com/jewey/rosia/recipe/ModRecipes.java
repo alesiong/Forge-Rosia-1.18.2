@@ -12,7 +12,7 @@ public class ModRecipes {
             DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Rosia.MOD_ID);
 
     public static final RegistryObject<RecipeSerializer<AutoQuernRecipe>> AUTO_QUERN_SERIALIZER =
-            SERIALIZERS.register("quern", () ->AutoQuernRecipe.Serializer.INSTANCE);
+            SERIALIZERS.register("auto_quern", () ->AutoQuernRecipe.Serializer.INSTANCE);
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
