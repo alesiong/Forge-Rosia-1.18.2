@@ -1,11 +1,13 @@
 package com.jewey.rosia.common.items;
 
 import com.jewey.rosia.Rosia;
+import net.dries007.tfc.util.Metal;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import net.dries007.tfc.common.items.MoldItem;
 
 import java.util.Map;
 
@@ -44,7 +46,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
     public static final RegistryObject<Item> INGOT_FIRECLAY_EMPTY = ITEMS.register("ingot_fireclay_empty",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+            () -> new MoldItem(Metal.ItemType.INGOT, new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
     public static final RegistryObject<Item> MAGNET = ITEMS.register("magnet",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
