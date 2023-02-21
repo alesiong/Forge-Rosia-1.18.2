@@ -1,0 +1,14 @@
+{
+  "type": "tfc:casting",
+  "mold": {
+    "item": "rosia:ingot_fireclay_empty"
+  },
+  "fluid": {
+    "ingredient": "tfc:metal/nickel",
+    "amount": 100
+  },
+  "result": {
+    "item": "tfc:metal/ingot/nickel"
+  },
+  "break_chance": 0
+}

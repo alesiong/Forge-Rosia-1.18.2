@@ -46,7 +46,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
     public static final RegistryObject<Item> INGOT_FIRECLAY_EMPTY = ITEMS.register("ingot_fireclay_empty",
-            () -> new MoldItem(Metal.ItemType.INGOT, new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+            () -> new MoldItem(Metal.ItemType.INGOT, new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).stacksTo(1)));
 
     public static final RegistryObject<Item> MAGNET = ITEMS.register("magnet",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));

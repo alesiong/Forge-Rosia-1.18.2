@@ -41,13 +41,21 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
         protected void onContentsChanged(int slot) {
             setChanged();
         }
+
+        @Override
+        public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+            switch (slot) {
+                case 0: return stack.getItem() == ModItems.STEEL_GRINDSTONE.get();
+            }
+            return super.isItemValid(slot, stack);
+        }
     };
 
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress= 72;
+    private int maxProgress= 100;
 
 
     public AutoQuernBlockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -160,7 +168,7 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
 
 
     private static boolean hasToolsInToolSlot(AutoQuernBlockEntity entity) {
-        return entity.itemHandler.getStackInSlot(1).getItem() == ModItems.STEEL_GRINDSTONE.get();
+        return entity.itemHandler.getStackInSlot(0).getItem() == ModItems.STEEL_GRINDSTONE.get();
     }
 
     private static void craftItem(AutoQuernBlockEntity entity) {
@@ -174,10 +182,10 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
                 .getRecipeFor(AutoQuernRecipe.Type.INSTANCE, inventory, level);
 
         if(match.isPresent()) {
-            entity.itemHandler.extractItem(0,1, false);
-            if(entity.itemHandler.getStackInSlot(1).hurt(1, new Random(), null)) {
-                entity.itemHandler.extractItem(1,1, false);
+            if(entity.itemHandler.getStackInSlot(0).hurt(1, new Random(), null)) {
+                entity.itemHandler.extractItem(0,1, false);
             }
+            entity.itemHandler.extractItem(1,1, false);
 
             entity.itemHandler.setStackInSlot(2, new ItemStack(match.get().getResultItem().getItem(),
                     entity.itemHandler.getStackInSlot(2).getCount() + match.get().getResultItem().getCount()));

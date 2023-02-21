@@ -1,0 +1,14 @@
+{
+  "type": "tfc:casting",
+  "mold": {
+    "item": "rosia:ingot_fireclay_empty"
+  },
+  "fluid": {
+    "ingredient": "tfc:metal/weak_red_steel",
+    "amount": 100
+  },
+  "result": {
+    "item": "tfc:metal/ingot/weak_red_steel"
+  },
+  "break_chance": 0
+}

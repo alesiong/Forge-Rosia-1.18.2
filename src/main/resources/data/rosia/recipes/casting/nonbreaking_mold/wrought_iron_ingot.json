@@ -1,0 +1,14 @@
+{
+  "type": "tfc:casting",
+  "mold": {
+    "item": "rosia:ingot_fireclay_empty"
+  },
+  "fluid": {
+    "ingredient": "tfc:metal/wrought_iron",
+    "amount": 100
+  },
+  "result": {
+    "item": "tfc:metal/ingot/wrought_iron"
+  },
+  "break_chance": 0
+}

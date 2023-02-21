@@ -1,0 +1,14 @@
+{
+  "type": "tfc:casting",
+  "mold": {
+    "item": "rosia:ingot_fireclay_empty"
+  },
+  "fluid": {
+    "ingredient": "tfc:metal/rose_gold",
+    "amount": 100
+  },
+  "result": {
+    "item": "tfc:metal/ingot/rose_gold"
+  },
+  "break_chance": 0
+}
