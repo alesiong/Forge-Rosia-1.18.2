@@ -1,9 +1,9 @@
 {
   "parent": "minecraft:block/orientable_with_bottom",
   "textures": {
-    "top": "rosia:block/auto_quern_top",
-    "front": "rosia:block/auto_quern_front",
-    "side": "rosia:block/auto_quern_side",
-    "bottom": "rosia:block/auto_quern_bottom"
+    "top": "rosia:block/auto_quern/auto_quern_top",
+    "front": "rosia:block/auto_quern/auto_quern_front",
+    "side": "rosia:block/auto_quern/auto_quern_side",
+    "bottom": "rosia:block/auto_quern/auto_quern_bottom"
   }
 }

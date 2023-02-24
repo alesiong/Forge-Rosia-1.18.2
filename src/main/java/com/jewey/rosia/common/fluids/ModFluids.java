@@ -3,6 +3,7 @@ package com.jewey.rosia.common.fluids;
 
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.ModBlocks;
+import net.dries007.tfc.util.Helpers;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.LiquidBlock;
@@ -22,8 +23,8 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ModFluids {
 
-    public static final ResourceLocation LAVA_STILL_RL = new ResourceLocation("block/lava_still");
-    public static final ResourceLocation LAVA_FLOW_RL = new ResourceLocation("block/lava_flow");
+    public static final ResourceLocation MOLTEN_STILL = Helpers.identifier("block/molten_still");
+    public static final ResourceLocation MOLTEN_FLOW = Helpers.identifier("block/molten_flow");
     public static final ResourceLocation WATER_OVERLAY_RL = new ResourceLocation("block/water_overlay");
 
 
@@ -38,7 +39,7 @@ public class ModFluids {
 
 
     public static final ForgeFlowingFluid.Properties NICHROME_PROPERTIES = new ForgeFlowingFluid.Properties(
-            () -> NICHROME_FLUID.get(), () -> NICHROME_FLOWING.get(), FluidAttributes.builder(LAVA_STILL_RL, LAVA_FLOW_RL)
+            () -> NICHROME_FLUID.get(), () -> NICHROME_FLOWING.get(), FluidAttributes.builder(MOLTEN_STILL, MOLTEN_FLOW)
             .color(0xff364236).density(3000).luminosity(15).viscosity(6000).temperature(1300).sound(SoundEvents.BUCKET_EMPTY_LAVA).overlay(WATER_OVERLAY_RL))
             .slopeFindDistance(3).levelDecreasePerBlock(3).block(() -> ModFluids.NICHROME_BLOCK.get());
 

@@ -55,7 +55,7 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress= 100;
+    private int maxProgress= 72;
 
 
     public AutoQuernBlockEntity(BlockPos pPos, BlockState pBlockState) {
