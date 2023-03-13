@@ -1,0 +1,11 @@
+{
+  "type": "rosia:fire_box",
+  "ingredients": [
+    {
+      "tag": "tfc:forge_fuel"
+    }
+  ],
+  "output": {
+    "item": "minecraft:dirt"
+    }
+}

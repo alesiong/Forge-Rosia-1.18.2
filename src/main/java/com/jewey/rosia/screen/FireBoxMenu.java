@@ -2,7 +2,6 @@ package com.jewey.rosia.screen;
 
 import com.jewey.rosia.common.blocks.ModBlocks;
 import com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity;
-import com.jewey.rosia.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -19,9 +18,8 @@ public class FireBoxMenu extends AbstractContainerMenu {
     private final ContainerData data;
 
     public FireBoxMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(3));
+        this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
-
     public FireBoxMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.FIRE_BOX_MENU.get(), pContainerId);
         checkContainerSize(inv, 3);
@@ -29,15 +27,34 @@ public class FireBoxMenu extends AbstractContainerMenu {
         this.level = inv.player.level;
         this.data = data;
 
+        addPlayerInventory(inv);
+        addPlayerHotbar(inv);
+
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 62, 57));
-            this.addSlot(new SlotItemHandler(handler, 1, 81, 57));
+            this.addSlot(new SlotItemHandler(handler, 0, 80, 60));
+            this.addSlot(new SlotItemHandler(handler, 1, 62, 57));
             this.addSlot(new SlotItemHandler(handler, 2, 98, 57));
+
         });
 
         addDataSlots(data);
 
     }
+
+
+    public boolean isHeating() {
+        return data.get(0) > 0;
+    }
+
+    public int getScaledProgress() {
+        int progress = this.data.get(0);
+        int maxProgress = this.data.get(1);  // Max Progress
+        int progressArrowSize = 15; // This is the height or width in pixels of your arrow
+
+        return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
+    }
+
+
 
 
     // CREDIT GOES TO: diesieben07 | https://github.com/diesieben07/SevenCommons
@@ -94,20 +111,20 @@ public class FireBoxMenu extends AbstractContainerMenu {
     @Override
     public boolean stillValid(Player pPlayer) {
         return stillValid(ContainerLevelAccess.create(level, blockEntity.getBlockPos()),
-                pPlayer, ModBlocks.AUTO_QUERN.get());
+                pPlayer, ModBlocks.FIRE_BOX.get());
     }
 
     private void addPlayerInventory(Inventory playerInventory) {
         for (int i = 0; i < 3; ++i) {
             for (int l = 0; l < 9; ++l) {
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 86 + i * 18));
+                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l * 18, 104 + i * 18));
             }
         }
     }
 
     private void addPlayerHotbar(Inventory playerInventory) {
         for (int i = 0; i < 9; ++i) {
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 162));
         }
     }
 }

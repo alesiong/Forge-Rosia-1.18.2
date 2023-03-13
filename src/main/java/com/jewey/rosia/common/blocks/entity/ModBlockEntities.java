@@ -10,8 +10,6 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.function.Supplier;
-
 public class ModBlockEntities {
 
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
@@ -22,7 +20,7 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(AutoQuernBlockEntity::new,
                             ModBlocks.AUTO_QUERN.get()).build(null));
 
-    public static final RegistryObject<BlockEntityType<FireBoxBlockEntity>> FIRE_BOX =
+    public static final RegistryObject<BlockEntityType<FireBoxBlockEntity>> FIRE_BOX_BLOCK_ENTITY =
             BLOCK_ENTITIES.register("fire_box_block_entity", () ->
                     BlockEntityType.Builder.of(FireBoxBlockEntity::new,
                             ModBlocks.FIRE_BOX.get()).build(null));

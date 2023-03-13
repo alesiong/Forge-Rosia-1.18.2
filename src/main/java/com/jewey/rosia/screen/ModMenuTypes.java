@@ -20,6 +20,7 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<FireBoxMenu>> FIRE_BOX_MENU =
             registerMenuType(FireBoxMenu::new, "fire_box_menu");
 
+
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));
     }

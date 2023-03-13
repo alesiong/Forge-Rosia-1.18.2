@@ -14,6 +14,9 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<AutoQuernRecipe>> AUTO_QUERN_SERIALIZER =
             SERIALIZERS.register("auto_quern", () ->AutoQuernRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<FireBoxRecipe>> FIRE_BOX_SERIALIZER =
+            SERIALIZERS.register("fire_box", () ->FireBoxRecipe.Serializer.INSTANCE);
+
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);
     }

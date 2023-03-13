@@ -1,15 +1,12 @@
 package com.jewey.rosia.common.blocks;
 
 import com.jewey.rosia.Rosia;
-import com.jewey.rosia.common.blocks.custom.FireBoxBlock;
 import com.jewey.rosia.common.blocks.custom.auto_quern;
+import com.jewey.rosia.common.blocks.custom.fire_box;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
-import com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity;
 import com.jewey.rosia.common.items.ModCreativeModeTab;
 import com.jewey.rosia.common.items.ModItems;
-import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.devices.CharcoalForgeBlock;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -28,7 +25,6 @@ import net.minecraftforge.registries.RegistryObject;
 import javax.annotation.Nullable;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import java.util.function.ToIntFunction;
 
 public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
@@ -42,26 +38,19 @@ public class ModBlocks {
             () -> new auto_quern(BlockBehaviour.Properties.of(Material.METAL).strength(1f).sound(SoundType.METAL).requiresCorrectToolForDrops()),
             ModCreativeModeTab.ROSIA_TAB);
 
+    public static final RegistryObject<Block> FIRE_BOX = registerBlock("fire_box",
+            () -> new fire_box(BlockBehaviour.Properties.of(Material.METAL).strength(1f).sound(SoundType.METAL).requiresCorrectToolForDrops()),
+            ModCreativeModeTab.ROSIA_TAB);
+
+
+    /**
     public static final RegistryObject<Block> FIRE_BOX  = register("fire_box",
-            () -> new FireBoxBlock(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(1F)
-                    .sound(SoundType.METAL).randomTicks().lightLevel(state -> state.getValue(FireBoxBlock.HEAT) * 2)
-                    .pathType(BlockPathTypes.DAMAGE_FIRE).blockEntity(ModBlockEntities.FIRE_BOX)
-                    .serverTicks(FireBoxBlockEntity::serverTick)),ModCreativeModeTab.ROSIA_TAB);
+            () -> new fire_box(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(1F)
+                    .sound(SoundType.METAL).randomTicks().lightLevel(state -> state.getValue(fire_box.HEAT) * 2)
+                    .pathType(BlockPathTypes.DAMAGE_FIRE).blockEntity(ModBlockEntities.FIRE_BOX_BLOCK_ENTITY)),
+            ModCreativeModeTab.ROSIA_TAB);
+     */
 
-    private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier)
-    {
-        return register(name, blockSupplier, (Function<T, ? extends BlockItem>) null);
-    }
-
-    private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, CreativeModeTab group)
-    {
-        return register(name, blockSupplier, block -> new BlockItem(block, new Item.Properties().tab(group)));
-    }
-
-    private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, Item.Properties blockItemProperties)
-    {
-        return register(name, blockSupplier, block -> new BlockItem(block, blockItemProperties));
-    }
 
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
     {
