@@ -2,7 +2,6 @@ package com.jewey.rosia.event;
 
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.recipe.AutoQuernRecipe;
-import com.jewey.rosia.recipe.FireBoxRecipe;
 import net.minecraft.core.Registry;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.event.RegistryEvent;
@@ -16,6 +15,5 @@ public class ModEventBusEvents {
     @SubscribeEvent
     public static void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event) {
         Registry.register(Registry.RECIPE_TYPE, AutoQuernRecipe.Type.ID, AutoQuernRecipe.Type.INSTANCE);
-        Registry.register(Registry.RECIPE_TYPE, FireBoxRecipe.Type.ID, FireBoxRecipe.Type.INSTANCE);
     }
 }

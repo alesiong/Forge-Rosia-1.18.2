@@ -4,11 +4,16 @@ import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.ModBlocks;
 import com.jewey.rosia.common.blocks.entity.custom.AutoQuernBlockEntity;
 import com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity;
+import net.dries007.tfc.util.registry.RegistrationHelpers;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.function.Supplier;
 
 public class ModBlockEntities {
 
@@ -20,13 +25,17 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(AutoQuernBlockEntity::new,
                             ModBlocks.AUTO_QUERN.get()).build(null));
 
+
     public static final RegistryObject<BlockEntityType<FireBoxBlockEntity>> FIRE_BOX_BLOCK_ENTITY =
-            BLOCK_ENTITIES.register("fire_box_block_entity", () ->
-                    BlockEntityType.Builder.of(FireBoxBlockEntity::new,
-                            ModBlocks.FIRE_BOX.get()).build(null));
+            register("fire_box_block_entity", FireBoxBlockEntity::new, ModBlocks.FIRE_BOX);
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
+    }
+
+    private static <T extends BlockEntity> RegistryObject<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, Supplier<? extends Block> block)
+    {
+        return RegistrationHelpers.register(BLOCK_ENTITIES, name, factory, block);
     }
 
 }

@@ -2,13 +2,16 @@ package com.jewey.rosia;
 
 import com.jewey.rosia.common.blocks.ModBlocks;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
+import com.jewey.rosia.common.container.FireBoxContainer;
+import com.jewey.rosia.common.container.ModContainerTypes;
 import com.jewey.rosia.common.fluids.ModFluids;
 import com.jewey.rosia.common.items.ModItems;
 import com.jewey.rosia.recipe.ModRecipes;
 import com.jewey.rosia.screen.AutoQuernScreen;
-import com.jewey.rosia.screen.FireBoxScreen;
+import com.jewey.rosia.screen.FireBoxScreenFinal;
 import com.jewey.rosia.screen.ModMenuTypes;
 import com.mojang.logging.LogUtils;
+import net.dries007.tfc.network.PacketHandler;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -41,6 +44,7 @@ public class Rosia
         ModFluids.register(eventBus);
 
         ModBlockEntities.register(eventBus);
+        ModContainerTypes.CONTAINERS.register(eventBus);
         ModMenuTypes.register(eventBus);
 
         ModRecipes.register(eventBus);
@@ -50,11 +54,15 @@ public class Rosia
 
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
+
+
+        PacketHandler.init();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
         MenuScreens.register(ModMenuTypes.AUTO_QUERN_MENU.get(), AutoQuernScreen::new);
-        MenuScreens.register(ModMenuTypes.FIRE_BOX_MENU.get(), FireBoxScreen::new);
+        MenuScreens.register(ModContainerTypes.FIRE_BOX.get(), FireBoxScreenFinal::new);
+
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.AUTO_QUERN.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.FIRE_BOX.get(), RenderType.solid());
