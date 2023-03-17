@@ -1,19 +1,14 @@
 {
   "variants": {
-    "facing=east": {
-      "model": "rosia:block/fire_box/unlit",
-      "y": 90
-    },
-    "facing=north": {
-      "model": "rosia:block/fire_box/unlit"
-    },
-    "facing=south": {
-      "model": "rosia:block/fire_box/unlit",
-      "y": 180
-    },
-    "facing=west": {
-      "model": "rosia:block/fire_box/unlit",
-      "y": 270
-    }
+      "facing=east,lit=false": {"model": "rosia:block/fire_box/unlit", "y": 90},
+      "facing=north,lit=false": {"model": "rosia:block/fire_box/unlit"},
+      "facing=south,lit=false": {"model": "rosia:block/fire_box/unlit", "y": 180},
+      "facing=west,lit=false": {"model": "rosia:block/fire_box/unlit", "y": 270},
+      "facing=east,lit=true": {"model": "rosia:block/fire_box/lit", "y": 90},
+      "facing=north,lit=true": {"model": "rosia:block/fire_box/lit"},
+      "facing=south,lit=true": {"model": "rosia:block/fire_box/lit", "y": 180},
+      "facing=west,lit=true": {"model": "rosia:block/fire_box/lit", "y": 270}
+
+
   }
 }

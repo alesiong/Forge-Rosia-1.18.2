@@ -18,10 +18,10 @@ public class AutoQuernMenu extends AbstractContainerMenu {
     private final Level level;
     private final ContainerData data;
 
-    public  AutoQuernMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
+    public AutoQuernMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
         this(pContainerId, inv, inv.player.level.getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
     }
-    public  AutoQuernMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
+    public AutoQuernMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(ModMenuTypes.AUTO_QUERN_MENU.get(), pContainerId);
         checkContainerSize(inv, 3);
         blockEntity = ((AutoQuernBlockEntity) entity);

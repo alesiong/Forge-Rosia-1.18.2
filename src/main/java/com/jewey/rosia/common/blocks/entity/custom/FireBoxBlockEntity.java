@@ -31,6 +31,7 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -81,6 +82,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
             if (forge.burnTicks > 0)
             {
                 forge.burnTicks -= forge.airTicks > 0 || isRaining ? 2 : 1; // Fuel burns twice as fast using bellows, or in the rain
+                level.setBlock(pos, state.setValue(fire_box.LIT, true), Block.UPDATE_ALL);
             }
             if (forge.burnTicks <= 0 && !forge.consumeFuel())
             {
@@ -197,6 +199,20 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
     {
         return temperature;
     }
+    public float getBurnTicks()
+    {
+        return burnTicks;
+    }
+    public float getBurnTicksInit()
+    {
+        final ItemStack fuelStack = inventory.getStackInSlot(SLOT_FUEL_MIN);
+        if (!fuelStack.isEmpty()) {
+            Fuel fuel = Fuel.get(fuelStack);
+            assert fuel != null;
+            return (float) (fuel.getDuration()*1.1);
+        }
+        return 2500;
+    }
 
     public int getAirTicks()
     {
@@ -264,12 +280,12 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
      * @param state The current firepit block state
      * @return {@code true} if the firepit was lit.
      */
-    public boolean light(BlockState state)
+    public boolean light(Level level, BlockPos pos, BlockState state)
     {
         assert level != null;
         if (consumeFuel())
         {
-            level.setBlockAndUpdate(worldPosition, state.setValue(fire_box.HEAT, 2));
+            level.setBlock(pos, state.setValue(fire_box.LIT, true), Block.UPDATE_ALL);
             return true;
         }
         return false;

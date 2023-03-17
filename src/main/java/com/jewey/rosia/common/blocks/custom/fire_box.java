@@ -26,6 +26,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;
@@ -36,6 +37,7 @@ import java.util.Random;
 public class fire_box extends DeviceBlock implements IBellowsConsumer
 {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final BooleanProperty LIT = BooleanProperty.create("lit");
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -48,6 +50,7 @@ public class fire_box extends DeviceBlock implements IBellowsConsumer
     {
         super(properties, InventoryRemoveBehavior.DROP);
         registerDefaultState(getStateDefinition().any().setValue(HEAT, 0));
+        registerDefaultState(getStateDefinition().any().setValue(LIT, false));
     }
 
     @Override
@@ -97,6 +100,7 @@ public class fire_box extends DeviceBlock implements IBellowsConsumer
     {
         super.createBlockStateDefinition(builder.add(HEAT));
         builder.add(FACING);
+        builder.add(LIT);
     }
 
     @Override

@@ -24,13 +24,13 @@ public class AutoQuernRecipeCategory implements IRecipeCategory<AutoQuernRecipe>
 
     public final static ResourceLocation UID = new ResourceLocation(Rosia.MOD_ID, "auto_quern");
     public final static ResourceLocation TEXTURE =
-            new ResourceLocation(Rosia.MOD_ID, "textures/gui/auto_quern_jei.png");
+            new ResourceLocation(Rosia.MOD_ID, "textures/gui/auto_quern_jei_2.png");
 
     private final IDrawable background;
     private final IDrawable icon;
 
     public AutoQuernRecipeCategory(IGuiHelper helper) {
-        this.background = helper.createDrawable(TEXTURE, 0, 0, 176, 32);
+        this.background = helper.createDrawable(TEXTURE, 0, 0, 97, 26);
         this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(ModBlocks.AUTO_QUERN.get()));
     }
 
@@ -61,9 +61,9 @@ public class AutoQuernRecipeCategory implements IRecipeCategory<AutoQuernRecipe>
 
     @Override
     public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull AutoQuernRecipe recipe, @Nonnull IFocusGroup focusGroup) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 76, 8).addIngredients(recipe.getIngredients().get(0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 27, 8).addIngredients(Ingredient.of(ModItems.STEEL_GRINDSTONE.get()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 25, 5).addIngredients(recipe.getIngredients().get(0));
+        builder.addSlot(RecipeIngredientRole.INPUT, 5, 5).addIngredients(Ingredient.of(ModItems.STEEL_GRINDSTONE.get()));
 
-        builder.addSlot(RecipeIngredientRole.OUTPUT, 134, 8).addItemStack(recipe.getResultItem());
+        builder.addSlot(RecipeIngredientRole.OUTPUT, 77, 5).addItemStack(recipe.getResultItem());
     }
 }
