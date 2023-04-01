@@ -6,14 +6,9 @@ import com.jewey.rosia.common.container.FireBoxContainer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
 import net.dries007.tfc.common.capabilities.heat.Heat;
-import net.dries007.tfc.common.capabilities.heat.HeatCapability;
-import net.dries007.tfc.util.Fuel;
-import net.dries007.tfc.util.Helpers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.items.ItemStackHandler;
 
 public class FireBoxScreenFinal extends BlockEntityScreen<FireBoxBlockEntity, FireBoxContainer>
 {

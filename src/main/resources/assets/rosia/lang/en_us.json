@@ -15,7 +15,8 @@
 
   "block.rosia.testblock": "Test Block",
   "block.rosia.auto_quern": "Auto-Quern",
-  "block.rosia.fire_box": "Fire-Box",
+  "block.rosia.fire_box": "Fire Box",
+  "block.rosia.steam_generator": "Steam Generator",
 
   "fluid.rosia.nichrome_fluid": "Molten Nichrome",
   "metal.rosia.nichrome": "Nichrome",

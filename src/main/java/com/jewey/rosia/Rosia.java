@@ -6,10 +6,12 @@ import com.jewey.rosia.common.container.FireBoxContainer;
 import com.jewey.rosia.common.container.ModContainerTypes;
 import com.jewey.rosia.common.fluids.ModFluids;
 import com.jewey.rosia.common.items.ModItems;
+import com.jewey.rosia.networking.ModMessages;
 import com.jewey.rosia.recipe.ModRecipes;
 import com.jewey.rosia.screen.AutoQuernScreen;
 import com.jewey.rosia.screen.FireBoxScreenFinal;
 import com.jewey.rosia.screen.ModMenuTypes;
+import com.jewey.rosia.screen.SteamGeneratorScreen;
 import com.mojang.logging.LogUtils;
 import net.dries007.tfc.network.PacketHandler;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -62,10 +64,12 @@ public class Rosia
     private void clientSetup(final FMLClientSetupEvent event) {
         MenuScreens.register(ModMenuTypes.AUTO_QUERN_MENU.get(), AutoQuernScreen::new);
         MenuScreens.register(ModContainerTypes.FIRE_BOX.get(), FireBoxScreenFinal::new);
+        MenuScreens.register(ModContainerTypes.STEAM_GENERATOR.get(), SteamGeneratorScreen::new);
 
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.AUTO_QUERN.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.FIRE_BOX.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.STEAM_GENERATOR.get(), RenderType.solid());
     }
 
 
@@ -76,6 +80,8 @@ public class Rosia
         ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_BLOCK.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_FLUID.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.NICHROME_FLOWING.get(), RenderType.solid());
+
+        ModMessages.register();
     }
 
 

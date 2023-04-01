@@ -4,6 +4,7 @@ import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.ModBlocks;
 import com.jewey.rosia.common.blocks.entity.custom.AutoQuernBlockEntity;
 import com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity;
+import com.jewey.rosia.common.blocks.entity.custom.SteamGeneratorBlockEntity;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -28,6 +29,9 @@ public class ModBlockEntities {
 
     public static final RegistryObject<BlockEntityType<FireBoxBlockEntity>> FIRE_BOX_BLOCK_ENTITY =
             register("fire_box_block_entity", FireBoxBlockEntity::new, ModBlocks.FIRE_BOX);
+
+    public static final RegistryObject<BlockEntityType<SteamGeneratorBlockEntity>> STEAM_GENERATOR_BLOCK_ENTITY =
+            register("steam_generator_block_entity", SteamGeneratorBlockEntity::new, ModBlocks.STEAM_GENERATOR);
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

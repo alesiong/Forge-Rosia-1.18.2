@@ -6,11 +6,9 @@ import com.jewey.rosia.common.container.FireBoxContainer;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.BellowsBlockEntity;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
-import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.capabilities.heat.Heat;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
-import net.dries007.tfc.common.recipes.HeatingRecipe;
 import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Fuel;
 import net.dries007.tfc.util.Helpers;
@@ -34,9 +32,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.ItemStackHandler;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
-import java.util.Arrays;
 
 import static com.jewey.rosia.Rosia.MOD_ID;
 
@@ -44,8 +42,8 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
 {
 
 
-    public Component getDisplayName() {
-        return new TextComponent("Fire-Box");
+    public @NotNull Component getDisplayName() {
+        return new TextComponent("Fire Box");
     }
 
     public static final int SLOT_FUEL_MIN = 0;
@@ -65,6 +63,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         }
 
         boolean isRaining = level.isRainingAt(pos);
+
         if (state.getValue(fire_box.HEAT) > 0)
         {
             if (isRaining && level.random.nextFloat() < 0.15F)
@@ -113,13 +112,21 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         {
             forge.cascadeFuelSlots();
         }
+
+        // Light the forge automatically
+        final ItemStack fuelStack = forge.inventory.getStackInSlot(SLOT_FUEL_MIN);
+        if (state.getValue(fire_box.HEAT) == 0 && !fuelStack.isEmpty() && forge.burnTemperature == 0)
+        {
+            level.setBlockAndUpdate(pos, state.setValue(fire_box.HEAT, 1));
+            forge.markForSync();
+        }
     }
 
     protected final ContainerData syncableData;
-    private final HeatingRecipe[] cachedRecipes = new HeatingRecipe[5];
     private boolean needsSlotUpdate = false;
     private float temperature; // Current Temperature
     private int burnTicks; // Ticks remaining on the current item of fuel
+    private float initBurnTicks; // Initial read of the burn ticks of consumed fuel
     private float burnTemperature; // Temperature provided from the current item of fuel
     private int airTicks; // Ticks of air provided by bellows
     private long lastPlayerTick; // Last player tick this forge was ticked (for purposes of catching up)
@@ -132,6 +139,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         temperature = 0;
         burnTemperature = 0;
         burnTicks = 0;
+        initBurnTicks = 0;
         airTicks = 0;
         lastPlayerTick = Integer.MIN_VALUE;
         syncableData = new IntArrayBuilder().add(() -> (int) temperature, value -> temperature = value);
@@ -141,8 +149,6 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
             sidedInventory
                     .on(new PartialItemHandler(inventory).insert(SLOT_FUEL_MIN, 1, SLOT_FUEL_MAX), Direction.Plane.HORIZONTAL);
         }
-
-        Arrays.fill(cachedRecipes, null);
     }
 
     public void intakeAir(int amount)
@@ -159,6 +165,8 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
     {
         assert level != null;
         final BlockState state = level.getBlockState(worldPosition);
+
+
         if (state.getValue(fire_box.HEAT) != 0)
         {
             HeatCapability.Remainder remainder =
@@ -205,13 +213,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
     }
     public float getBurnTicksInit()
     {
-        final ItemStack fuelStack = inventory.getStackInSlot(SLOT_FUEL_MIN);
-        if (!fuelStack.isEmpty()) {
-            Fuel fuel = Fuel.get(fuelStack);
-            assert fuel != null;
-            return (float) (fuel.getDuration()*1.1);
-        }
-        return 2500;
+        return  initBurnTicks;
     }
 
     public int getAirTicks()
@@ -231,6 +233,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
     {
         temperature = nbt.getFloat("temperature");
         burnTicks = nbt.getInt("burnTicks");
+        initBurnTicks = nbt.getInt("initBurnTicks");
         airTicks = nbt.getInt("airTicks");
         burnTemperature = nbt.getFloat("burnTemperature");
         lastPlayerTick = nbt.getLong("lastPlayerTick");
@@ -242,6 +245,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
     {
         nbt.putFloat("temperature", temperature);
         nbt.putInt("burnTicks", burnTicks);
+        nbt.putFloat("initBurnTicks", initBurnTicks);
         nbt.putInt("airTicks", airTicks);
         nbt.putFloat("burnTemperature", burnTemperature);
         nbt.putLong("lastPlayerTick", lastPlayerTick);
@@ -268,10 +272,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         {
             return Helpers.isItem(stack.getItem(), TFCTags.Items.FORGE_FUEL);
         }
-        else
-        {
-            return stack.getCapability(Capabilities.FLUID_ITEM).isPresent() && stack.getCapability(HeatCapability.CAPABILITY).isPresent();
-        }
+        return false;
     }
 
     /**
@@ -305,6 +306,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
             Fuel fuel = Fuel.get(fuelStack);
             if (fuel != null)
             {
+                initBurnTicks = (float) (fuel.getDuration() * 1.1);
                 burnTicks += fuel.getDuration() * 1.1;      // 10% more efficient
                 burnTemperature = fuel.getTemperature();
             }
@@ -349,11 +351,4 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
             inventory.setStackInSlot(2, ItemStack.EMPTY);
         }
     }
-
-    /**
-     * Add button to light the firebox
-     */
-
-
-
 }

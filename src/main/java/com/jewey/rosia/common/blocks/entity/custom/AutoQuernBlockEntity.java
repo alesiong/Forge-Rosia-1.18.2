@@ -1,15 +1,19 @@
 package com.jewey.rosia.common.blocks.entity.custom;
 
-import com.ibm.icu.impl.duration.impl.DataRecord;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.items.ModItems;
+import com.jewey.rosia.networking.ModMessages;
+import com.jewey.rosia.networking.packet.EnergySyncS2CPacket;
 import com.jewey.rosia.recipe.AutoQuernRecipe;
 import com.jewey.rosia.screen.AutoQuernMenu;
+import com.jewey.rosia.util.ModEnergyStorage;
+import net.dries007.tfc.client.TFCSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
@@ -18,12 +22,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -55,7 +60,8 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
 
     protected final ContainerData data;
     private int progress = 0;
-    private int maxProgress= 72;
+    private int maxProgress= 120;
+    private float sTick;
 
 
     public AutoQuernBlockEntity(BlockPos pPos, BlockState pBlockState) {
@@ -83,13 +89,14 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         return new TextComponent("Auto-Quern");
     }
 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
+        ModMessages.sendToClients(new EnergySyncS2CPacket(this.ENERGY_STORAGE.getEnergyStored(), getBlockPos()));
         return new AutoQuernMenu(pContainerId, pPlayerInventory, this, this.data);
     }
 
@@ -99,26 +106,54 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
         if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             return lazyItemHandler.cast();
         }
+        if(cap == CapabilityEnergy.ENERGY) {
+            return lazyEnergyHandler.cast();
+        }
 
         return super.getCapability(cap, side);
     }
+
+    private final ModEnergyStorage ENERGY_STORAGE = new ModEnergyStorage(1000, 100) {
+        @Override
+        public void onEnergyChanged() {
+            setChanged();
+            ModMessages.sendToClients(new EnergySyncS2CPacket(this.energy, getBlockPos()));
+        }
+    };
+    private static final int ENERGY_REQ = 100; // Energy cost to craft item
+
+    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
+
+
+    public IEnergyStorage getEnergyStorage() {
+        return ENERGY_STORAGE;
+    }
+
+    public void setEnergyLevel(int energy) {
+        this.ENERGY_STORAGE.setEnergy(energy);
+    }
+
+
 
     @Override
     public void onLoad() {
         super.onLoad();
         lazyItemHandler = LazyOptional.of(() -> itemHandler);
+        lazyEnergyHandler = LazyOptional.of(() -> ENERGY_STORAGE);
     }
 
     @Override
     public void invalidateCaps()  {
         super.invalidateCaps();
         lazyItemHandler.invalidate();
+        lazyEnergyHandler.invalidate();
     }
 
     @Override
     protected void saveAdditional(@NotNull CompoundTag tag) {
         tag.put("inventory", itemHandler.serializeNBT());
         tag.putInt("auto_quern.progress", progress);
+        tag.putInt("energy", ENERGY_STORAGE.getEnergyStored());
         super.saveAdditional(tag);
     }
 
@@ -127,6 +162,7 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
         super.load(nbt);
         itemHandler.deserializeNBT(nbt.getCompound("inventory"));
         progress = nbt.getInt("auto_quern.progress");
+        ENERGY_STORAGE.setEnergy(nbt.getInt("energy"));
     }
 
     public void drops() {
@@ -139,16 +175,33 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, AutoQuernBlockEntity pBlockEntity) {
-        if(hasRecipe(pBlockEntity)) {
+        if(hasRecipe(pBlockEntity) && hasEnoughEnergy(pBlockEntity)) {
             pBlockEntity.progress++;
             setChanged(pLevel, pPos, pState);
             if(pBlockEntity.progress > pBlockEntity.maxProgress) {
                 craftItem(pBlockEntity);
+                extractEnergy(pBlockEntity);
+                pBlockEntity.resetSTick();
+            }
+
+            if(pBlockEntity.sTick > 0) { pBlockEntity.sTick -= 1; }
+            if(pBlockEntity.progress == 15 && pBlockEntity.sTick == 0) {
+                pLevel.playSound(null, pPos, TFCSounds.QUERN_DRAG.get(),
+                        SoundSource.BLOCKS, 1, 1 + ((pLevel.random.nextFloat() - pLevel.random.nextFloat()) / 16));
+                pBlockEntity.sTick += pBlockEntity.maxProgress - 15;
             }
         } else {
             pBlockEntity.resetProgress();
             setChanged(pLevel, pPos, pState);
         }
+    }
+
+    private static void extractEnergy(AutoQuernBlockEntity pBlockEntity) {
+        pBlockEntity.ENERGY_STORAGE.extractEnergy(ENERGY_REQ, false);
+    }
+
+    private static boolean hasEnoughEnergy(AutoQuernBlockEntity pBlockEntity) {
+        return pBlockEntity.ENERGY_STORAGE.getEnergyStored() >= ENERGY_REQ;
     }
 
     private static boolean hasRecipe(AutoQuernBlockEntity entity) {
@@ -196,6 +249,9 @@ public class AutoQuernBlockEntity extends BlockEntity implements MenuProvider {
 
     private void resetProgress() {
         this.progress = 0;
+    }
+    private void resetSTick() {
+        this.sTick = 0;
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {

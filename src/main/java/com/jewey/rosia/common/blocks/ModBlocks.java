@@ -3,8 +3,10 @@ package com.jewey.rosia.common.blocks;
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.custom.fire_box;
 import com.jewey.rosia.common.blocks.custom.auto_quern;
+import com.jewey.rosia.common.blocks.custom.steam_generator;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity;
+import com.jewey.rosia.common.blocks.entity.custom.SteamGeneratorBlockEntity;
 import com.jewey.rosia.common.items.ModCreativeModeTab;
 import com.jewey.rosia.common.items.ModItems;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -46,6 +48,12 @@ public class ModBlocks {
                     .sound(SoundType.METAL).lightLevel((state) -> state.getValue(fire_box.HEAT) * 2)
                     .pathType(BlockPathTypes.DAMAGE_FIRE).blockEntity(ModBlockEntities.FIRE_BOX_BLOCK_ENTITY)
                     .serverTicks(FireBoxBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
+
+    public static final Supplier<? extends Block> STEAM_GENERATOR = register("steam_generator",
+            () -> new steam_generator(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(1f).randomTicks()
+                    .sound(SoundType.METAL).pathType(BlockPathTypes.DAMAGE_FIRE)
+                    .blockEntity(ModBlockEntities.STEAM_GENERATOR_BLOCK_ENTITY)
+                    .serverTicks(SteamGeneratorBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
 
 
 

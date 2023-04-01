@@ -32,9 +32,9 @@ public class AutoQuernMenu extends AbstractContainerMenu {
         addPlayerHotbar(inv);
 
         this.blockEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(handler -> {
-            this.addSlot(new SlotItemHandler(handler, 0, 27, 49));
-            this.addSlot(new SlotItemHandler(handler, 1, 76, 49));
-            this.addSlot(new ModResultSlot(handler, 2, 134, 49));
+            this.addSlot(new SlotItemHandler(handler, 0, 26, 49));
+            this.addSlot(new SlotItemHandler(handler, 1, 62, 49));
+            this.addSlot(new ModResultSlot(handler, 2, 116, 49));
         });
 
         addDataSlots(data);
@@ -52,7 +52,9 @@ public class AutoQuernMenu extends AbstractContainerMenu {
 
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
-
+    public AutoQuernBlockEntity getBlockEntity() {
+        return this.blockEntity;
+    }
 
 
 
