@@ -1,6 +1,6 @@
 package com.jewey.rosia.networking.packet;
 
-import com.jewey.rosia.common.blocks.entity.custom.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
 import com.jewey.rosia.common.container.SteamGeneratorContainer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;

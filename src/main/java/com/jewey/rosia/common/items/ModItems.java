@@ -22,18 +22,13 @@ public class ModItems {
     public static final RegistryObject<Item> COPPER_COIL = ITEMS.register("copper_coil",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
-    public static final RegistryObject<Item> NICHROME_INGOT = ITEMS.register("nichrome_ingot",
+    public static final RegistryObject<Item> INVAR_INGOT = ITEMS.register("invar_ingot",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
-    public static final RegistryObject<Item> NICHROME_DOUBLE_INGOT = ITEMS.register("nichrome_double_ingot",
+    public static final RegistryObject<Item> INVAR_DOUBLE_INGOT = ITEMS.register("invar_double_ingot",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
-    public static final RegistryObject<Item> NICHROME_SHEET = ITEMS.register("nichrome_sheet",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
-    public static final RegistryObject<Item> NICHROME_WIRE = ITEMS.register("nichrome_wire",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
-
-    public static final RegistryObject<Item> HEAT_COIL = ITEMS.register("heat_coil",
+    public static final RegistryObject<Item> INVAR_SHEET = ITEMS.register("invar_sheet",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
     public static final RegistryObject<Item> MAGNETITE_POWDER = ITEMS.register("magnetite_powder",
@@ -53,6 +48,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> STEEL_GRINDSTONE = ITEMS.register("steel_grindstone",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(750)));
+
+    public static final RegistryObject<Item> MOTOR = ITEMS.register("motor",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
 
     public static void register(IEventBus eventBus) {

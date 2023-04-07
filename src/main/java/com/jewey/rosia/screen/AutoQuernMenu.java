@@ -1,7 +1,7 @@
 package com.jewey.rosia.screen;
 
 import com.jewey.rosia.common.blocks.ModBlocks;
-import com.jewey.rosia.common.blocks.entity.custom.AutoQuernBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.AutoQuernBlockEntity;
 import com.jewey.rosia.screen.slot.ModResultSlot;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;

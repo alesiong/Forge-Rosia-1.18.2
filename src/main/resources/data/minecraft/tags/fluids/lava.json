@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "rosia:nichrome_flowing",
-    "rosia:nichrome_fluid"
+    "rosia:invar_flowing",
+    "rosia:invar_fluid"
   ]
 }

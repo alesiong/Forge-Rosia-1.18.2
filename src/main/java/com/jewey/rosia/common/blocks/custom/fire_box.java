@@ -1,7 +1,7 @@
 package com.jewey.rosia.common.blocks.custom;
 
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
-import com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
@@ -37,20 +37,17 @@ import java.util.Random;
 public class fire_box extends DeviceBlock implements IBellowsConsumer
 {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final BooleanProperty LIT = BooleanProperty.create("lit");
+    public static final IntegerProperty HEAT = IntegerProperty.create("heat_level", 0, 7);
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
-    public static final IntegerProperty HEAT = TFCBlockStateProperties.HEAT_LEVEL;
-
 
     public fire_box(ExtendedProperties properties)
     {
         super(properties, InventoryRemoveBehavior.DROP);
         registerDefaultState(getStateDefinition().any().setValue(HEAT, 0));
-        registerDefaultState(getStateDefinition().any().setValue(LIT, false));
     }
 
     @Override
@@ -98,9 +95,8 @@ public class fire_box extends DeviceBlock implements IBellowsConsumer
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.createBlockStateDefinition(builder.add(HEAT));
+        builder.add(HEAT);
         builder.add(FACING);
-        builder.add(LIT);
     }
 
     @Override

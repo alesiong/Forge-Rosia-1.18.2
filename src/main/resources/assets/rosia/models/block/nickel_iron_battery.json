@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/orientable_with_bottom",
+  "textures": {
+    "top": "rosia:block/nickel_iron_battery/nickel_iron_battery_top",
+    "front": "rosia:block/nickel_iron_battery/nickel_iron_battery_side",
+    "side": "rosia:block/nickel_iron_battery/nickel_iron_battery_side",
+    "bottom": "rosia:block/nickel_iron_battery/nickel_iron_battery_bottom"
+  }
+}

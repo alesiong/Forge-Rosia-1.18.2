@@ -3,10 +3,11 @@ package com.jewey.rosia.common.blocks;
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.custom.fire_box;
 import com.jewey.rosia.common.blocks.custom.auto_quern;
+import com.jewey.rosia.common.blocks.custom.nickel_iron_battery;
 import com.jewey.rosia.common.blocks.custom.steam_generator;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
-import com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity;
-import com.jewey.rosia.common.blocks.entity.custom.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
 import com.jewey.rosia.common.items.ModCreativeModeTab;
 import com.jewey.rosia.common.items.ModItems;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -36,11 +37,11 @@ public class ModBlocks {
 
 
 
-    public static final RegistryObject<Block> TESTBLOCK = registerBlock("testblock",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(1f).requiresCorrectToolForDrops()),
+    public static final RegistryObject<Block> MACHINE_FRAME = registerBlock("machine_frame",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(1f)),
             ModCreativeModeTab.ROSIA_TAB);
     public static final RegistryObject<Block> AUTO_QUERN = registerBlock("auto_quern",
-            () -> new auto_quern(BlockBehaviour.Properties.of(Material.METAL).strength(1f).sound(SoundType.METAL).requiresCorrectToolForDrops()),
+            () -> new auto_quern(BlockBehaviour.Properties.of(Material.METAL).strength(1f).sound(SoundType.METAL)),
             ModCreativeModeTab.ROSIA_TAB);
 
     public static final Supplier<? extends Block> FIRE_BOX = register("fire_box",
@@ -54,6 +55,10 @@ public class ModBlocks {
                     .sound(SoundType.METAL).pathType(BlockPathTypes.DAMAGE_FIRE)
                     .blockEntity(ModBlockEntities.STEAM_GENERATOR_BLOCK_ENTITY)
                     .serverTicks(SteamGeneratorBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
+
+    public static final RegistryObject<Block> NICKEL_IRON_BATTERY = registerBlock("nickel_iron_battery",
+            () -> new nickel_iron_battery(BlockBehaviour.Properties.of(Material.METAL).strength(1f).sound(SoundType.METAL)),
+            ModCreativeModeTab.ROSIA_TAB);
 
 
 

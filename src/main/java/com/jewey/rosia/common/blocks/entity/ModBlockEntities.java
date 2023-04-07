@@ -2,9 +2,10 @@ package com.jewey.rosia.common.blocks.entity;
 
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.ModBlocks;
-import com.jewey.rosia.common.blocks.entity.custom.AutoQuernBlockEntity;
-import com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity;
-import com.jewey.rosia.common.blocks.entity.custom.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.AutoQuernBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.NickelIronBatteryBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -32,6 +33,12 @@ public class ModBlockEntities {
 
     public static final RegistryObject<BlockEntityType<SteamGeneratorBlockEntity>> STEAM_GENERATOR_BLOCK_ENTITY =
             register("steam_generator_block_entity", SteamGeneratorBlockEntity::new, ModBlocks.STEAM_GENERATOR);
+
+    public static final RegistryObject<BlockEntityType<NickelIronBatteryBlockEntity>> NICKEL_IRON_BATTERY_BLOCK_ENTITY =
+            BLOCK_ENTITIES.register("nickel_iron_battery_block_entity", () ->
+                    BlockEntityType.Builder.of(NickelIronBatteryBlockEntity::new,
+                            ModBlocks.NICKEL_IRON_BATTERY.get()).build(null));
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

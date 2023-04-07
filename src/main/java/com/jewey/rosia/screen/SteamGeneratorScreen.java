@@ -1,9 +1,10 @@
 package com.jewey.rosia.screen;
 
 import com.jewey.rosia.Rosia;
-import com.jewey.rosia.common.blocks.entity.custom.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
 import com.jewey.rosia.common.container.SteamGeneratorContainer;
 import com.jewey.rosia.screen.renderer.EnergyInfoArea50Height;
+import com.jewey.rosia.screen.renderer.FluidInfoArea50Height;
 import com.jewey.rosia.util.MouseUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
@@ -21,6 +22,7 @@ public class SteamGeneratorScreen extends BlockEntityScreen<SteamGeneratorBlockE
             new ResourceLocation(Rosia.MOD_ID,"textures/gui/steam_generator_gui.png");
 
     private EnergyInfoArea50Height energyInfoArea;
+    private FluidInfoArea50Height fluidInfoArea;
 
     public SteamGeneratorScreen(SteamGeneratorContainer container, Inventory playerInventory, Component name)
     {
@@ -34,15 +36,22 @@ public class SteamGeneratorScreen extends BlockEntityScreen<SteamGeneratorBlockE
     protected void init() {
         super.init();
         assignEnergyInfoArea();
+        assignFluidInfoArea();
     }
 
     private void assignEnergyInfoArea() {
         energyInfoArea = new EnergyInfoArea50Height(leftPos  + 156, topPos + 26, menu.getBlockEntity().getEnergyStorage());
     }
+    private void assignFluidInfoArea() {
+        fluidInfoArea = new FluidInfoArea50Height(leftPos  + 67, topPos + 26, menu.getBlockEntity().getFluidStorage());
+    }
 
     @Override
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
         renderEnergyAreaTooltips(pPoseStack, pMouseX, pMouseY, leftPos, topPos);
+        renderFluidAreaTooltips(pPoseStack, pMouseX, pMouseY, leftPos, topPos);
+        this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
+        this.font.draw(pPoseStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
     }
 
     private void renderEnergyAreaTooltips(PoseStack pPoseStack, int pMouseX, int pMouseY, int leftPos, int topPos) {
@@ -51,12 +60,18 @@ public class SteamGeneratorScreen extends BlockEntityScreen<SteamGeneratorBlockE
                     Optional.empty(), pMouseX - leftPos, pMouseY - topPos);
         }
     }
+    private void renderFluidAreaTooltips(PoseStack pPoseStack, int pMouseX, int pMouseY, int leftPos, int topPos) {
+        if(isMouseAboveArea(pMouseX, pMouseY, leftPos, topPos, 67, 26, 16, 50)) {
+            renderTooltip(pPoseStack, fluidInfoArea.getTooltips(),
+                    Optional.empty(), pMouseX - leftPos, pMouseY - topPos);
+        }
+    }
 
     @Override
     protected void renderBg(@NotNull PoseStack poseStack, float partialTicks, int mouseX, int mouseY)
     {
         super.renderBg(poseStack, partialTicks, mouseX, mouseY);
-        int temp = (int) (51 * blockEntity.getTemperature() / Heat.maxVisibleTemperature());
+        int temp = (int) (51 * blockEntity.getTemperature() / 2014);    // 2014 -> temp for max FE/tick
         if (temp > 0) {
             blit(poseStack, leftPos + 8, topPos + 76 - Math.min(51, temp), 176, 0, 15, 5);
         }

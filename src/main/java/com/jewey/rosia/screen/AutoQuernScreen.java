@@ -35,6 +35,8 @@ public class AutoQuernScreen extends AbstractContainerScreen<AutoQuernMenu> {
     @Override
     protected void renderLabels(PoseStack pPoseStack, int pMouseX, int pMouseY) {
         renderEnergyAreaTooltips(pPoseStack, pMouseX, pMouseY, leftPos, topPos);
+        this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
+        this.font.draw(pPoseStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
     }
     private void renderEnergyAreaTooltips(PoseStack pPoseStack, int pMouseX, int pMouseY, int leftPos, int topPos) {
         if(isMouseAboveArea(pMouseX, pMouseY, leftPos, topPos, 156, 20, 8, 43)) {

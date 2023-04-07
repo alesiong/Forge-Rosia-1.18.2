@@ -1,13 +1,13 @@
 package com.jewey.rosia.common.container;
 
-import com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.container.BlockEntityContainer;
 import net.dries007.tfc.common.container.CallbackSlot;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 
-import static com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity.SLOT_FUEL_MIN;
+import static com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity.SLOT_FUEL_MIN;
 
 public class FireBoxContainer extends BlockEntityContainer<FireBoxBlockEntity>
 {

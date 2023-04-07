@@ -31,20 +31,20 @@ public class ModFluids {
     public static final DeferredRegister<Fluid> FLUIDS
             = DeferredRegister.create(ForgeRegistries.FLUIDS, Rosia.MOD_ID);
 
-    public static final RegistryObject<FlowingFluid> NICHROME_FLUID
-            = FLUIDS.register("nichrome_fluid", () -> new ForgeFlowingFluid.Source(ModFluids.NICHROME_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> INVAR_FLUID
+            = FLUIDS.register("invar_fluid", () -> new ForgeFlowingFluid.Source(ModFluids.INVAR_PROPERTIES));
 
-    public static final RegistryObject<FlowingFluid> NICHROME_FLOWING
-            = FLUIDS.register("nichrome_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.NICHROME_PROPERTIES));
+    public static final RegistryObject<FlowingFluid> INVAR_FLOWING
+            = FLUIDS.register("invar_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.INVAR_PROPERTIES));
 
 
-    public static final ForgeFlowingFluid.Properties NICHROME_PROPERTIES = new ForgeFlowingFluid.Properties(
-            () -> NICHROME_FLUID.get(), () -> NICHROME_FLOWING.get(), FluidAttributes.builder(MOLTEN_STILL, MOLTEN_FLOW)
-            .color(0xff364236).density(3000).luminosity(15).viscosity(6000).temperature(1300).sound(SoundEvents.BUCKET_EMPTY_LAVA).overlay(WATER_OVERLAY_RL))
-            .slopeFindDistance(3).levelDecreasePerBlock(3).block(() -> ModFluids.NICHROME_BLOCK.get());
+    public static final ForgeFlowingFluid.Properties INVAR_PROPERTIES = new ForgeFlowingFluid.Properties(
+            () -> INVAR_FLUID.get(), () -> INVAR_FLOWING.get(), FluidAttributes.builder(MOLTEN_STILL, MOLTEN_FLOW)
+            .color(0xff695b43).density(3000).luminosity(15).viscosity(6000).temperature(1300).sound(SoundEvents.BUCKET_EMPTY_LAVA).overlay(WATER_OVERLAY_RL))
+            .slopeFindDistance(3).levelDecreasePerBlock(3).block(() -> ModFluids.INVAR_BLOCK.get());
 
-    public static final RegistryObject<LiquidBlock> NICHROME_BLOCK = ModBlocks.BLOCKS.register("nichrome_fluid",
-            () -> new LiquidBlock(() -> ModFluids.NICHROME_FLUID.get(), BlockBehaviour.Properties.of(Material.LAVA)
+    public static final RegistryObject<LiquidBlock> INVAR_BLOCK = ModBlocks.BLOCKS.register("invar_fluid",
+            () -> new LiquidBlock(() -> ModFluids.INVAR_FLUID.get(), BlockBehaviour.Properties.of(Material.LAVA)
                     .noCollission().strength(100f).noDrops()));
 
 

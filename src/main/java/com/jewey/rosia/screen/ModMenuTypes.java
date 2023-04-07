@@ -17,6 +17,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<AutoQuernMenu>> AUTO_QUERN_MENU =
             registerMenuType(AutoQuernMenu::new, "auto_quern_menu");
 
+    public static final RegistryObject<MenuType<NickelIronBatteryMenu>> NICKEL_IRON_BATTERY_MENU =
+            registerMenuType(NickelIronBatteryMenu::new, "nickel_iron_battery_menu");
+
 
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {

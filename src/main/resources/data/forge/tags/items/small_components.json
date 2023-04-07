@@ -1,8 +1,6 @@
 {
   "replace": false,
   "values": [
-    "rosia:nichrome_wire",
-    "rosia:heat_coil",
     "rosia:copper_wire",
     "rosia:copper_coil",
     "rosia:compressed_magnetite",

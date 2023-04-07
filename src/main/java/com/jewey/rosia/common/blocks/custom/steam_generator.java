@@ -1,12 +1,14 @@
 package com.jewey.rosia.common.blocks.custom;
 
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
-import com.jewey.rosia.common.blocks.entity.custom.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.util.Helpers;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,8 +18,11 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
@@ -26,13 +31,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Random;
 
 public class steam_generator extends DeviceBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
-    public static final BooleanProperty LIT = BooleanProperty.create("lit");
+    public static final BooleanProperty STEAM = BooleanProperty.create("steam");
 
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext context) {
@@ -41,12 +47,12 @@ public class steam_generator extends DeviceBlock {
     public steam_generator(ExtendedProperties properties)
     {
         super(properties, InventoryRemoveBehavior.DROP);
-        registerDefaultState(getStateDefinition().any().setValue(LIT, false));
+        registerDefaultState(getStateDefinition().any().setValue(STEAM, false));
     }
     @Override
     public void animateTick(BlockState state, Level world, BlockPos pos, Random rand)
     {
-        if (!state.getValue(LIT)) return;
+        if (!state.getValue(STEAM)) return;
         double x = pos.getX() + 0.5D;
         double y = pos.getY() + 0.875D;
         double z = pos.getZ() + 0.5D;
@@ -68,7 +74,7 @@ public class steam_generator extends DeviceBlock {
     @Override
     public void stepOn(Level world, BlockPos pos, BlockState state, Entity entity)
     {
-        if (!entity.fireImmune() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity) && world.getBlockState(pos).getValue(LIT))
+        if (!entity.fireImmune() && entity instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity) && world.getBlockState(pos).getValue(STEAM))
         {
             entity.hurt(DamageSource.HOT_FLOOR, 1.0F);
         }
@@ -77,8 +83,8 @@ public class steam_generator extends DeviceBlock {
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
-        super.createBlockStateDefinition(builder.add(FACING));
-        builder.add(LIT);
+        builder.add(FACING);
+        builder.add(STEAM);
     }
     @Override
     @SuppressWarnings("deprecation")
@@ -96,5 +102,9 @@ public class steam_generator extends DeviceBlock {
         return InteractionResult.PASS;
     }
 
-
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> components, TooltipFlag pFlag) {
+        components.add(Component.nullToEmpty("Max 20 FE/Tick").copy().withStyle(ChatFormatting.GREEN));
+        super.appendHoverText(pStack, pLevel, components, pFlag);
+    }
 }

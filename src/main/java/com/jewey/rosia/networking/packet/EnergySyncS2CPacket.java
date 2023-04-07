@@ -1,9 +1,11 @@
 package com.jewey.rosia.networking.packet;
 
-import com.jewey.rosia.common.blocks.entity.custom.AutoQuernBlockEntity;
-import com.jewey.rosia.common.blocks.entity.custom.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.AutoQuernBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.NickelIronBatteryBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
 import com.jewey.rosia.common.container.SteamGeneratorContainer;
 import com.jewey.rosia.screen.AutoQuernMenu;
+import com.jewey.rosia.screen.NickelIronBatteryMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -45,6 +47,14 @@ public class EnergySyncS2CPacket {
                 blockEntity.setEnergyLevel(energy);
 
                 if(Minecraft.getInstance().player.containerMenu instanceof AutoQuernMenu menu &&
+                        menu.getBlockEntity().getBlockPos().equals(pos)) {
+                    blockEntity.setEnergyLevel(energy);
+                }
+            }
+            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof NickelIronBatteryBlockEntity blockEntity) {
+                blockEntity.setEnergyLevel(energy);
+
+                if(Minecraft.getInstance().player.containerMenu instanceof NickelIronBatteryMenu menu &&
                         menu.getBlockEntity().getBlockPos().equals(pos)) {
                     blockEntity.setEnergyLevel(energy);
                 }

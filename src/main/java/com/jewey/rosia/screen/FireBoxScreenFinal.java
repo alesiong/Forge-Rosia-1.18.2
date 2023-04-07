@@ -1,7 +1,7 @@
 package com.jewey.rosia.screen;
 
 import com.jewey.rosia.Rosia;
-import com.jewey.rosia.common.blocks.entity.custom.FireBoxBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
 import com.jewey.rosia.common.container.FireBoxContainer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
@@ -30,8 +30,8 @@ public class FireBoxScreenFinal extends BlockEntityScreen<FireBoxBlockEntity, Fi
         if (temp > 0)
         {
             blit(poseStack, leftPos + 8, topPos + 76 - Math.min(51, temp), 176, 0, 15, 5);
-            float getBurnProgress = (blockEntity.getBurnTicks() / blockEntity.getBurnTicksInit()) * 15;
-            blit(poseStack, leftPos + 78, topPos + 50 - (int) getBurnProgress, 176, 20 - (int) getBurnProgress, 19, (int) getBurnProgress);
         }
+        float getBurnProgress = (blockEntity.getBurnTicks() / blockEntity.getBurnTicksInit()) * 15;
+        blit(poseStack, leftPos + 78, topPos + 50 - (int) getBurnProgress, 176, 20 - (int) getBurnProgress, 19, (int) getBurnProgress);
     }
 }

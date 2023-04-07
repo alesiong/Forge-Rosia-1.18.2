@@ -1,25 +1,25 @@
 {
   "item.rosia.copper_wire": "Copper Wire",
   "item.rosia.copper_coil": "Copper Coil",
-  "item.rosia.nichrome_ingot": "Nichrome Ingot",
-  "item.rosia.nichrome_double_ingot": "Nichrome Double Ingot",
-  "item.rosia.nichrome_sheet": "Nichrome Sheet",
-  "item.rosia.nichrome_wire": "Nichrome Wire",
-  "item.rosia.heat_coil": "Heat Coil",
+  "item.rosia.invar_ingot": "Invar Ingot",
+  "item.rosia.invar_double_ingot": "Invar Double Ingot",
+  "item.rosia.invar_sheet": "Invar Sheet",
   "item.rosia.magnetite_powder": "Magnetite Powder",
   "item.rosia.compressed_magnetite": "Compressed Magnetite",
   "item.rosia.unfired_fireclay_ingot": "Unfired Fire Clay Ingot Mold",
   "item.rosia.ingot_fireclay_empty": "Hardened Ingot Mold",
   "item.rosia.magnet": "Magnet",
   "item.rosia.steel_grindstone": "Steel Grindstone",
+  "item.rosia.motor": "Motor",
 
-  "block.rosia.testblock": "Test Block",
+  "block.rosia.machine_frame": "Machine Frame",
   "block.rosia.auto_quern": "Auto-Quern",
   "block.rosia.fire_box": "Fire Box",
   "block.rosia.steam_generator": "Steam Generator",
+  "block.rosia.nickel_iron_battery": "Nickel-Iron Battery",
 
-  "fluid.rosia.nichrome_fluid": "Molten Nichrome",
-  "metal.rosia.nichrome": "Nichrome",
+  "fluid.rosia.invar_fluid": "Molten Invar",
+  "metal.rosia.invar": "Invar",
 
   "itemGroup.rosiatab": "Rosia"
 }
