@@ -3,6 +3,7 @@ package com.jewey.rosia.common.blocks.entity.block_entity;
 import com.jewey.rosia.common.blocks.custom.fire_box;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.container.FireBoxContainer;
+import com.jewey.rosia.common.items.ModItems;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
@@ -20,7 +21,9 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -38,7 +41,12 @@ import static com.jewey.rosia.Rosia.MOD_ID;
 
 public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable, MenuProvider
 {
-
+    private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+        }
+    };
 
     public @NotNull Component getDisplayName() {
         return new TextComponent("Fire Box");
@@ -72,6 +80,9 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
             }
 
             // Update fuel
+            if (forge.burnTicks < 0) {
+                forge.burnTicks = 1;
+            }
             if (forge.burnTicks > 0)
             {
                 forge.burnTicks -= forge.airTicks > 0 || isRaining ? 2 : 1; // Fuel burns twice as fast using bellows, or in the rain
@@ -83,7 +94,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
                 forge.markForSync();
             }
             // No fuel -> extinguish
-            if (forge.burnTemperature > 0 && forge.burnTicks == 0 && !forge.consumeFuel())
+            if (forge.burnTemperature > 0 && forge.burnTicks <= 0 && !forge.consumeFuel())
             {
                 forge.extinguish();
             }
@@ -256,6 +267,15 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         nbt.putFloat("burnTemperature", burnTemperature);
         nbt.putLong("lastPlayerTick", lastPlayerTick);
         super.saveAdditional(nbt);
+    }
+
+    public void drops() {
+        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inventory.setItem(i, itemHandler.getStackInSlot(i));
+        }
+
+        Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
     @Override

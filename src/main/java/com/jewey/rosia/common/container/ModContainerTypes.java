@@ -2,6 +2,7 @@ package com.jewey.rosia.common.container;
 
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.WaterPumpBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.container.BlockEntityContainer;
@@ -26,6 +27,8 @@ public class ModContainerTypes {
     public static final RegistryObject<MenuType<FireBoxContainer>> FIRE_BOX = ModContainerTypes.<FireBoxBlockEntity, FireBoxContainer>registerBlock("fire_box", ModBlockEntities.FIRE_BOX_BLOCK_ENTITY, FireBoxContainer::create);
 
     public static final RegistryObject<MenuType<SteamGeneratorContainer>> STEAM_GENERATOR = ModContainerTypes.<SteamGeneratorBlockEntity, SteamGeneratorContainer>registerBlock("steam_generator", ModBlockEntities.STEAM_GENERATOR_BLOCK_ENTITY, SteamGeneratorContainer::create);
+
+    public static final RegistryObject<MenuType<WaterPumpContainer>> WATER_PUMP = ModContainerTypes.<WaterPumpBlockEntity, WaterPumpContainer>registerBlock("pump", ModBlockEntities.WATER_PUMP_BLOCK_ENTITY, WaterPumpContainer::create);
 
     private static <T extends InventoryBlockEntity<?>, C extends BlockEntityContainer<T>> RegistryObject<MenuType<C>> registerBlock(String name, Supplier<BlockEntityType<T>> type, BlockEntityContainer.Factory<T, C> factory)
     {

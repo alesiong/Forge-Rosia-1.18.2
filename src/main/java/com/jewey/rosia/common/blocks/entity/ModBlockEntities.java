@@ -2,10 +2,7 @@ package com.jewey.rosia.common.blocks.entity;
 
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.ModBlocks;
-import com.jewey.rosia.common.blocks.entity.block_entity.AutoQuernBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.NickelIronBatteryBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.*;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -38,6 +35,9 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("nickel_iron_battery_block_entity", () ->
                     BlockEntityType.Builder.of(NickelIronBatteryBlockEntity::new,
                             ModBlocks.NICKEL_IRON_BATTERY.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<WaterPumpBlockEntity>> WATER_PUMP_BLOCK_ENTITY =
+            register("water_pump_block_entity", WaterPumpBlockEntity::new, ModBlocks.WATER_PUMP);
 
 
     public static void register(IEventBus eventBus) {

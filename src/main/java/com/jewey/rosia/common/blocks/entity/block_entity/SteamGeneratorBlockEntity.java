@@ -20,6 +20,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.util.Mth;
+import net.minecraft.world.Containers;
+import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -93,16 +96,15 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
         if (generator.temperature > 100 && generator.ticks == 0 && hasEnoughFluid(generator)
                 && generator.ENERGY_STORAGE.getEnergyStored() < generator.ENERGY_STORAGE.getMaxEnergyStored()) {
             //higher temperatures = higher "steam pressure" = faster power generation
-            int pressure = (int) ((1800 - generator.temperature) / 50);
-            if(pressure < 0) pressure = 0;      //get rid of negative values    //at 1800 pressure = 0
+            int pressure = Mth.clamp((int) ((1800 - generator.temperature) / 80), 0, 23);
 
             if(generator.temperature >= 2014) {
-            //at max temperature for coal, as a bonus, 1 FE every tick
-                generator.ENERGY_STORAGE.receiveEnergy(1,false);
+            //at max temperature for coal 4 FE every tick
+                generator.ENERGY_STORAGE.receiveEnergy(4,false);
                 generator.ticks += pressure;
             } else {
-            //otherwise get 1 FE every-other-tick + pressure
-                generator.ENERGY_STORAGE.receiveEnergy(1, false);
+            //otherwise get 3 FE every-other-tick + pressure
+                generator.ENERGY_STORAGE.receiveEnergy(3, false);
                 generator.ticks += pressure + 1;
             }
             generator.FLUID_TANK.drain(10, IFluidHandler.FluidAction.EXECUTE);
@@ -270,6 +272,15 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
         nbt.putFloat("ticks", ticks);
         nbt = FLUID_TANK.writeToNBT(nbt);
         super.saveAdditional(nbt);
+    }
+
+    public void drops() {
+        SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
+        for (int i = 0; i < itemHandler.getSlots(); i++) {
+            inventory.setItem(i, itemHandler.getStackInSlot(i));
+        }
+
+        Containers.dropContents(this.level, this.worldPosition, inventory);
     }
 
     @NotNull

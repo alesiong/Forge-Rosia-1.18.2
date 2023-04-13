@@ -1,0 +1,10 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredient": {
+    "item": "tfc:plant/sapphire_tower"
+  },
+  "result": {
+    "item": "minecraft:light_blue_dye",
+    "count": 2
+  }
+}

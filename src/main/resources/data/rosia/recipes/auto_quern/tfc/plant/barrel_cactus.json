@@ -1,0 +1,10 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredient": {
+    "item": "tfc:plant/barrel_cactus"
+  },
+  "result": {
+    "item": "minecraft:green_dye",
+    "count": 2
+  }
+}

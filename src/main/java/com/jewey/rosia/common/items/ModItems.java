@@ -37,12 +37,6 @@ public class ModItems {
     public static final RegistryObject<Item> COMPRESSED_MAGNETITE = ITEMS.register("compressed_magnetite",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
-    public static final RegistryObject<Item> UNFIRED_FIRECLAY_INGOT = ITEMS.register("unfired_fireclay_ingot",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
-
-    public static final RegistryObject<Item> INGOT_FIRECLAY_EMPTY = ITEMS.register("ingot_fireclay_empty",
-            () -> new MoldItem(Metal.ItemType.INGOT, new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).stacksTo(1)));
-
     public static final RegistryObject<Item> MAGNET = ITEMS.register("magnet",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
@@ -50,6 +44,9 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(750)));
 
     public static final RegistryObject<Item> MOTOR = ITEMS.register("motor",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> WRENCH_HEAD = ITEMS.register("wrench_head",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
 

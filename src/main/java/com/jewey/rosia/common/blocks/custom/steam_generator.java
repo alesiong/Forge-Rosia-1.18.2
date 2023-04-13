@@ -1,7 +1,9 @@
 package com.jewey.rosia.common.blocks.custom;
 
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
+import com.jewey.rosia.common.blocks.entity.block_entity.AutoQuernBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.container.SteamGeneratorContainer;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.util.Helpers;
@@ -26,6 +28,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
@@ -44,6 +47,18 @@ public class steam_generator extends DeviceBlock {
     public BlockState getStateForPlacement(BlockPlaceContext context) {
         return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite());
     }
+
+    @Override
+    public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
+        if (pState.getBlock() != pNewState.getBlock()) {
+            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+            if (blockEntity instanceof SteamGeneratorBlockEntity) {
+                ((SteamGeneratorBlockEntity) blockEntity).drops();
+            }
+        }
+        super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+    }
+
     public steam_generator(ExtendedProperties properties)
     {
         super(properties, InventoryRemoveBehavior.DROP);
@@ -104,7 +119,7 @@ public class steam_generator extends DeviceBlock {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> components, TooltipFlag pFlag) {
-        components.add(Component.nullToEmpty("Max 20 FE/Tick").copy().withStyle(ChatFormatting.GREEN));
+        components.add(Component.nullToEmpty("Max 4 FE/Tick").copy().withStyle(ChatFormatting.GREEN));
         super.appendHoverText(pStack, pLevel, components, pFlag);
     }
 }

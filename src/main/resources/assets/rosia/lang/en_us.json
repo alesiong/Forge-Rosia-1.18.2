@@ -6,8 +6,6 @@
   "item.rosia.invar_sheet": "Invar Sheet",
   "item.rosia.magnetite_powder": "Magnetite Powder",
   "item.rosia.compressed_magnetite": "Compressed Magnetite",
-  "item.rosia.unfired_fireclay_ingot": "Unfired Fire Clay Ingot Mold",
-  "item.rosia.ingot_fireclay_empty": "Hardened Ingot Mold",
   "item.rosia.magnet": "Magnet",
   "item.rosia.steel_grindstone": "Steel Grindstone",
   "item.rosia.motor": "Motor",
@@ -17,6 +15,7 @@
   "block.rosia.fire_box": "Fire Box",
   "block.rosia.steam_generator": "Steam Generator",
   "block.rosia.nickel_iron_battery": "Nickel-Iron Battery",
+  "block.rosia.water_pump": "Water Pump",
 
   "fluid.rosia.invar_fluid": "Molten Invar",
   "metal.rosia.invar": "Invar",

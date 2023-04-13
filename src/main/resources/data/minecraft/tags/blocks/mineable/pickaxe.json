@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "rosia:auto_quern",
+    "rosia:fire_box",
+    "rosia:machine_frame",
+    "rosia:nickel_iron_battery",
+    "rosia:water_pump",
+    "rosia:steam_generator"
+  ]
+}

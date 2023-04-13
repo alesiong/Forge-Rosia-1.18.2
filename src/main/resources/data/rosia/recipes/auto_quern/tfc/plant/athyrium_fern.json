@@ -1,0 +1,10 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredient": {
+    "item": "tfc:plant/athyrium_fern"
+  },
+  "result": {
+    "item": "minecraft:magenta_dye",
+    "count": 2
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredient": {
+    "item": "tfc:plant/sacred_datura"
+  },
+  "result": {
+    "item": "minecraft:pink_dye",
+    "count": 2
+  }
+}
