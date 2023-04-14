@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/foxglove"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/foxglove"
+    }
+  ],
+  "output": {
     "item": "minecraft:pink_dye",
     "count": 2
   }

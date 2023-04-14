@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/primrose"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/primrose"
+    }
+  ],
+  "output": {
     "item": "minecraft:white_dye",
     "count": 2
   }

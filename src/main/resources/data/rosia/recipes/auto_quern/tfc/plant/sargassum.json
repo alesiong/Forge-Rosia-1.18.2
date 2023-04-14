@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/sargassum"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/sargassum"
+    }
+  ],
+  "output": {
     "item": "minecraft:brown_dye",
     "count": 2
   }

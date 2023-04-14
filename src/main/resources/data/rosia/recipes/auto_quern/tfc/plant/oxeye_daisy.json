@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/oxeye_daisy"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/oxeye_daisy"
+    }
+  ],
+  "output": {
     "item": "minecraft:white_dye",
     "count": 2
   }

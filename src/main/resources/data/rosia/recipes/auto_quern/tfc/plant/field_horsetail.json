@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/field_horsetail"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/field_horsetail"
+    }
+  ],
+  "output": {
     "item": "minecraft:brown_dye",
     "count": 2
   }

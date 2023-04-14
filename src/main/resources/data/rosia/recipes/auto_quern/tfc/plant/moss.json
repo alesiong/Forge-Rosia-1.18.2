@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/moss"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/moss"
+    }
+  ],
+  "output": {
     "item": "minecraft:lime_dye",
     "count": 2
   }

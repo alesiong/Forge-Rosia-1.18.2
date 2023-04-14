@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/morning_glory"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/moring_glory"
+    }
+  ],
+  "output": {
     "item": "minecraft:magenta_dye",
     "count": 2
   }

@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/snapdragon_pink"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/snapdragon_pink"
+    }
+  ],
+  "output": {
     "item": "minecraft:pink_dye",
     "count": 2
   }

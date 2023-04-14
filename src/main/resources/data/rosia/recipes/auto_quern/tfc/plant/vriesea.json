@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/vriesea"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/vriesea"
+    }
+  ],
+  "output": {
     "item": "minecraft:red_dye",
     "count": 2
   }

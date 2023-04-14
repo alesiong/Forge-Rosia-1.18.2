@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/spanish_moss"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/spanish_moss"
+    }
+  ],
+  "output": {
     "item": "minecraft:white_dye",
     "count": 2
   }

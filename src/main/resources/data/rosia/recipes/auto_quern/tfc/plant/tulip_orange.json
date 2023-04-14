@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/tulip_orange"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/tulip_orange"
+    }
+  ],
+  "output": {
     "item": "minecraft:orange_dye",
     "count": 2
   }

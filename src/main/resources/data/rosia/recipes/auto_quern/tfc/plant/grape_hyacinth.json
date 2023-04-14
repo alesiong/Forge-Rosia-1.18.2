@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/grape_hyacinth"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/grape_hyacinth"
+    }
+  ],
+  "output": {
     "item": "minecraft:blue_dye",
     "count": 2
   }

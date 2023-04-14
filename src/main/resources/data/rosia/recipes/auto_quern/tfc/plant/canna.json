@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/canna"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/canna"
+    }
+  ],
+  "output": {
     "item": "minecraft:orange_dye",
     "count": 2
   }

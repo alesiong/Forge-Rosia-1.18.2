@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/rose"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/rose"
+    }
+  ],
+  "output": {
     "item": "minecraft:red_dye",
     "count": 2
   }

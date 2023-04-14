@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/tulip_white"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/tulip_white"
+    }
+  ],
+  "output": {
     "item": "minecraft:white_dye",
     "count": 2
   }

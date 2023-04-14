@@ -1,7 +1,7 @@
 {
-  "tier": 5,
+  "tier": 3,
   "fluid": "rosia:invar_fluid",
-  "melt_temperature": 1485,
+  "melt_temperature": 1535,
   "specific_heat_capacity": 0.00857,
   "ingots": {
     "item": "rosia:invar_ingot"

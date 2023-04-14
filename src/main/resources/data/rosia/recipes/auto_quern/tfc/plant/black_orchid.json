@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/black_orchid"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/black_orchid"
+    }
+  ],
+  "output": {
     "item": "minecraft:purple_dye",
     "count": 2
   }

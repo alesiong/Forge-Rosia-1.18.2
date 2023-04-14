@@ -1,9 +1,11 @@
 {
   "type": "rosia:auto_quern",
-  "ingredient": {
-    "item": "tfc:plant/labrador_tea"
-  },
-  "result": {
+  "ingredients": [
+    {
+      "item": "tfc:plant/labrador_tea"
+    }
+  ],
+  "output": {
     "item": "minecraft:light_blue_dye",
     "count": 2
   }

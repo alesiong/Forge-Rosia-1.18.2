@@ -1,6 +1,8 @@
 {
   "replace": false,
   "values": [
-    "rosia:motor"
+    "rosia:motor",
+    "pipez:fluid_pipe",
+    "pipez:energy_pipe"
   ]
 }
