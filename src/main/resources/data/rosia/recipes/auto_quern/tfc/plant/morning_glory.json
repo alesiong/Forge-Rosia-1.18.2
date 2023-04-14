@@ -2,7 +2,7 @@
   "type": "rosia:auto_quern",
   "ingredients": [
     {
-      "item": "tfc:plant/moring_glory"
+      "item": "tfc:plant/morning_glory"
     }
   ],
   "output": {

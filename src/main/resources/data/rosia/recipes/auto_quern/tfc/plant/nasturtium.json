@@ -2,7 +2,7 @@
   "type": "rosia:auto_quern",
   "ingredients": [
     {
-      "item": "tfc:plant/nasturium"
+      "item": "tfc:plant/nasturtium"
     }
   ],
   "output": {
