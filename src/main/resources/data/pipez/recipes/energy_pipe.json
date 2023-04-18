@@ -1,7 +1,23 @@
 {
-  "conditions": [
-    {
-      "type": "forge:false"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " Y ",
+    "XXX",
+    " Z "
+  ],
+  "key": {
+    "X": {
+      "item": "rosia:copper_coil"
+    },
+    "Y": {
+      "item": "tfc:metal/rod/copper"
+    },
+    "Z": {
+      "item": "rosia:copper_wire"
     }
-  ]
+  },
+  "result": {
+    "item": "pipez:energy_pipe",
+    "count": 16
+  }
 }

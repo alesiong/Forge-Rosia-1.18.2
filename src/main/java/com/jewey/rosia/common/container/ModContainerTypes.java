@@ -7,6 +7,7 @@ import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEnti
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.container.BlockEntityContainer;
 import net.dries007.tfc.common.container.ItemStackContainer;
+import net.dries007.tfc.common.container.SmallVesselInventoryContainer;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;
@@ -29,6 +30,8 @@ public class ModContainerTypes {
     public static final RegistryObject<MenuType<SteamGeneratorContainer>> STEAM_GENERATOR = ModContainerTypes.<SteamGeneratorBlockEntity, SteamGeneratorContainer>registerBlock("steam_generator", ModBlockEntities.STEAM_GENERATOR_BLOCK_ENTITY, SteamGeneratorContainer::create);
 
     public static final RegistryObject<MenuType<WaterPumpContainer>> WATER_PUMP = ModContainerTypes.<WaterPumpBlockEntity, WaterPumpContainer>registerBlock("pump", ModBlockEntities.WATER_PUMP_BLOCK_ENTITY, WaterPumpContainer::create);
+
+    public static final RegistryObject<MenuType<LeatherSatchelContainer>> LEATHER_SATCHEL = registerItem("leather_satchel", LeatherSatchelContainer::create);
 
     private static <T extends InventoryBlockEntity<?>, C extends BlockEntityContainer<T>> RegistryObject<MenuType<C>> registerBlock(String name, Supplier<BlockEntityType<T>> type, BlockEntityContainer.Factory<T, C> factory)
     {

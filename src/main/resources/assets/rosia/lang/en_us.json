@@ -9,6 +9,9 @@
   "item.rosia.magnet": "Magnet",
   "item.rosia.steel_grindstone": "Steel Grindstone",
   "item.rosia.motor": "Motor",
+  "item.rosia.wrench_head": "Wrought Iron Wrench Head",
+  "item.rosia.satchel_part": "Satchel Part",
+  "item.rosia.leather_satchel": "Leather Satchel",
 
   "block.rosia.machine_frame": "Machine Frame",
   "block.rosia.auto_quern": "Auto-Quern",
@@ -19,6 +22,8 @@
 
   "fluid.rosia.invar_fluid": "Molten Invar",
   "metal.rosia.invar": "Invar",
+
+  "tfc.tooltip.food_trait.bound": "Leather Bound",
 
   "itemGroup.rosiatab": "Rosia"
 }

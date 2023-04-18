@@ -18,6 +18,11 @@ public class AutoQuernRecipe implements Recipe<SimpleContainer> {
     private final ItemStack output;
     private final NonNullList<Ingredient> recipeItems;
 
+    @Override
+    public boolean isSpecial() {
+        return true;
+    }
+
     public AutoQuernRecipe(ResourceLocation id, ItemStack output,
                                    NonNullList<Ingredient> recipeItems) {
         this.id = id;

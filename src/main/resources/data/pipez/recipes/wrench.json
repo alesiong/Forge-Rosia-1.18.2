@@ -1,8 +1,21 @@
 {
   "type": "minecraft:crafting_shaped",
-  "pattern": [],
-  "key": {},
+  "replace": "true",
+  "pattern": [
+    "  Y",
+    " Z ",
+    "   "
+  ],
+  "key": {
+    "Y": {
+      "item": "rosia:wrench_head"
+    },
+    "Z": {
+      "item": "tfc:metal/rod/wrought_iron"
+    }
+  },
   "result": {
-    "item": "minecraft:air"
+    "item": "pipez:wrench",
+    "count": 1
   }
 }

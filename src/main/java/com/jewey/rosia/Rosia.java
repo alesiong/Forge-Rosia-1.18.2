@@ -2,9 +2,12 @@ package com.jewey.rosia;
 
 import com.jewey.rosia.common.blocks.ModBlocks;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
+import com.jewey.rosia.common.capabilities.food.RosiaFoodTraits;
+import com.jewey.rosia.common.container.ModContainerProviders;
 import com.jewey.rosia.common.container.ModContainerTypes;
 import com.jewey.rosia.common.fluids.ModFluids;
 import com.jewey.rosia.common.items.ModItems;
+import com.jewey.rosia.event.ModEvents;
 import com.jewey.rosia.networking.ModMessages;
 import com.jewey.rosia.recipe.ModRecipes;
 import com.jewey.rosia.screen.*;
@@ -29,7 +32,7 @@ public class Rosia
     public static final String MOD_ID = "rosia";
 
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
 
     public Rosia()
@@ -44,6 +47,7 @@ public class Rosia
         ModBlockEntities.register(eventBus);
         ModContainerTypes.CONTAINERS.register(eventBus);
         ModMenuTypes.register(eventBus);
+        RosiaFoodTraits.registerFoodTraits();
 
         ModRecipes.register(eventBus);
 
@@ -55,6 +59,7 @@ public class Rosia
 
 
         PacketHandler.init();
+        ModEvents.init();
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
@@ -63,6 +68,7 @@ public class Rosia
         MenuScreens.register(ModContainerTypes.STEAM_GENERATOR.get(), SteamGeneratorScreen::new);
         MenuScreens.register(ModMenuTypes.NICKEL_IRON_BATTERY_MENU.get(), NickelIronBatteryScreen::new);
         MenuScreens.register(ModContainerTypes.WATER_PUMP.get(), WaterPumpScreen::new);
+        MenuScreens.register(ModContainerTypes.LEATHER_SATCHEL.get(), LeatherSatchelScreen::new);
 
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.AUTO_QUERN.get(), RenderType.solid());

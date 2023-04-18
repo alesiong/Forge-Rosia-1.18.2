@@ -1,15 +1,12 @@
 package com.jewey.rosia.common.items;
 
 import com.jewey.rosia.Rosia;
-import net.dries007.tfc.util.Metal;
+import net.dries007.tfc.common.items.VesselItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import net.dries007.tfc.common.items.MoldItem;
-
-import java.util.Map;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -48,6 +45,12 @@ public class ModItems {
 
     public static final RegistryObject<Item> WRENCH_HEAD = ITEMS.register("wrench_head",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> SATCHEL_PART = ITEMS.register("satchel_part",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> LEATHER_SATCHEL = ITEMS.register("leather_satchel",
+            () -> new SatchelItem(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
 
     public static void register(IEventBus eventBus) {

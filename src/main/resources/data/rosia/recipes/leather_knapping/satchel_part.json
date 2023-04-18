@@ -1,0 +1,13 @@
+{
+  "type": "tfc:leather_knapping",
+  "pattern": [
+    "XXXXX",
+    "XX   ",
+    "XX   ",
+    "XX   ",
+    "XXXXX"
+  ],
+  "result": {
+    "item": "rosia:satchel_part"
+  }
+}
