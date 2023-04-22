@@ -61,6 +61,67 @@ public class ModBlocks {
                     .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.WATER_PUMP_BLOCK_ENTITY)
                     .serverTicks(WaterPumpBlockEntity::serverTick).noOcclusion()), ModCreativeModeTab.ROSIA_TAB);
 
+    public static final RegistryObject<Block> ANDESITE_PATH = registerBlock("andesite_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f,10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> BASALT_PATH = registerBlock("basalt_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f,10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> CHALK_PATH = registerBlock("chalk_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> CHERT_PATH = registerBlock("chert_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> CLAYSTONE_PATH = registerBlock("claystone_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> CONGLOMERATE_PATH = registerBlock("conglomerate_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> DACITE_PATH = registerBlock("dacite_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> DIORITE_PATH = registerBlock("diorite_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> DOLOMITE_PATH = registerBlock("dolomite_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> GABBRO_PATH = registerBlock("gabbro_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> GNEISS_PATH = registerBlock("gneiss_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> GRANITE_PATH = registerBlock("granite_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> LIMESTONE_PATH = registerBlock("limestone_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> MARBLE_PATH = registerBlock("marble_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> PHYLLITE_PATH = registerBlock("phyllite_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> QUARTZITE_PATH = registerBlock("quartzite_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> RHYOLITE_PATH = registerBlock("rhyolite_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> SCHIST_PATH = registerBlock("schist_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> SHALE_PATH = registerBlock("shale_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+    public static final RegistryObject<Block> SLATE_PATH = registerBlock("slate_path",
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
+                    .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
+
 
 
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)

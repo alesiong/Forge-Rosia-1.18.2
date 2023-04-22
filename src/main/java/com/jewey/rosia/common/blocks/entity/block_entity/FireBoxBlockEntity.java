@@ -1,14 +1,17 @@
 package com.jewey.rosia.common.blocks.entity.block_entity;
 
+import com.jewey.rosia.common.items.ModItems;
+import com.jewey.rosia.util.RosiaTags;
 import com.jewey.rosia.common.blocks.custom.fire_box;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.container.FireBoxContainer;
-import com.jewey.rosia.common.items.ModItems;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.capabilities.heat.Heat;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
+import net.dries007.tfc.common.items.Powder;
+import net.dries007.tfc.common.items.TFCItems;
 import net.dries007.tfc.util.Fuel;
 import net.dries007.tfc.util.Helpers;
 import net.dries007.tfc.util.IntArrayBuilder;
@@ -20,6 +23,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.Tag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -29,9 +33,11 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
@@ -41,10 +47,19 @@ import static com.jewey.rosia.Rosia.MOD_ID;
 
 public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable, MenuProvider
 {
-    private final ItemStackHandler itemHandler = new ItemStackHandler(3) {
+    private final ItemStackHandler itemHandler = new ItemStackHandler(4) {
         @Override
         protected void onContentsChanged(int slot) {
             setChanged();
+        }
+
+        @Override
+        public boolean isItemValid(int slot, ItemStack stack) {
+            return switch (slot) {
+                case 0, 1, 2 -> Helpers.isItem(stack.getItem(), RosiaTags.Items.FIRE_BOX_FUEL);
+                case 3 -> stack.getItem() == TFCItems.POWDERS.get(Powder.WOOD_ASH).get();
+                default -> super.isItemValid(slot, stack);
+            };
         }
     };
 
@@ -54,6 +69,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
 
     public static final int SLOT_FUEL_MIN = 0;
     public static final int SLOT_FUEL_MAX = 2;
+    public static final int OUTPUT_SLOT = 3;
 
     public static final int MAX_FIRE_BOX_AIR_TICKS = 900;
 
@@ -77,6 +93,13 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
             if (isRaining && level.random.nextFloat() < 0.15F)
             {
                 Helpers.playSound(level, pos, SoundEvents.LAVA_EXTINGUISH);
+            }
+
+            // Create wood ash when wooden fuel is done burning
+            if(forge.burnTicks <= 3 && forge.ash) {   // burnTicks must be an odd number more than 1 due to bellows/rain ticking down at 2 -> an even number
+                forge.inventory.setStackInSlot(OUTPUT_SLOT, new ItemStack(TFCItems.POWDERS.get(Powder.WOOD_ASH).get(),
+                        forge.inventory.getStackInSlot(OUTPUT_SLOT).getCount() + 1));
+                forge.ash = false;
             }
 
             // Update fuel
@@ -152,16 +175,18 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
     private int airTicks; // Ticks of air provided by bellows
     private long lastPlayerTick; // Last player tick this forge was ticked (for purposes of catching up)
     private boolean needsRecipeUpdate; // Set to indicate on tick, the cached recipes need to be re-updated
+    private boolean ash; // Whether ash is created or not
 
     public FireBoxBlockEntity(BlockPos pos, BlockState state)
     {
-        super(ModBlockEntities.FIRE_BOX_BLOCK_ENTITY.get(), pos, state, defaultInventory(3), NAME);
+        super(ModBlockEntities.FIRE_BOX_BLOCK_ENTITY.get(), pos, state, defaultInventory(4), NAME);
 
         temperature = 0;
         burnTemperature = 0;
         burnTicks = 0;
         initBurnTicks = 0;
         airTicks = 0;
+        ash = false;
         lastPlayerTick = Integer.MIN_VALUE;
         syncableData = new IntArrayBuilder().add(() -> (int) temperature, value -> temperature = value);
 
@@ -254,6 +279,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         airTicks = nbt.getInt("airTicks");
         burnTemperature = nbt.getFloat("burnTemperature");
         lastPlayerTick = nbt.getLong("lastPlayerTick");
+        ash = nbt.getBoolean("ash");
         super.loadAdditional(nbt);
     }
 
@@ -266,6 +292,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         nbt.putInt("airTicks", airTicks);
         nbt.putFloat("burnTemperature", burnTemperature);
         nbt.putLong("lastPlayerTick", lastPlayerTick);
+        nbt.putBoolean("ash", ash);
         super.saveAdditional(nbt);
     }
 
@@ -286,19 +313,11 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
     }
 
     @Override
-    public int getSlotStackLimit(int slot)
-    {
-        return 4;
-    }
-
-    @Override
-    public boolean isItemValid(int slot, ItemStack stack)
-    {
-        if (slot <= SLOT_FUEL_MAX)
-        {
-            return Helpers.isItem(stack.getItem(), TFCTags.Items.FORGE_FUEL);
-        }
-        return false;
+    public int getSlotStackLimit(int slot) {
+        return switch (slot) {
+            case 0, 1, 2 -> 4;
+            default -> 64;
+        };
     }
 
     /**
@@ -309,6 +328,11 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         final ItemStack fuelStack = inventory.getStackInSlot(SLOT_FUEL_MIN);
         if (!fuelStack.isEmpty())
         {
+            //check for wood -> create wood ash when the fuel has been used
+            if(inventory.getStackInSlot(SLOT_FUEL_MIN).is(TFCTags.Items.LOG_PILE_LOGS))
+            {
+                ash = true;
+            }
             // Try and consume a piece of fuel
             inventory.extractItem(SLOT_FUEL_MIN, 1, false);
             needsSlotUpdate = true;

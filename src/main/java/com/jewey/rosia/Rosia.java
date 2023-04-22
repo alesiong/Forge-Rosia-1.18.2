@@ -3,10 +3,10 @@ package com.jewey.rosia;
 import com.jewey.rosia.common.blocks.ModBlocks;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.capabilities.food.RosiaFoodTraits;
-import com.jewey.rosia.common.container.ModContainerProviders;
 import com.jewey.rosia.common.container.ModContainerTypes;
 import com.jewey.rosia.common.fluids.ModFluids;
 import com.jewey.rosia.common.items.ModItems;
+import com.jewey.rosia.effect.ModEffects;
 import com.jewey.rosia.event.ModEvents;
 import com.jewey.rosia.networking.ModMessages;
 import com.jewey.rosia.recipe.ModRecipes;
@@ -47,7 +47,10 @@ public class Rosia
         ModBlockEntities.register(eventBus);
         ModContainerTypes.CONTAINERS.register(eventBus);
         ModMenuTypes.register(eventBus);
+
         RosiaFoodTraits.registerFoodTraits();
+
+        ModEffects.EFFECTS.register(eventBus);
 
         ModRecipes.register(eventBus);
 

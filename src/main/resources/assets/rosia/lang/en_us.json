@@ -13,6 +13,27 @@
   "item.rosia.satchel_part": "Satchel Part",
   "item.rosia.leather_satchel": "Leather Satchel",
 
+  "block.rosia.andesite_path": "Andesite Path",
+  "block.rosia.basalt_path": "Basalt Path",
+  "block.rosia.chalk_path": "Chalk Path",
+  "block.rosia.chert_path": "Chert Path",
+  "block.rosia.claystone_path": "Claystone Path",
+  "block.rosia.conglomerate_path": "Conglomerate Path",
+  "block.rosia.dacite_path": "Dacite Path",
+  "block.rosia.diorite_path": "Diorite Path",
+  "block.rosia.dolomite_path": "Dolomite Path",
+  "block.rosia.gabbro_path": "Gabbro Path",
+  "block.rosia.gneiss_path": "Gneiss Path",
+  "block.rosia.granite_path": "Granite Path",
+  "block.rosia.limestone_path": "Limestone Path",
+  "block.rosia.marble_path": "Marble Path",
+  "block.rosia.phyllite_path": "Phyllite Path",
+  "block.rosia.quartzite_path": "Quartzite Path",
+  "block.rosia.rhyolite_path": "Rhyolite Path",
+  "block.rosia.schist_path": "Schist Path",
+  "block.rosia.shale_path": "Shale Path",
+  "block.rosia.slate_path": "Slate Path",
+
   "block.rosia.machine_frame": "Machine Frame",
   "block.rosia.auto_quern": "Auto-Quern",
   "block.rosia.fire_box": "Fire Box",
@@ -24,6 +45,8 @@
   "metal.rosia.invar": "Invar",
 
   "tfc.tooltip.food_trait.bound": "Leather Bound",
+
+  "effect.rosia.path_speed": "Path Speed",
 
   "itemGroup.rosiatab": "Rosia"
 }

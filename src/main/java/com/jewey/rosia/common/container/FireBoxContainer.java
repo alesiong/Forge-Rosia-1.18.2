@@ -1,6 +1,7 @@
 package com.jewey.rosia.common.container;
 
 import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
+import com.jewey.rosia.screen.slot.ModResultSlot;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.container.BlockEntityContainer;
 import net.dries007.tfc.common.container.CallbackSlot;
@@ -42,7 +43,9 @@ public class FireBoxContainer extends BlockEntityContainer<FireBoxBlockEntity>
             int index = SLOT_FUEL_MIN;
             addSlot(new CallbackSlot(blockEntity, handler, index++, 80, 60));
             addSlot(new CallbackSlot(blockEntity, handler, index++, 62, 57));
-            addSlot(new CallbackSlot(blockEntity, handler, index, 98, 57));
+            addSlot(new CallbackSlot(blockEntity, handler, index++, 98, 57));
+            //output for wood ash
+            addSlot(new ModResultSlot(handler, index, 125, 76));
 
         });
     }
