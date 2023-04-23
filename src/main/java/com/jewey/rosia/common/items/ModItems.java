@@ -50,7 +50,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
     public static final RegistryObject<Item> LEATHER_SATCHEL = ITEMS.register("leather_satchel",
-            () -> new SatchelItem(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+            () -> new SatchelItem(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).stacksTo(1)));
 
 
     public static void register(IEventBus eventBus) {
