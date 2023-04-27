@@ -71,6 +71,7 @@ public class Rosia
         MenuScreens.register(ModContainerTypes.STEAM_GENERATOR.get(), SteamGeneratorScreen::new);
         MenuScreens.register(ModMenuTypes.NICKEL_IRON_BATTERY_MENU.get(), NickelIronBatteryScreen::new);
         MenuScreens.register(ModContainerTypes.WATER_PUMP.get(), WaterPumpScreen::new);
+        MenuScreens.register(ModMenuTypes.EXTRUDING_MACHINE_MENU.get(), ExtrudingMachineScreen::new);
         MenuScreens.register(ModContainerTypes.LEATHER_SATCHEL.get(), LeatherSatchelScreen::new);
 
 
@@ -79,6 +80,7 @@ public class Rosia
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.STEAM_GENERATOR.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.NICKEL_IRON_BATTERY.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.WATER_PUMP.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.EXTRUDING_MACHINE.get(), RenderType.solid());
     }
 
 

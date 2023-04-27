@@ -1,9 +1,9 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "###",
-    "###",
-    "###"
+    "## ",
+    "## ",
+    "## "
   ],
   "key": {
     "#": {
@@ -12,6 +12,6 @@
   },
   "result": {
     "item": "rosia:copper_coil",
-    "count": 2
+    "count": 1
   }
 }

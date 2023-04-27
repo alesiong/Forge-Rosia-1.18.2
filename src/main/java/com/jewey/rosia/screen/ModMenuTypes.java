@@ -20,6 +20,9 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<NickelIronBatteryMenu>> NICKEL_IRON_BATTERY_MENU =
             registerMenuType(NickelIronBatteryMenu::new, "nickel_iron_battery_menu");
 
+    public static final RegistryObject<MenuType<ExtrudingMachineMenu>> EXTRUDING_MACHINE_MENU =
+            registerMenuType(ExtrudingMachineMenu::new, "extruding_machine_menu");
+
 
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(IContainerFactory<T> factory, String name) {

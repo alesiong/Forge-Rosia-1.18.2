@@ -39,6 +39,9 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<WaterPumpBlockEntity>> WATER_PUMP_BLOCK_ENTITY =
             register("water_pump_block_entity", WaterPumpBlockEntity::new, ModBlocks.WATER_PUMP);
 
+    public static final RegistryObject<BlockEntityType<ExtrudingMachineBlockEntity>> EXTRUDING_MACHINE_BLOCK_ENTITY =
+            register("extruding_machine_block_entity", ExtrudingMachineBlockEntity::new, ModBlocks.EXTRUDING_MACHINE);
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

@@ -8,6 +8,7 @@
   "item.rosia.compressed_magnetite": "Compressed Magnetite",
   "item.rosia.magnet": "Magnet",
   "item.rosia.steel_grindstone": "Steel Grindstone",
+  "item.rosia.steel_machine_die": "Steel Machine Die",
   "item.rosia.motor": "Motor",
   "item.rosia.wrench_head": "Wrought Iron Wrench Head",
   "item.rosia.satchel_part": "Satchel Part",
@@ -40,6 +41,7 @@
   "block.rosia.steam_generator": "Steam Generator",
   "block.rosia.nickel_iron_battery": "Nickel-Iron Battery",
   "block.rosia.water_pump": "Water Pump",
+  "block.rosia.extruding_machine": "Extruding Machine",
 
   "fluid.rosia.invar_fluid": "Molten Invar",
   "metal.rosia.invar": "Invar",

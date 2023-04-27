@@ -1,12 +1,10 @@
 package com.jewey.rosia.networking.packet;
 
-import com.jewey.rosia.common.blocks.entity.block_entity.AutoQuernBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.NickelIronBatteryBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.WaterPumpBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.*;
 import com.jewey.rosia.common.container.WaterPumpContainer;
 import com.jewey.rosia.common.container.SteamGeneratorContainer;
 import com.jewey.rosia.screen.AutoQuernMenu;
+import com.jewey.rosia.screen.ExtrudingMachineMenu;
 import com.jewey.rosia.screen.NickelIronBatteryMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -65,6 +63,14 @@ public class EnergySyncS2CPacket {
                 blockEntity.setEnergyLevel(energy);
 
                 if(Minecraft.getInstance().player.containerMenu instanceof WaterPumpContainer menu &&
+                        menu.getBlockEntity().getBlockPos().equals(pos)) {
+                    blockEntity.setEnergyLevel(energy);
+                }
+            }
+            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof ExtrudingMachineBlockEntity blockEntity) {
+                blockEntity.setEnergyLevel(energy);
+
+                if(Minecraft.getInstance().player.containerMenu instanceof ExtrudingMachineMenu menu &&
                         menu.getBlockEntity().getBlockPos().equals(pos)) {
                     blockEntity.setEnergyLevel(energy);
                 }

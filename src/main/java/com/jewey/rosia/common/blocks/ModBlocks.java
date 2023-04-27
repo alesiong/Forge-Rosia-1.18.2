@@ -3,6 +3,7 @@ package com.jewey.rosia.common.blocks;
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.custom.*;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
+import com.jewey.rosia.common.blocks.entity.block_entity.ExtrudingMachineBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.WaterPumpBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
@@ -60,6 +61,13 @@ public class ModBlocks {
             () -> new water_pump(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
                     .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.WATER_PUMP_BLOCK_ENTITY)
                     .serverTicks(WaterPumpBlockEntity::serverTick).noOcclusion()), ModCreativeModeTab.ROSIA_TAB);
+
+    public static final Supplier<? extends Block> EXTRUDING_MACHINE = register("extruding_machine",
+            () -> new extruding_machine(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
+                    .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.EXTRUDING_MACHINE_BLOCK_ENTITY)
+                    .serverTicks(ExtrudingMachineBlockEntity::serverTick).noOcclusion()), ModCreativeModeTab.ROSIA_TAB);
+
+
 
     public static final RegistryObject<Block> ANDESITE_PATH = registerBlock("andesite_path",
             () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f,10)

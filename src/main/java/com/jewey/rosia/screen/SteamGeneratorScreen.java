@@ -7,8 +7,10 @@ import com.jewey.rosia.screen.renderer.EnergyInfoArea50Height;
 import com.jewey.rosia.screen.renderer.FluidInfoArea50Height;
 import com.jewey.rosia.util.MouseUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.dries007.tfc.client.RenderHelpers;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
 import net.dries007.tfc.common.capabilities.heat.Heat;
+import net.dries007.tfc.config.TFCConfig;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -83,5 +85,19 @@ public class SteamGeneratorScreen extends BlockEntityScreen<SteamGeneratorBlockE
 
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int leftPos, int topPos, int offsetX, int offsetY, int width, int height) {
         return MouseUtil.isMouseOver(pMouseX, pMouseY, leftPos + offsetX, topPos + offsetY, width, height);
+    }
+
+    @Override
+    protected void renderTooltip(PoseStack poseStack, int mouseX, int mouseY)
+    {
+        super.renderTooltip(poseStack, mouseX, mouseY);
+        if (RenderHelpers.isInside(mouseX, mouseY, leftPos + 8, topPos + 76 - 51, 15, 51))
+        {
+            final var text = TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(blockEntity.getTemperature());
+            if (text != null)
+            {
+                renderTooltip(poseStack, text, mouseX, mouseY);
+            }
+        }
     }
 }

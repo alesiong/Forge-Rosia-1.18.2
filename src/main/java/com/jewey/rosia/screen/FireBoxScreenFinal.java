@@ -4,8 +4,10 @@ import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
 import com.jewey.rosia.common.container.FireBoxContainer;
 import com.mojang.blaze3d.vertex.PoseStack;
+import net.dries007.tfc.client.RenderHelpers;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
 import net.dries007.tfc.common.capabilities.heat.Heat;
+import net.dries007.tfc.config.TFCConfig;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
@@ -33,5 +35,19 @@ public class FireBoxScreenFinal extends BlockEntityScreen<FireBoxBlockEntity, Fi
         }
         float getBurnProgress = (blockEntity.getBurnTicks() / blockEntity.getBurnTicksInit()) * 15;
         blit(poseStack, leftPos + 78, topPos + 50 - (int) getBurnProgress, 176, 20 - (int) getBurnProgress, 19, (int) getBurnProgress);
+    }
+
+    @Override
+    protected void renderTooltip(PoseStack poseStack, int mouseX, int mouseY)
+    {
+        super.renderTooltip(poseStack, mouseX, mouseY);
+        if (RenderHelpers.isInside(mouseX, mouseY, leftPos + 8, topPos + 76 - 51, 15, 51))
+        {
+            final var text = TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(blockEntity.getTemperature());
+            if (text != null)
+            {
+                renderTooltip(poseStack, text, mouseX, mouseY);
+            }
+        }
     }
 }

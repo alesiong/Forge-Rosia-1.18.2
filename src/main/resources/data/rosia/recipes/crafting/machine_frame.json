@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "pattern": [
     " X ",
-    "Y Y",
+    "YZY",
     " X "
   ],
   "key": {
@@ -11,6 +11,9 @@
     },
     "Y": {
       "item": "tfc:metal/sheet/wrought_iron"
+    },
+    "Z": {
+      "item": "rosia:copper_coil"
     }
   },
   "result": {

@@ -4,6 +4,6 @@
     "top": "rosia:block/nickel_iron_battery/nickel_iron_battery_top",
     "front": "rosia:block/nickel_iron_battery/nickel_iron_battery_side",
     "side": "rosia:block/nickel_iron_battery/nickel_iron_battery_side",
-    "bottom": "rosia:block/nickel_iron_battery/nickel_iron_battery_bottom"
+    "bottom": "rosia:block/machine_frame"
   }
 }

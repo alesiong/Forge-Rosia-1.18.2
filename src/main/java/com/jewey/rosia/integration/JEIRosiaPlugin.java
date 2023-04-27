@@ -1,5 +1,6 @@
 package com.jewey.rosia.integration;
 
+import com.jewey.rosia.recipe.ExtrudingMachineRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
@@ -23,14 +24,17 @@ public class JEIRosiaPlugin implements IModPlugin {
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registration) {
-        registration.addRecipeCategories(new
-                AutoQuernRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new AutoQuernRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ExtrudingMachineRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         RecipeManager rm = Objects.requireNonNull(Minecraft.getInstance().level).getRecipeManager();
-        List<AutoQuernRecipe> recipes = rm.getAllRecipesFor(AutoQuernRecipe.Type.INSTANCE);
-        registration.addRecipes(new RecipeType<>(AutoQuernRecipeCategory.UID, AutoQuernRecipe.class), recipes);
+        List<AutoQuernRecipe> autoQuernRecipes = rm.getAllRecipesFor(AutoQuernRecipe.Type.INSTANCE);
+        registration.addRecipes(new RecipeType<>(AutoQuernRecipeCategory.UID, AutoQuernRecipe.class), autoQuernRecipes);
+
+        List<ExtrudingMachineRecipe> extrudingMachineRecipes = rm.getAllRecipesFor(ExtrudingMachineRecipe.Type.INSTANCE);
+        registration.addRecipes(new RecipeType<>(ExtrudingMachineRecipeCategory.UID, ExtrudingMachineRecipe.class), extrudingMachineRecipes);
     }
 }

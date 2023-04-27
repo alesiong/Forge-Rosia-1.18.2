@@ -29,6 +29,7 @@ import net.minecraft.world.entity.SlotAccess;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ClickAction;
 import net.minecraft.world.inventory.Slot;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -43,6 +44,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Optional;
 
 public class SatchelItem extends Item {
     public static final int SLOTS = 5;
@@ -118,6 +120,23 @@ public class SatchelItem extends Item {
         }
         return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
     }
+
+
+    @Override
+    public Optional<TooltipComponent> getTooltipImage(ItemStack stack)
+    {
+        if (TFCConfig.CLIENT.displayItemContentsAsImages.get())
+        {
+            final VesselLike vessel = VesselLike.get(stack);
+            if (vessel != null && vessel.mode() == VesselLike.Mode.INVENTORY)
+            {
+                return Helpers.getTooltipImage(vessel, 2, 3, 0, SatchelItem.SLOTS - 1);
+            }
+        }
+        return super.getTooltipImage(stack);
+    }
+
+
 
     @Nullable
     @Override

@@ -40,6 +40,9 @@ public class ModItems {
     public static final RegistryObject<Item> STEEL_GRINDSTONE = ITEMS.register("steel_grindstone",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(750)));
 
+    public static final RegistryObject<Item> STEEL_MACHINE_DIE = ITEMS.register("steel_machine_die",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(750)));
+
     public static final RegistryObject<Item> MOTOR = ITEMS.register("motor",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
