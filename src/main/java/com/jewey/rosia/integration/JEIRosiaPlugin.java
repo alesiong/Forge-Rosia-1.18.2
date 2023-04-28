@@ -1,6 +1,7 @@
 package com.jewey.rosia.integration;
 
 import com.jewey.rosia.recipe.ExtrudingMachineRecipe;
+import com.jewey.rosia.recipe.RollingMachineRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.recipe.RecipeType;
@@ -26,6 +27,7 @@ public class JEIRosiaPlugin implements IModPlugin {
     public void registerCategories(IRecipeCategoryRegistration registration) {
         registration.addRecipeCategories(new AutoQuernRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ExtrudingMachineRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new RollingMachineRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -36,5 +38,8 @@ public class JEIRosiaPlugin implements IModPlugin {
 
         List<ExtrudingMachineRecipe> extrudingMachineRecipes = rm.getAllRecipesFor(ExtrudingMachineRecipe.Type.INSTANCE);
         registration.addRecipes(new RecipeType<>(ExtrudingMachineRecipeCategory.UID, ExtrudingMachineRecipe.class), extrudingMachineRecipes);
+
+        List<RollingMachineRecipe> rollingMachineRecipes = rm.getAllRecipesFor(RollingMachineRecipe.Type.INSTANCE);
+        registration.addRecipes(new RecipeType<>(RollingMachineRecipeCategory.UID, RollingMachineRecipe.class), rollingMachineRecipes);
     }
 }

@@ -38,10 +38,13 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
     public static final RegistryObject<Item> STEEL_GRINDSTONE = ITEMS.register("steel_grindstone",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(750)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(1000)));
 
     public static final RegistryObject<Item> STEEL_MACHINE_DIE = ITEMS.register("steel_machine_die",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(750)));
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(500)));
+
+    public static final RegistryObject<Item> STEEL_ROLLERS = ITEMS.register("steel_rollers",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(500)));
 
     public static final RegistryObject<Item> MOTOR = ITEMS.register("motor",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));

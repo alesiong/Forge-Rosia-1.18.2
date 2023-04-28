@@ -42,6 +42,9 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<ExtrudingMachineBlockEntity>> EXTRUDING_MACHINE_BLOCK_ENTITY =
             register("extruding_machine_block_entity", ExtrudingMachineBlockEntity::new, ModBlocks.EXTRUDING_MACHINE);
 
+    public static final RegistryObject<BlockEntityType<RollingMachineBlockEntity>> ROLLING_MACHINE_BLOCK_ENTITY =
+            register("rolling_machine_block_entity", RollingMachineBlockEntity::new, ModBlocks.ROLLING_MACHINE);
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

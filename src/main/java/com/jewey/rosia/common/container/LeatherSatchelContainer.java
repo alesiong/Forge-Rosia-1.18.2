@@ -40,7 +40,7 @@ public class LeatherSatchelContainer extends ItemStackContainer {
     {
         return switch (typeOf(slotIndex))
                 {
-                    case MAIN_INVENTORY, HOTBAR -> !moveItemStackTo(stack, 0, VesselItem.SLOTS, false);
+                    case MAIN_INVENTORY, HOTBAR -> !moveItemStackTo(stack, 0, 5, false);
                     case CONTAINER -> {
                         // Remove the preserved trait, pre-emptively, if the stack were to be transferred out. If any remains, then re-apply it.
                         FoodCapability.removeTrait(stack, RosiaFoodTraits.BOUND);

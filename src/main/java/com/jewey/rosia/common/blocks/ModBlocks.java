@@ -3,10 +3,7 @@ package com.jewey.rosia.common.blocks;
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.custom.*;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
-import com.jewey.rosia.common.blocks.entity.block_entity.ExtrudingMachineBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.WaterPumpBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.*;
 import com.jewey.rosia.common.items.ModCreativeModeTab;
 import com.jewey.rosia.common.items.ModItems;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
@@ -66,6 +63,11 @@ public class ModBlocks {
             () -> new extruding_machine(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
                     .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.EXTRUDING_MACHINE_BLOCK_ENTITY)
                     .serverTicks(ExtrudingMachineBlockEntity::serverTick).noOcclusion()), ModCreativeModeTab.ROSIA_TAB);
+
+    public static final Supplier<? extends Block> ROLLING_MACHINE = register("rolling_machine",
+            () -> new rolling_machine(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
+                    .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.ROLLING_MACHINE_BLOCK_ENTITY)
+                    .serverTicks(RollingMachineBlockEntity::serverTick).noOcclusion()), ModCreativeModeTab.ROSIA_TAB);
 
 
 

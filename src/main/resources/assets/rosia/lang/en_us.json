@@ -9,6 +9,7 @@
   "item.rosia.magnet": "Magnet",
   "item.rosia.steel_grindstone": "Steel Grindstone",
   "item.rosia.steel_machine_die": "Steel Machine Die",
+  "item.rosia.steel_rollers": "Steel Rollers",
   "item.rosia.motor": "Motor",
   "item.rosia.wrench_head": "Wrought Iron Wrench Head",
   "item.rosia.satchel_part": "Satchel Part",
@@ -42,6 +43,7 @@
   "block.rosia.nickel_iron_battery": "Nickel-Iron Battery",
   "block.rosia.water_pump": "Water Pump",
   "block.rosia.extruding_machine": "Extruding Machine",
+  "block.rosia.rolling_machine": "Rolling Machine",
 
   "fluid.rosia.invar_fluid": "Molten Invar",
   "metal.rosia.invar": "Invar",

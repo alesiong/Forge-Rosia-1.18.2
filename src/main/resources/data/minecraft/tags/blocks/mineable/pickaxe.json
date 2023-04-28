@@ -8,6 +8,7 @@
     "rosia:water_pump",
     "rosia:steam_generator",
     "rosia:extruding_machine",
+    "rosia:rolling_machine",
 
     "rosia:andesite_path",
     "rosia:basalt_path",
