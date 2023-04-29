@@ -1,0 +1,17 @@
+{
+  "name": "Nickel-Iron Battery",
+  "category": "rosia:tfc_rosia",
+  "icon": "rosia:nickel_iron_battery",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The $(thing)Nickel-Iron Battery$() is the main storage method for $(thing)FE$().$(br)Maximum capacity of $(thing)4,000 FE$()."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "rosia:crafting/nickel_iron_battery"
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 5
+}

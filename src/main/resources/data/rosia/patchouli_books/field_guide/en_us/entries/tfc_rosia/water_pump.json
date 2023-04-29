@@ -1,0 +1,22 @@
+{
+  "name": "Water Pump",
+  "category": "rosia:tfc_rosia",
+  "icon": "rosia:water_pump",
+  "pages": [
+    {
+      "type": "patchouli:crafting",
+      "recipe": "rosia:crafting/water_pump",
+      "text": "The $(thing)Water Pump$() gives you the ability to move water with electricity. It has a speed of $(thing)30mB per tick$(). Water can be extracted from the pump with $(thing)Fluid Pipes$()."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "rosia:textures/book/water_pump_book.png"
+      ],
+      "text": "The pump must be submerged in water.",
+      "border": true
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 6
+}

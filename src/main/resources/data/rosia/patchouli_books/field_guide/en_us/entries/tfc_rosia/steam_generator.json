@@ -1,0 +1,30 @@
+{
+  "name": "Steam Generator",
+  "category": "rosia:tfc_rosia",
+  "icon": "rosia:steam_generator",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "The $(thing)Steam Generator$() is the heart of your electrical network. When placed above a heat source, it consumes water and produces electricity, or $(thing)FE$().$(br2)Water can either be brought in with buckets using the input slot, or piped in from another source."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "rosia:crafting/steam_generator",
+      "text": "The higher the temperature, the faster the $(thing)Steam Generator$() consumes water and produces electricity.$(br2)$(thing)FE$() can be extracted using an $(thing)Energy Pipe$()."
+    },
+    {
+      "type": "patchouli:text",
+      "text": "It is important to make sure you have enough $(thing)FE storage$() to capitalize on the entirety of your fuel's burn time.$(br2)Electricity for running machines is expensive, so try to not be wasteful."
+    },
+    {
+      "type": "patchouli:image",
+      "images": [
+        "rosia:textures/book/steam_generator_book_gui.png"
+      ],
+      "text": "The Steam Generator's interface.",
+      "border": false
+    }
+  ],
+  "read_by_default": true,
+  "sortnum": 4
+}

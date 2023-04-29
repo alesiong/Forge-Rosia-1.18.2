@@ -7,7 +7,7 @@ public class ModCreativeModeTab {
     public static final CreativeModeTab ROSIA_TAB = new CreativeModeTab("rosiatab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(ModItems.COPPER_WIRE.get());
+            return new ItemStack(ModItems.COPPER_COIL.get());
         }
     };
 }
