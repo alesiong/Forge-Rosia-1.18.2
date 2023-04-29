@@ -39,12 +39,12 @@ public class ModFluids {
 
 
     public static final ForgeFlowingFluid.Properties INVAR_PROPERTIES = new ForgeFlowingFluid.Properties(
-            () -> INVAR_FLUID.get(), () -> INVAR_FLOWING.get(), FluidAttributes.builder(MOLTEN_STILL, MOLTEN_FLOW)
+            INVAR_FLUID, INVAR_FLOWING, FluidAttributes.builder(MOLTEN_STILL, MOLTEN_FLOW)
             .color(0xff695b43).density(3000).luminosity(15).viscosity(6000).temperature(1300).sound(SoundEvents.BUCKET_EMPTY_LAVA).overlay(WATER_OVERLAY_RL))
-            .slopeFindDistance(3).levelDecreasePerBlock(3).block(() -> ModFluids.INVAR_BLOCK.get());
+            .slopeFindDistance(3).levelDecreasePerBlock(3).block(ModFluids.INVAR_BLOCK);
 
     public static final RegistryObject<LiquidBlock> INVAR_BLOCK = ModBlocks.BLOCKS.register("invar_fluid",
-            () -> new LiquidBlock(() -> ModFluids.INVAR_FLUID.get(), BlockBehaviour.Properties.of(Material.LAVA)
+            () -> new LiquidBlock(ModFluids.INVAR_FLUID, BlockBehaviour.Properties.of(Material.LAVA)
                     .noCollission().strength(100f).noDrops()));
 
 

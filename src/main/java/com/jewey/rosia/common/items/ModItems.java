@@ -1,7 +1,6 @@
 package com.jewey.rosia.common.items;
 
 import com.jewey.rosia.Rosia;
-import net.dries007.tfc.common.items.VesselItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;

@@ -1,10 +1,8 @@
 package com.jewey.rosia.common.blocks.custom;
 
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
-import com.jewey.rosia.common.blocks.entity.block_entity.AutoQuernBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
-import net.dries007.tfc.common.blocks.TFCBlockStateProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.common.blocks.devices.IBellowsConsumer;
 import net.dries007.tfc.util.Helpers;
@@ -28,7 +26,6 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.pathfinder.PathComputationType;

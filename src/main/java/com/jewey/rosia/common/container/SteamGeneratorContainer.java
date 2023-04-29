@@ -25,7 +25,7 @@ public class SteamGeneratorContainer extends BlockEntityContainer<SteamGenerator
 
         addDataSlots(forge.getSyncableData());
 
-        blockEntity = (SteamGeneratorBlockEntity) forge;
+        blockEntity = forge;
         this.fluidStack = blockEntity.getFluidStack();
     }
 

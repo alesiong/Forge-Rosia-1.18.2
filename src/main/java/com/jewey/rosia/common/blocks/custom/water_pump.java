@@ -32,12 +32,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.common.extensions.IForgeFluidState;
-import net.minecraftforge.fluids.IFluidBlock;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public class water_pump extends DeviceBlock implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

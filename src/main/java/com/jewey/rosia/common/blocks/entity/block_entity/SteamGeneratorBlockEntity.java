@@ -81,7 +81,7 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
             generator.targetTemperatureStabilityTicks--;
         }
         if (generator.targetTemperature > 0 && generator.targetTemperatureStabilityTicks == 0) {
-            // generator target temperature decays constantly, since it is set externally. As long as we don't consider ourselves 'stable' (received a external setTemperature() call within the last 5 ticks.
+            // generator target temperature decays constantly, since it is set externally. As long as we don't consider ourselves 'stable' (received an external setTemperature() call within the last 5 ticks)
             generator.targetTemperature = HeatCapability.adjustTempTowards(generator.targetTemperature, 0);
         }
 

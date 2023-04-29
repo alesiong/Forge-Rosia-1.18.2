@@ -9,7 +9,6 @@ import com.jewey.rosia.util.MouseUtil;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.dries007.tfc.client.RenderHelpers;
 import net.dries007.tfc.client.screen.BlockEntityScreen;
-import net.dries007.tfc.common.capabilities.heat.Heat;
 import net.dries007.tfc.config.TFCConfig;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;

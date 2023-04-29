@@ -11,6 +11,7 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class AutoQuernRecipe implements Recipe<SimpleContainer> {
@@ -96,12 +97,10 @@ public class AutoQuernRecipe implements Recipe<SimpleContainer> {
         }
 
         @Override
-        public AutoQuernRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public AutoQuernRecipe fromNetwork(@NotNull ResourceLocation id, FriendlyByteBuf buf) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
 
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(buf));
-            }
+            inputs.replaceAll(ignored -> Ingredient.fromNetwork(buf));
 
             ItemStack output = buf.readItem();
             return new AutoQuernRecipe(id, output, inputs);

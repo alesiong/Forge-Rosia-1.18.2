@@ -3,7 +3,6 @@ package com.jewey.rosia.screen.renderer;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.Rect2i;
 import net.minecraft.network.chat.Component;
-import net.minecraftforge.energy.IEnergyStorage;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import java.util.List;

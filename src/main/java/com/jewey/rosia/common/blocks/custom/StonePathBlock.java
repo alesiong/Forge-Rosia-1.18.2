@@ -24,8 +24,7 @@ public class StonePathBlock extends Block {
     @Override
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
         if(!pLevel.isClientSide()){
-            if(pEntity instanceof LivingEntity){
-                LivingEntity livingEntity = ((LivingEntity) pEntity);
+            if(pEntity instanceof LivingEntity livingEntity){
                 livingEntity.addEffect(new MobEffectInstance(ModEffects.PATH_SPEED.get()));
             }
         }

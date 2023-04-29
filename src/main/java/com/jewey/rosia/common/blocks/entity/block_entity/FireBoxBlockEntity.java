@@ -1,6 +1,5 @@
 package com.jewey.rosia.common.blocks.entity.block_entity;
 
-import com.jewey.rosia.common.items.ModItems;
 import com.jewey.rosia.util.RosiaTags;
 import com.jewey.rosia.common.blocks.custom.fire_box;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
@@ -23,7 +22,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.tags.Tag;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -33,11 +31,9 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.Tags;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 

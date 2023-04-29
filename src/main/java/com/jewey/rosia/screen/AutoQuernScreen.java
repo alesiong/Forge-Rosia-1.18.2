@@ -2,7 +2,6 @@ package com.jewey.rosia.screen;
 
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.screen.renderer.EnergyInfoArea43Height;
-import com.jewey.rosia.screen.renderer.EnergyInfoArea50Height;
 import com.jewey.rosia.util.MouseUtil;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;

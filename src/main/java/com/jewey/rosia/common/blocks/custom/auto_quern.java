@@ -2,7 +2,6 @@ package com.jewey.rosia.common.blocks.custom;
 
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.blocks.entity.block_entity.AutoQuernBlockEntity;
-import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;

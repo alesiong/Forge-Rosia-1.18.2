@@ -7,7 +7,6 @@ import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEnti
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.container.BlockEntityContainer;
 import net.dries007.tfc.common.container.ItemStackContainer;
-import net.dries007.tfc.common.container.SmallVesselInventoryContainer;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.MenuType;

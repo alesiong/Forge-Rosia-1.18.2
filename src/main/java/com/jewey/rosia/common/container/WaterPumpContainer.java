@@ -14,18 +14,18 @@ public class WaterPumpContainer extends BlockEntityContainer<WaterPumpBlockEntit
     private FluidStack fluidStack;
 
 
-    public static WaterPumpContainer create(WaterPumpBlockEntity forge, Inventory playerInventory, int windowId)
+    public static WaterPumpContainer create(WaterPumpBlockEntity pump, Inventory playerInventory, int windowId)
     {
-        return new WaterPumpContainer(forge, windowId).init(playerInventory, 20);
+        return new WaterPumpContainer(pump, windowId).init(playerInventory, 20);
     }
 
-    private WaterPumpContainer(WaterPumpBlockEntity forge, int windowId)
+    private WaterPumpContainer(WaterPumpBlockEntity pump, int windowId)
     {
-        super(ModContainerTypes.WATER_PUMP.get(), windowId, forge);
+        super(ModContainerTypes.WATER_PUMP.get(), windowId, pump);
 
-        addDataSlots(forge.getSyncableData());
+        addDataSlots(pump.getSyncableData());
 
-        blockEntity = (WaterPumpBlockEntity) forge;
+        blockEntity = pump;
         this.fluidStack = blockEntity.getFluidStack();
     }
 

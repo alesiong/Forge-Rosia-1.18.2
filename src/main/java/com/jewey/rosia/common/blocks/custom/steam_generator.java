@@ -1,9 +1,7 @@
 package com.jewey.rosia.common.blocks.custom;
 
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
-import com.jewey.rosia.common.blocks.entity.block_entity.AutoQuernBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
-import com.jewey.rosia.common.container.SteamGeneratorContainer;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
 import net.dries007.tfc.util.Helpers;
