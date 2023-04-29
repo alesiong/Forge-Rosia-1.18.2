@@ -126,4 +126,8 @@ public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuPro
 
         Containers.dropContents(this.level, this.worldPosition, inventory);
     }
+
+    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, NickelIronBatteryBlockEntity pBlockEntity) {
+
+    }
 }
