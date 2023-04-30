@@ -7,6 +7,7 @@ import com.jewey.rosia.common.container.ModContainerTypes;
 import com.jewey.rosia.common.fluids.ModFluids;
 import com.jewey.rosia.common.items.ModItems;
 import com.jewey.rosia.effect.ModEffects;
+import com.jewey.rosia.event.ModClientEvents;
 import com.jewey.rosia.event.ModEvents;
 import com.jewey.rosia.networking.ModMessages;
 import com.jewey.rosia.recipe.ModRecipes;
@@ -16,12 +17,14 @@ import net.dries007.tfc.network.PacketHandler;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.loading.FMLEnvironment;
 import org.slf4j.Logger;
 
 
@@ -63,6 +66,10 @@ public class Rosia
 
         PacketHandler.init();
         ModEvents.init();
+        // Client Side Only
+        if (FMLEnvironment.dist == Dist.CLIENT){
+            ModClientEvents.init();
+        }
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
@@ -84,17 +91,17 @@ public class Rosia
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.WATER_PUMP.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.EXTRUDING_MACHINE.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ROLLING_MACHINE.get(), RenderType.solid());
+
+
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_BLOCK.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_FLUID.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_FLOWING.get(), RenderType.solid());
     }
 
 
 
 
     private void setup(final FMLCommonSetupEvent event) {
-
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_BLOCK.get(), RenderType.solid());
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_FLUID.get(), RenderType.solid());
-        ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_FLOWING.get(), RenderType.solid());
-
         ModMessages.register();
     }
 

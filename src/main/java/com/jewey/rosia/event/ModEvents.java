@@ -30,13 +30,6 @@ public class ModEvents {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         bus.addListener(ModEvents::onPackFinder);
-        bus.addListener(ModEvents::onTextureStitch);
-    }
-    public static void onTextureStitch(TextureStitchEvent.Pre event) {
-        final ResourceLocation sheet = event.getAtlas().location();
-        if (sheet.equals(RenderHelpers.BLOCKS_ATLAS)) {
-                event.addSprite(new ResourceLocation("rosia:block/metal/full/invar"));
-        }
     }
 
     /*
