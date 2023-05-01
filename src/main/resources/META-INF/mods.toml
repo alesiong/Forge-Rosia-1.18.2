@@ -60,12 +60,12 @@ Simple tech mod for TFC:TNG 1.18.2
 modId="tfc"
 mandatory=true
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
-versionRange="[2.2.16]"
+versionRange="[2.2.16,)"
 ordering="AFTER"
 side="BOTH"
 [[dependencies.rosia]]
 modId="pipez"
-mandatory=true
+mandatory=false
 # This version range declares a minimum of the current minecraft version up to but not including the next major version
 versionRange="[1.18.2-1.1.5]"
 ordering="AFTER"

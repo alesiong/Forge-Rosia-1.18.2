@@ -24,7 +24,7 @@ apply plugin: 'org.spongepowered.mixin'
 
 
 
-version = '0.0.2-1.18.2'
+version = '0.0.3-1.18.2'
 group = 'com.jewey.rosia' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'rosia'
 
@@ -189,7 +189,8 @@ dependencies {
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 
-    implementation fg.deobf("curse.maven:tfc-302973:4504484")
+    // https://www.curseforge.com/minecraft/mc-mods/terrafirmacraft
+    implementation fg.deobf("curse.maven:tfc-302973:4514056")
     implementation fg.deobf("curse.maven:pipez-443900:3819249")
 
     // Real mod deobf dependency examples - these get remapped to your current mappings

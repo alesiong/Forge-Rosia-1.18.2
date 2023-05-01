@@ -14,7 +14,7 @@
     },
     {
       "type": "patchouli:text",
-      "text": "It is important to make sure you have enough $(thing)FE storage$() to capitalize on the entirety of your fuel's burn time.$(br2)Electricity for running machines is expensive, so try to not be wasteful."
+      "text": "It is important to make sure you have enough $(thing)FE storage$() to capitalize on the entirety of your fuel's burn time.$(br2)Electricity for running machines is expensive, so try to not be wasteful.$(br2)The thermometer in the interface is different than other heat producing sources since it shows the temperature up to its highest functioning value."
     },
     {
       "type": "patchouli:image",

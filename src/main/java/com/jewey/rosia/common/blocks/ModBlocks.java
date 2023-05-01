@@ -30,19 +30,15 @@ public class ModBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, Rosia.MOD_ID);
 
-
-    public static final RegistryObject<Block> MACHINE_FRAME = registerBlock("machine_frame",
-            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops()
-                    .sound(SoundType.METAL)), ModCreativeModeTab.ROSIA_TAB);
-    public static final RegistryObject<Block> AUTO_QUERN = registerBlock("auto_quern",
-            () -> new auto_quern(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops()
-                    .sound(SoundType.METAL)), ModCreativeModeTab.ROSIA_TAB);
-
     public static final Supplier<? extends Block> FIRE_BOX = register("fire_box",
             () -> new fire_box(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
                     .randomTicks().sound(SoundType.METAL).lightLevel((state) -> state.getValue(fire_box.HEAT) * 2)
                     .pathType(BlockPathTypes.DAMAGE_FIRE).blockEntity(ModBlockEntities.FIRE_BOX_BLOCK_ENTITY)
                     .serverTicks(FireBoxBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
+
+    public static final RegistryObject<Block> MACHINE_FRAME = registerBlock("machine_frame",
+            () -> new Block(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)), ModCreativeModeTab.ROSIA_TAB);
 
     public static final Supplier<? extends Block> STEAM_GENERATOR = register("steam_generator",
             () -> new steam_generator(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
@@ -58,6 +54,10 @@ public class ModBlocks {
             () -> new water_pump(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
                     .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.WATER_PUMP_BLOCK_ENTITY)
                     .serverTicks(WaterPumpBlockEntity::serverTick).noOcclusion()), ModCreativeModeTab.ROSIA_TAB);
+
+    public static final RegistryObject<Block> AUTO_QUERN = registerBlock("auto_quern",
+            () -> new auto_quern(BlockBehaviour.Properties.of(Material.METAL).strength(5f).requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)), ModCreativeModeTab.ROSIA_TAB);
 
     public static final Supplier<? extends Block> EXTRUDING_MACHINE = register("extruding_machine",
             () -> new extruding_machine(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
