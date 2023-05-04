@@ -113,7 +113,7 @@ public class ExtrudingMachineRecipe implements Recipe<SimpleContainer> {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
             }
-            buf.writeItemStack(recipe.getResultItem(), false);
+            recipe.output.toNetwork(buf);
         }
 
         @Override
