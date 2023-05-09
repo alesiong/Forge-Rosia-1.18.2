@@ -69,6 +69,11 @@ public class ModBlocks {
                     .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.ROLLING_MACHINE_BLOCK_ENTITY)
                     .serverTicks(RollingMachineBlockEntity::serverTick).noOcclusion()), ModCreativeModeTab.ROSIA_TAB);
 
+    public static final Supplier<? extends Block> ELECTRIC_FORGE = register("electric_forge",
+            () -> new electric_forge(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
+                    .randomTicks().sound(SoundType.METAL).lightLevel((state) -> state.getValue(fire_box.HEAT) * 2)
+                    .pathType(BlockPathTypes.DAMAGE_FIRE).blockEntity(ModBlockEntities.ELECTRIC_FORGE_BLOCK_ENTITY)
+                    .serverTicks(ElectricForgeBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
 
 
     public static final RegistryObject<Block> ANDESITE_PATH = registerBlock("andesite_path",

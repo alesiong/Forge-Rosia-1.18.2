@@ -3,9 +3,12 @@
   "pattern": [
     " Y ",
     "WZX",
-    "VYV"
+    "VUV"
   ],
   "key": {
+    "U": {
+      "item": "rosia:invar_sheet"
+    },
     "V": {
       "item": "rosia:copper_coil"
     },

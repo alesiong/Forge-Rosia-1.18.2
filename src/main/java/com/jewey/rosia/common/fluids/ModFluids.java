@@ -38,6 +38,19 @@ public class ModFluids {
             = FLUIDS.register("invar_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.INVAR_PROPERTIES));
 
 
+    public static final RegistryObject<FlowingFluid> WEAK_PURPLE_STEEL_FLUID
+            = FLUIDS.register("weak_purple_steel_fluid", () -> new ForgeFlowingFluid.Source(ModFluids.WEAK_PURPLE_STEEL_PROPERTIES));
+
+    public static final RegistryObject<FlowingFluid> WEAK_PURPLE_STEEL_FLOWING
+            = FLUIDS.register("weak_purple_steel_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.WEAK_PURPLE_STEEL_PROPERTIES));
+
+    public static final RegistryObject<FlowingFluid> PURPLE_STEEL_FLUID
+            = FLUIDS.register("purple_steel_fluid", () -> new ForgeFlowingFluid.Source(ModFluids.PURPLE_STEEL_PROPERTIES));
+
+    public static final RegistryObject<FlowingFluid> PURPLE_STEEL_FLOWING
+            = FLUIDS.register("purple_steel_flowing", () -> new ForgeFlowingFluid.Flowing(ModFluids.PURPLE_STEEL_PROPERTIES));
+
+
     public static final ForgeFlowingFluid.Properties INVAR_PROPERTIES = new ForgeFlowingFluid.Properties(
             INVAR_FLUID, INVAR_FLOWING, FluidAttributes.builder(MOLTEN_STILL, MOLTEN_FLOW)
             .color(0xff695b43).density(3000).luminosity(15).viscosity(6000).temperature(1300).sound(SoundEvents.BUCKET_EMPTY_LAVA).overlay(WATER_OVERLAY_RL))
@@ -45,6 +58,24 @@ public class ModFluids {
 
     public static final RegistryObject<LiquidBlock> INVAR_BLOCK = ModBlocks.BLOCKS.register("invar_fluid",
             () -> new LiquidBlock(ModFluids.INVAR_FLUID, BlockBehaviour.Properties.of(Material.LAVA)
+                    .noCollission().strength(100f).noDrops()));
+
+    public static final ForgeFlowingFluid.Properties WEAK_PURPLE_STEEL_PROPERTIES = new ForgeFlowingFluid.Properties(
+            WEAK_PURPLE_STEEL_FLUID, WEAK_PURPLE_STEEL_FLOWING, FluidAttributes.builder(MOLTEN_STILL, MOLTEN_FLOW)
+            .color(0xff523952).density(3000).luminosity(15).viscosity(6000).temperature(1300).sound(SoundEvents.BUCKET_EMPTY_LAVA).overlay(WATER_OVERLAY_RL))
+            .slopeFindDistance(3).levelDecreasePerBlock(3).block(ModFluids.WEAK_PURPLE_STEEL_BLOCK);
+
+    public static final RegistryObject<LiquidBlock> WEAK_PURPLE_STEEL_BLOCK = ModBlocks.BLOCKS.register("weak_purple_steel_fluid",
+            () -> new LiquidBlock(ModFluids.WEAK_PURPLE_STEEL_FLUID, BlockBehaviour.Properties.of(Material.LAVA)
+                    .noCollission().strength(100f).noDrops()));
+
+    public static final ForgeFlowingFluid.Properties PURPLE_STEEL_PROPERTIES = new ForgeFlowingFluid.Properties(
+            PURPLE_STEEL_FLUID, PURPLE_STEEL_FLOWING, FluidAttributes.builder(MOLTEN_STILL, MOLTEN_FLOW)
+            .color(0xff694169).density(3000).luminosity(15).viscosity(6000).temperature(1300).sound(SoundEvents.BUCKET_EMPTY_LAVA).overlay(WATER_OVERLAY_RL))
+            .slopeFindDistance(3).levelDecreasePerBlock(3).block(ModFluids.PURPLE_STEEL_BLOCK);
+
+    public static final RegistryObject<LiquidBlock> PURPLE_STEEL_BLOCK = ModBlocks.BLOCKS.register("purple_steel_fluid",
+            () -> new LiquidBlock(ModFluids.PURPLE_STEEL_FLUID, BlockBehaviour.Properties.of(Material.LAVA)
                     .noCollission().strength(100f).noDrops()));
 
 

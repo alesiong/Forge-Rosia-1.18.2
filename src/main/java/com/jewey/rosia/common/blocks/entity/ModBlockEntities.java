@@ -45,6 +45,9 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<RollingMachineBlockEntity>> ROLLING_MACHINE_BLOCK_ENTITY =
             register("rolling_machine_block_entity", RollingMachineBlockEntity::new, ModBlocks.ROLLING_MACHINE);
 
+    public static final RegistryObject<BlockEntityType<ElectricForgeBlockEntity>> ELECTRIC_FORGE_BLOCK_ENTITY =
+            register("electric_forge_block_entity", ElectricForgeBlockEntity::new, ModBlocks.ELECTRIC_FORGE);
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

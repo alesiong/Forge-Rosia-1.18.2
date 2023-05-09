@@ -1,6 +1,7 @@
 package com.jewey.rosia.networking.packet;
 
 import com.jewey.rosia.common.blocks.entity.block_entity.*;
+import com.jewey.rosia.common.container.ElectricForgeContainer;
 import com.jewey.rosia.common.container.WaterPumpContainer;
 import com.jewey.rosia.common.container.SteamGeneratorContainer;
 import com.jewey.rosia.screen.AutoQuernMenu;
@@ -80,6 +81,14 @@ public class EnergySyncS2CPacket {
                 blockEntity.setEnergyLevel(energy);
 
                 if(Minecraft.getInstance().player.containerMenu instanceof RollingMachineMenu menu &&
+                        menu.getBlockEntity().getBlockPos().equals(pos)) {
+                    blockEntity.setEnergyLevel(energy);
+                }
+            }
+            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof ElectricForgeBlockEntity blockEntity) {
+                blockEntity.setEnergyLevel(energy);
+
+                if(Minecraft.getInstance().player.containerMenu instanceof ElectricForgeContainer menu &&
                         menu.getBlockEntity().getBlockPos().equals(pos)) {
                     blockEntity.setEnergyLevel(energy);
                 }

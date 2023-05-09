@@ -9,6 +9,7 @@
     "rosia:steam_generator",
     "rosia:extruding_machine",
     "rosia:rolling_machine",
+    "rosia:electric_forge",
 
     "rosia:andesite_path",
     "rosia:basalt_path",

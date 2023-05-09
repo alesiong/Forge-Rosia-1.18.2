@@ -1,6 +1,7 @@
 package com.jewey.rosia.common.container;
 
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
+import com.jewey.rosia.common.blocks.entity.block_entity.ElectricForgeBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.WaterPumpBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
@@ -31,6 +32,8 @@ public class ModContainerTypes {
     public static final RegistryObject<MenuType<WaterPumpContainer>> WATER_PUMP = ModContainerTypes.<WaterPumpBlockEntity, WaterPumpContainer>registerBlock("pump", ModBlockEntities.WATER_PUMP_BLOCK_ENTITY, WaterPumpContainer::create);
 
     public static final RegistryObject<MenuType<LeatherSatchelContainer>> LEATHER_SATCHEL = registerItem("leather_satchel", LeatherSatchelContainer::create);
+
+    public static final RegistryObject<MenuType<ElectricForgeContainer>> ELECTRIC_FORGE = ModContainerTypes.<ElectricForgeBlockEntity, ElectricForgeContainer>registerBlock("electric_forge", ModBlockEntities.ELECTRIC_FORGE_BLOCK_ENTITY, ElectricForgeContainer::create);
 
     private static <T extends InventoryBlockEntity<?>, C extends BlockEntityContainer<T>> RegistryObject<MenuType<C>> registerBlock(String name, Supplier<BlockEntityType<T>> type, BlockEntityContainer.Factory<T, C> factory)
     {

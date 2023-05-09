@@ -32,6 +32,8 @@ public class ModClientEvents {
         final ResourceLocation sheet = event.getAtlas().location();
         if (sheet.equals(RenderHelpers.BLOCKS_ATLAS)) {
                 event.addSprite(new ResourceLocation("rosia:block/metal/full/invar"));
+                event.addSprite(new ResourceLocation("rosia:block/metal/full/purple_steel"));
+                event.addSprite(new ResourceLocation("rosia:block/metal/full/weak_purple_steel"));
         }
     }
 

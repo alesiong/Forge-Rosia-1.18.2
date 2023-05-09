@@ -1,0 +1,10 @@
+{
+  "replace": false,
+  "values": [
+    "rosia:purple_steel_ingot",
+    "rosia:purple_steel_double_ingot",
+    "rosia:purple_steel_sheet",
+    "rosia:purple_steel_double_sheet",
+    "rosia:purple_steel_rod"
+  ]
+}

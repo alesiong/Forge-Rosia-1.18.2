@@ -27,6 +27,36 @@ public class ModItems {
     public static final RegistryObject<Item> INVAR_SHEET = ITEMS.register("invar_sheet",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
+    public static final RegistryObject<Item> INVAR_DOUBLE_SHEET = ITEMS.register("invar_double_sheet",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> INVAR_ROD = ITEMS.register("invar_rod",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> WEAK_PURPLE_STEEL_INGOT = ITEMS.register("weak_purple_steel_ingot",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_INGOT = ITEMS.register("purple_steel_ingot",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_DOUBLE_INGOT = ITEMS.register("purple_steel_double_ingot",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_SHEET = ITEMS.register("purple_steel_sheet",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_DOUBLE_SHEET = ITEMS.register("purple_steel_double_sheet",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_ROD = ITEMS.register("purple_steel_rod",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_WIRE = ITEMS.register("purple_steel_wire",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_COIL = ITEMS.register("purple_steel_coil",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
     public static final RegistryObject<Item> MAGNETITE_POWDER = ITEMS.register("magnetite_powder",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
@@ -34,6 +64,9 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
     public static final RegistryObject<Item> MAGNET = ITEMS.register("magnet",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> MOTOR = ITEMS.register("motor",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
     public static final RegistryObject<Item> STEEL_GRINDSTONE = ITEMS.register("steel_grindstone",
@@ -44,9 +77,6 @@ public class ModItems {
 
     public static final RegistryObject<Item> STEEL_ROLLERS = ITEMS.register("steel_rollers",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(500)));
-
-    public static final RegistryObject<Item> MOTOR = ITEMS.register("motor",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
     public static final RegistryObject<Item> WRENCH_HEAD = ITEMS.register("wrench_head",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));

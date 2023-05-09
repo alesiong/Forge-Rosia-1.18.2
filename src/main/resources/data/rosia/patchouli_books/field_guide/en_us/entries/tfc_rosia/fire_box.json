@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Fire Box$() is a device similar to the $(#0000FF)Charcoal Forge$(); used to burn fuel to produce heat. There are, however, several differences between the two. The Fire Box has a higher efficiency, granting a bonus $(thing)10%$() on burn time. Additionally, it can consume logs as fuel, which give a byproduct of wood ash."
+      "text": "The $(thing)Fire Box$() is a device similar to the $(thing)Charcoal Forge$(); used to burn fuel to produce heat. There are, however, several differences between the two. The Fire Box has a higher efficiency, granting a bonus $(thing)10%$() on burn time. Additionally, it can consume logs as fuel, which give a byproduct of wood ash."
     },
     {
       "type": "patchouli:crafting",
