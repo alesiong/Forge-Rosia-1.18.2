@@ -10,7 +10,7 @@
     {
       "type": "patchouli:crafting",
       "recipe": "rosia:crafting/steam_generator",
-      "text": "The higher the temperature, the faster the $(thing)Steam Generator$() consumes water and produces electricity.$(br2)$(thing)FE$() can be extracted using an $(thing)Energy Pipe$()."
+      "text": "The higher the temperature, the faster the $(thing)Steam Generator$() consumes water and produces electricity."
     },
     {
       "type": "patchouli:text",

@@ -78,9 +78,6 @@ public class ModItems {
     public static final RegistryObject<Item> STEEL_ROLLERS = ITEMS.register("steel_rollers",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(500)));
 
-    public static final RegistryObject<Item> WRENCH_HEAD = ITEMS.register("wrench_head",
-            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
-
     public static final RegistryObject<Item> SATCHEL_PART = ITEMS.register("satchel_part",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 

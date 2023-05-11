@@ -3,7 +3,6 @@
   "values": [
     "rosia:steel_grindstone",
     "rosia:steel_machine_die",
-    "rosia:steel_rollers",
-    "pipez:wrench"
+    "rosia:steel_rollers"
   ]
 }

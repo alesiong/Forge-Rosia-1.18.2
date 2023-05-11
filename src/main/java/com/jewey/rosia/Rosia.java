@@ -92,11 +92,18 @@ public class Rosia
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.WATER_PUMP.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.EXTRUDING_MACHINE.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ROLLING_MACHINE.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.ELECTRIC_FORGE.get(), RenderType.solid());
 
 
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_BLOCK.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_FLUID.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_FLOWING.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.PURPLE_STEEL_BLOCK.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.PURPLE_STEEL_FLUID.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.PURPLE_STEEL_FLOWING.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.WEAK_PURPLE_STEEL_BLOCK.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.WEAK_PURPLE_STEEL_FLUID.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.WEAK_PURPLE_STEEL_FLOWING.get(), RenderType.solid());
     }
 
 

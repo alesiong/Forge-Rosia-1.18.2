@@ -2,6 +2,10 @@
   "replace": false,
   "values": [
     "rosia:invar_flowing",
-    "rosia:invar_fluid"
+    "rosia:invar_fluid",
+    "rosia:purple_Steel_flowing",
+    "rosia:purple_Steel_fluid",
+    "rosia:weak_purple_Steel_flowing",
+    "rosia:weak_purple_Steel_fluid"
   ]
 }
