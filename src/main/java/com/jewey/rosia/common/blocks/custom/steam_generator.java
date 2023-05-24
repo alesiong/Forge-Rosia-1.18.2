@@ -117,7 +117,7 @@ public class steam_generator extends DeviceBlock {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> components, TooltipFlag pFlag) {
-        components.add(Component.nullToEmpty("Max 4 FE/Tick").copy().withStyle(ChatFormatting.GREEN));
+        components.add(Component.nullToEmpty("Max 5 FE/Tick").copy().withStyle(ChatFormatting.GREEN));
         super.appendHoverText(pStack, pLevel, components, pFlag);
     }
 }

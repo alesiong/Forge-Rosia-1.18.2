@@ -28,6 +28,8 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.Objects;
+
 
 public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuProvider {
 
@@ -73,16 +75,25 @@ public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuPro
         return super.getCapability(cap, side);
     }
 
-    private final ModEnergyStorage ENERGY_STORAGE = new ModEnergyStorage(4000, 50) {
+    private final ModEnergyStorage ENERGY_STORAGE = new ModEnergyStorage(4000, maxTransfer) {
         @Override
         public void onEnergyChanged() {
             setChanged();
             ModMessages.sendToClients(new EnergySyncS2CPacket(this.energy, getBlockPos()));
         }
+        @Override
+        public boolean canReceive() {
+            return true;
+        }
+        @Override
+        public boolean canExtract() {
+            return true;
+        }
     };
 
-    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
+    private static final int maxTransfer = 50;
 
+    private LazyOptional<IEnergyStorage> lazyEnergyHandler = LazyOptional.empty();
 
     public IEnergyStorage getEnergyStorage() {
         return ENERGY_STORAGE;
@@ -90,6 +101,32 @@ public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuPro
 
     public void setEnergyLevel(int energy) {
         this.ENERGY_STORAGE.setEnergy(energy);
+    }
+
+    public void outputEnergy() {
+        if (this.ENERGY_STORAGE.getEnergyStored() >= maxTransfer && this.ENERGY_STORAGE.canExtract()) {
+            final var direction = Direction.UP;
+            final BlockEntity neighbor = this.level.getBlockEntity(this.worldPosition.relative(direction));
+
+            if (neighbor != null) {
+                neighbor.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).ifPresent(storage -> {
+                    if (neighbor != this && storage.getEnergyStored() < storage.getMaxEnergyStored() && storage.canReceive()
+                            && storage.getEnergyStored() <= storage.getMaxEnergyStored() - maxTransfer) {
+                        final int toSend = NickelIronBatteryBlockEntity.this.ENERGY_STORAGE.extractEnergy(maxTransfer,false);
+                        final int received = storage.receiveEnergy(toSend, false);
+
+                        NickelIronBatteryBlockEntity.this.ENERGY_STORAGE.setEnergy(NickelIronBatteryBlockEntity.this.ENERGY_STORAGE.getEnergyStored() + toSend - received);
+                    }
+                });
+            }
+        }
+    }
+
+
+    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, NickelIronBatteryBlockEntity battery) {
+        //output energy on block sides (up & down)
+        battery.outputEnergy();
+        battery.setChanged();
     }
 
 
@@ -125,9 +162,5 @@ public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuPro
         }
 
         Containers.dropContents(this.level, this.worldPosition, inventory);
-    }
-
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, NickelIronBatteryBlockEntity pBlockEntity) {
-
     }
 }

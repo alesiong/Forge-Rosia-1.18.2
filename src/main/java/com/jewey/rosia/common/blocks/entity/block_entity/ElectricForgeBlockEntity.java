@@ -52,6 +52,8 @@ import javax.annotation.Nullable;
 import java.util.Arrays;
 
 import static com.jewey.rosia.Rosia.MOD_ID;
+import static net.dries007.tfc.common.capabilities.heat.HeatCapability.adjustTempTowards;
+import static net.dries007.tfc.common.capabilities.heat.HeatCapability.targetDeviceTemp;
 
 public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements ICalendarTickable, MenuProvider
 {
@@ -96,7 +98,7 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
         // Always update temperature until the forge is not hot anymore
         if (forge.temperature > 0 || forge.burnTemperature > 0)
         {
-            forge.temperature = HeatCapability.adjustDeviceTemp(forge.temperature, forge.burnTemperature, forge.airTicks, isRaining);
+            forge.temperature = adjustDeviceTemp(forge.temperature, forge.burnTemperature, forge.airTicks, isRaining);
 
             HeatCapability.provideHeatTo(level, pos.above(), forge.temperature);
 
@@ -109,7 +111,7 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
                     float itemTemp = cap.getTemperature();
                     if (forge.temperature > itemTemp)
                     {
-                        HeatCapability.addTemp(cap, forge.temperature);
+                        HeatCapability.addTemp(cap, forge.temperature, 5); //Heat items quicker (3 -> 5)
                     }
 
                     // Handle possible melting, or conversion (if reach 1599 = pit kiln temperature)
@@ -166,6 +168,21 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
     public InteractionResult setTemp0(ServerPlayer player, int temp){
         burnTemperature = temp;
         return InteractionResult.SUCCESS;
+    }
+
+    public static float adjustDeviceTemp(float temp, float baseTarget, int airTicks, boolean isRaining) {
+        float target = targetDeviceTemp(baseTarget, airTicks, isRaining);
+        if (temp != target) {
+            float deltaPositive = 2.0F;
+            float deltaNegative = 1.2F;
+            if (airTicks > 0) {
+                deltaNegative = 0.5F;
+            }
+
+            return adjustTempTowards(temp, target, deltaPositive, deltaNegative);
+        } else {
+            return target;
+        }
     }
 
     @Override
@@ -320,7 +337,7 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
     {
         if (slot <= SLOT_INPUT_MAX)
         {
-            return Helpers.mightHaveCapability(stack, HeatCapability.CAPABILITY);
+            return Helpers.mightHaveCapability(stack, HeatCapability.CAPABILITY) && !Helpers.mightHaveCapability(stack, FoodCapability.CAPABILITY);
         }
         else
         {
@@ -347,7 +364,7 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
                     if (fluidStack.isEmpty()) break;
                 }
 
-                FoodCapability.applyTrait(outputStack, FoodTraits.CHARCOAL_GRILLED);
+                FoodCapability.applyTrait(outputStack, FoodTraits.CHARCOAL_GRILLED); //Food shouldn't be allowed but... just in case
                 this.inventory.setStackInSlot(startIndex, outputStack);
             }
         });

@@ -1,11 +1,13 @@
 {
   "item.rosia.copper_wire": "Copper Wire",
   "item.rosia.copper_coil": "Copper Coil",
+
   "item.rosia.invar_ingot": "Invar Ingot",
   "item.rosia.invar_double_ingot": "Invar Double Ingot",
   "item.rosia.invar_sheet": "Invar Sheet",
   "item.rosia.invar_double_sheet": "Invar Double Sheet",
   "item.rosia.invar_rod": "Invar Rod",
+
   "item.rosia.weak_purple_steel_ingot": "Weak Purple Steel Ingot",
   "item.rosia.purple_steel_ingot": "Purple Steel Ingot",
   "item.rosia.purple_steel_double_ingot": "Purple Steel Double Ingot",
@@ -14,6 +16,7 @@
   "item.rosia.purple_steel_rod": "Purple Steel Rod",
   "item.rosia.purple_steel_wire": "Purple Steel Wire",
   "item.rosia.purple_steel_coil": "Purple Steel Coil",
+
   "item.rosia.magnetite_powder": "Magnetite Powder",
   "item.rosia.compressed_magnetite": "Compressed Magnetite",
   "item.rosia.magnet": "Magnet",
@@ -21,8 +24,26 @@
   "item.rosia.steel_machine_die": "Steel Machine Die",
   "item.rosia.steel_rollers": "Steel Rollers",
   "item.rosia.motor": "Motor",
+
   "item.rosia.satchel_part": "Satchel Part",
   "item.rosia.leather_satchel": "Leather Satchel",
+
+  "item.rosia.purple_steel_rifle": "Purple Steel Rifle",
+  "item.rosia.bullets": "Bullets",
+  "item.rosia.rifle_ammo": "Rifle Ammo",
+
+  "item.rosia.purple_steel_pickaxe": "Purple Steel Pickaxe",
+  "item.rosia.purple_steel_propick": "Purple Steel Prospector's Pick",
+  "item.rosia.purple_steel_axe": "Purple Steel Axe",
+  "item.rosia.purple_steel_shovel": "Purple Steel Shovel",
+  "item.rosia.purple_steel_hoe": "Purple Steel Hoe",
+
+  "item.rosia.purple_steel_pickaxe_head": "Purple Steel Pickaxe Head",
+  "item.rosia.purple_steel_propick_head": "Purple Steel Prospector's Pick Head",
+  "item.rosia.purple_steel_axe_head": "Purple Steel Axe Head",
+  "item.rosia.purple_steel_shovel_head": "Purple Steel Shovel Head",
+  "item.rosia.purple_steel_hoe_head": "Purple Steel Hoe Head",
+
 
   "block.rosia.andesite_path": "Andesite Path",
   "block.rosia.basalt_path": "Basalt Path",

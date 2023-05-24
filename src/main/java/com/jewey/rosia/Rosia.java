@@ -5,6 +5,7 @@ import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.capabilities.food.RosiaFoodTraits;
 import com.jewey.rosia.common.container.ModContainerTypes;
 import com.jewey.rosia.common.fluids.ModFluids;
+import com.jewey.rosia.common.entities.ModEntities;
 import com.jewey.rosia.common.items.ModItems;
 import com.jewey.rosia.effect.ModEffects;
 import com.jewey.rosia.event.ModClientEvents;
@@ -12,6 +13,7 @@ import com.jewey.rosia.event.ModEvents;
 import com.jewey.rosia.networking.ModMessages;
 import com.jewey.rosia.recipe.ModRecipes;
 import com.jewey.rosia.screen.*;
+import com.jewey.rosia.util.ModItemProperties;
 import com.mojang.logging.LogUtils;
 import net.dries007.tfc.network.PacketHandler;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -51,6 +53,8 @@ public class Rosia
         ModContainerTypes.CONTAINERS.register(eventBus);
         ModMenuTypes.register(eventBus);
 
+        ModEntities.ENTITY_TYPES.register(eventBus);
+
         RosiaFoodTraits.registerFoodTraits();
 
         ModEffects.EFFECTS.register(eventBus);
@@ -84,6 +88,7 @@ public class Rosia
 
         MenuScreens.register(ModContainerTypes.LEATHER_SATCHEL.get(), LeatherSatchelScreen::new);
 
+        ModItemProperties.addCustomItemProperties();
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.AUTO_QUERN.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.FIRE_BOX.get(), RenderType.solid());

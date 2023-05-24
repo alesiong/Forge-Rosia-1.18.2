@@ -29,6 +29,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.material.Fluids;
@@ -73,9 +74,9 @@ public class WaterPumpBlockEntity extends TickableInventoryBlockEntity<WaterPump
             pump.needsRecipeUpdate = false;
         }
 
-        // Pump water
+        // Pump water | only pump if there is enough room in the tank to not waste FE
         if (pump.ENERGY_STORAGE.getEnergyStored() >= ENERGY_REQ && state.getValue(BlockStateProperties.WATERLOGGED)
-                && pump.FLUID_TANK.getFluidAmount() != pump.FLUID_TANK.getCapacity()) {
+                && pump.FLUID_TANK.getFluidAmount() <= pump.FLUID_TANK.getCapacity() - FILL_AMOUNT) {
             FluidStack stack = new FluidStack(Fluids.WATER, FILL_AMOUNT);
             pump.FLUID_TANK.fill(stack, IFluidHandler.FluidAction.EXECUTE);
             pump.ENERGY_STORAGE.extractEnergy(ENERGY_REQ, false);
@@ -84,6 +85,9 @@ public class WaterPumpBlockEntity extends TickableInventoryBlockEntity<WaterPump
         if (hasFluidItemInSourceSlot(pump)) {
             transferItemFluidToFluidTank(pump);
         }
+        //output fluid on block sides
+        pump.outputFluid();
+        pump.setChanged();
     }
 
     private static final int ENERGY_REQ = 1; // Energy cost to pump water
@@ -268,6 +272,28 @@ public class WaterPumpBlockEntity extends TickableInventoryBlockEntity<WaterPump
         @Override
         public void deserializeNBT(CompoundTag nbt) {
             inventory.deserializeNBT(nbt.getCompound("inventory"));
+        }
+    }
+
+    public void outputFluid() {
+        if (this.FLUID_TANK.getFluidAmount() >= FILL_AMOUNT) {
+            for (final var direction : Direction.values()) {
+                final BlockEntity neighbor = this.level.getBlockEntity(this.worldPosition.relative(direction));
+                if (neighbor == null) {
+                    continue;
+                }
+
+                neighbor.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, direction.getOpposite()).ifPresent(storage -> {
+                    if (neighbor != this && storage.getFluidInTank(1).getAmount() < storage.getTankCapacity(1)
+                            && storage.getFluidInTank(1).getAmount() <= storage.getTankCapacity(1) - FILL_AMOUNT) {
+                        WaterPumpBlockEntity.this.FLUID_TANK.drain(30, IFluidHandler.FluidAction.EXECUTE).getAmount();
+                        FluidStack toSendFluid = new FluidStack(Fluids.WATER, FILL_AMOUNT);
+                        storage.fill(toSendFluid, IFluidHandler.FluidAction.EXECUTE);
+
+                        WaterPumpBlockEntity.this.FLUID_TANK.setFluid(WaterPumpBlockEntity.this.FLUID_TANK.getFluidInTank(1));
+                    }
+                });
+            }
         }
     }
 

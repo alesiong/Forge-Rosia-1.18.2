@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "X  ",
+    "ZXY",
+    " ZZ"
+  ],
+  "key": {
+    "X": {
+      "item": "rosia:purple_steel_rod"
+    },
+    "Y": {
+      "item": "tfc:metal/rod/steel"
+    },
+    "Z": {
+      "tag": "tfc:lumber"
+    }
+  },
+  "result": {
+    "item": "rosia:purple_steel_rifle",
+    "count": 1
+  }
+}

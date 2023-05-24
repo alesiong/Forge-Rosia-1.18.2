@@ -1,0 +1,31 @@
+{
+  "display": {
+    "icon": {
+      "item": "rosia:purple_steel_pickaxe"
+    },
+    "title": "Harder, Better, Faster, Stronger",
+    "description": "Craft your first purple steel tool",
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true
+  },
+  "parent": "rosia:purple_steel",
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "rosia:purple_steel_pickaxe",
+              "rosia:purple_steel_axe",
+              "rosia:purple_steel_hoe",
+              "rosia:purple_steel_shovel",
+              "rosia:purple_steel_propick"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

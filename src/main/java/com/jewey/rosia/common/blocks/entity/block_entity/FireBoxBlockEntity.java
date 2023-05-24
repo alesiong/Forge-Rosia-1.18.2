@@ -48,16 +48,16 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         protected void onContentsChanged(int slot) {
             setChanged();
         }
-
-        @Override
-        public boolean isItemValid(int slot, ItemStack stack) {
-            return switch (slot) {
-                case 0, 1, 2 -> Helpers.isItem(stack.getItem(), RosiaTags.Items.FIRE_BOX_FUEL);
-                case 3 -> stack.getItem() == TFCItems.POWDERS.get(Powder.WOOD_ASH).get();
-                default -> super.isItemValid(slot, stack);
-            };
-        }
     };
+
+    @Override
+    public boolean isItemValid(int slot, @NotNull ItemStack stack) {
+        return switch (slot) {
+            case 0, 1, 2 -> Helpers.isItem(stack.getItem(), TFCTags.Items.FORGE_FUEL) || Helpers.isItem(stack.getItem(), TFCTags.Items.LOG_PILE_LOGS);
+            case 3 -> stack.getItem() == TFCItems.POWDERS.get(Powder.WOOD_ASH).get();
+            default -> super.isItemValid(slot, stack);
+        };
+    }
 
     public @NotNull Component getDisplayName() {
         return new TextComponent("Fire Box");
@@ -152,6 +152,11 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         final ItemStack fuelStack = forge.inventory.getStackInSlot(SLOT_FUEL_MIN);
         if (state.getValue(fire_box.HEAT) == 0 && !fuelStack.isEmpty() && forge.burnTemperature == 0) {
             level.setBlock(pos, state.setValue(fire_box.HEAT, 1), Block.UPDATE_ALL);
+            forge.markForSync();
+        }
+        // Re-light the forge if empty and new fuel is added
+        if (state.getValue(fire_box.HEAT) != 0 && !fuelStack.isEmpty() && forge.burnTemperature == 0 && !forge.consumeFuel()) {
+            forge.consumeFuel();
             forge.markForSync();
         }
 
@@ -316,9 +321,7 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         };
     }
 
-    /**
-     * Attempts to consume one piece of fuel. Returns if the fire pit consumed any fuel (and so, ended up lit)
-     */
+
     private boolean consumeFuel()
     {
         final ItemStack fuelStack = inventory.getStackInSlot(SLOT_FUEL_MIN);

@@ -31,6 +31,7 @@ import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.capabilities.Capability;
@@ -94,17 +95,17 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
 
     //Power Generation
         if (generator.temperature > 100 && generator.ticks == 0 && hasEnoughFluid(generator)
-                && generator.ENERGY_STORAGE.getEnergyStored() < generator.ENERGY_STORAGE.getMaxEnergyStored()) {
+                && generator.ENERGY_STORAGE.getEnergyStored() <= generator.ENERGY_STORAGE.getMaxEnergyStored()-5) {
             //higher temperatures = higher "steam pressure" = faster power generation
             int pressure = Mth.clamp((int) ((1800 - generator.temperature) / 80), 0, 23);
 
             if(generator.temperature >= 2014) {
-            //at max temperature for coal 4 FE every tick
-                generator.ENERGY_STORAGE.receiveEnergy(4,false);
+            //at max temperature for coal 5 FE every tick
+                generator.setEnergyLevel(Math.min(generator.ENERGY_STORAGE.getEnergyStored()+5, generator.ENERGY_STORAGE.getMaxEnergyStored()));
                 generator.ticks += pressure;
             } else {
-            //otherwise get 3 FE every-other-tick + pressure
-                generator.ENERGY_STORAGE.receiveEnergy(3, false);
+            //otherwise get 4 FE every-other-tick + pressure
+                generator.setEnergyLevel(Math.min(generator.ENERGY_STORAGE.getEnergyStored()+4, generator.ENERGY_STORAGE.getMaxEnergyStored()));
                 generator.ticks += pressure + 1;
             }
             generator.FLUID_TANK.drain(10, IFluidHandler.FluidAction.EXECUTE);
@@ -112,14 +113,18 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
             level.setBlock(pos, state.setValue(steam_generator.STEAM, true), Block.UPDATE_ALL);
         }
 
-        if(generator.ENERGY_STORAGE.getEnergyStored() >= generator.ENERGY_STORAGE.getMaxEnergyStored()
-                || !hasEnoughFluid(generator) || generator.temperature <= 0) {
+        if(generator.ENERGY_STORAGE.getEnergyStored() >= generator.ENERGY_STORAGE.getMaxEnergyStored()-5
+                || !hasEnoughFluid(generator) || generator.temperature < 100) {
             level.setBlock(pos, state.setValue(steam_generator.STEAM, false), Block.UPDATE_ALL);
         }
 
         if(hasFluidItemInSourceSlot(generator)) {
             transferItemFluidToFluidTank(generator);
         }
+
+        //output energy on block sides
+        generator.outputEnergy();
+        generator.setChanged();
     }
 
     private static boolean hasEnoughFluid(SteamGeneratorBlockEntity generator) {
@@ -388,12 +393,17 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
      * Energy stuff
      */
 
+    private static final int maxTransfer = 10;
 
-    private final ModEnergyStorage ENERGY_STORAGE = new ModEnergyStorage(800, 10) {
+    private final ModEnergyStorage ENERGY_STORAGE = new ModEnergyStorage(800, maxTransfer) {
         @Override
         public void onEnergyChanged() {
             setChanged();
             ModMessages.sendToClients(new EnergySyncS2CPacket(this.energy, getBlockPos()));
+        }
+        @Override
+        public boolean canReceive() {
+            return false;
         }
     };
 
@@ -406,6 +416,26 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
 
     public void setEnergyLevel(int energy) {
         this.ENERGY_STORAGE.setEnergy(energy);
+    }
+
+    public void outputEnergy() {
+        if (this.ENERGY_STORAGE.getEnergyStored() >= maxTransfer && this.ENERGY_STORAGE.canExtract()) {
+            for (final var direction : Direction.values()) {
+                final BlockEntity neighbor = this.level.getBlockEntity(this.worldPosition.relative(direction));
+                if (neighbor == null) {
+                    continue;
+                }
+                neighbor.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).ifPresent(storage -> {
+                    if (neighbor != this && storage.getEnergyStored() < storage.getMaxEnergyStored() && storage.canReceive()
+                            && storage.getEnergyStored() <= storage.getMaxEnergyStored() - maxTransfer) {
+                        final int toSend = SteamGeneratorBlockEntity.this.ENERGY_STORAGE.extractEnergy(maxTransfer,false);
+                        final int received = storage.receiveEnergy(toSend, false);
+
+                        SteamGeneratorBlockEntity.this.ENERGY_STORAGE.setEnergy(SteamGeneratorBlockEntity.this.ENERGY_STORAGE.getEnergyStored() + toSend - received);
+                    }
+                });
+            }
+        }
     }
 
     /**

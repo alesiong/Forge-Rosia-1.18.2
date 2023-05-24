@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "$(thing)Purple Steel$() is a the ultimate metal. An $(l:mechanics/crucible#advanced_alloying)Alloy$() consisting of $(thing)Blue Steel$() and $(thing)Red Steel$(), purple steel can be cast into ingots, welded into double ingots, and worked into sheets for crafting. Purple Steel is the strongest metal; mastering both hot and cold temperatures, and bolstering the highest durability."
+      "text": "$(thing)Purple Steel$() is the ultimate metal. An $(l:mechanics/crucible#advanced_alloying)Alloy$() consisting of $(thing)Blue Steel$() and $(thing)Red Steel$(), purple steel can be cast into ingots, welded into double ingots, and worked into sheets for crafting. Purple Steel is the strongest metal; mastering both hot and cold temperatures, and bolstering the highest durability."
     },
     {
       "type": "patchouli:spotlight",

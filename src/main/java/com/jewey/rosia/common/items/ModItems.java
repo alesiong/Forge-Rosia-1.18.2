@@ -1,7 +1,10 @@
 package com.jewey.rosia.common.items;
 
 import com.jewey.rosia.Rosia;
-import net.minecraft.world.item.Item;
+import net.dries007.tfc.common.items.PropickItem;
+import net.dries007.tfc.common.items.TFCHoeItem;
+import net.dries007.tfc.common.items.ToolItem;
+import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -83,6 +86,43 @@ public class ModItems {
 
     public static final RegistryObject<Item> LEATHER_SATCHEL = ITEMS.register("leather_satchel",
             () -> new SatchelItem(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).stacksTo(1)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_RIFLE = ITEMS.register("purple_steel_rifle",
+            () -> new RifleItem(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(2000)));
+
+    public static final RegistryObject<Item> BULLET = ITEMS.register("bullets",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> RIFLE_AMMO = ITEMS.register("rifle_ammo",
+            () -> new BulletItem(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    //TOOLS & TOOL HEADS
+    public static final RegistryObject<Item> PURPLE_STEEL_PICKAXE = ITEMS.register("purple_steel_pickaxe",
+            () -> new PickaxeItem(ModTiers.PURPLE_STEEL, -3,-2.8F,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_PICKAXE_HEAD = ITEMS.register("purple_steel_pickaxe_head",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_PROPICK = ITEMS.register("purple_steel_propick",
+            () -> new PropickItem(ModTiers.PURPLE_STEEL, -6,-2.8F,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_PROPICK_HEAD = ITEMS.register("purple_steel_propick_head",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_AXE = ITEMS.register("purple_steel_axe",
+            () -> new AxeItem(ModTiers.PURPLE_STEEL, 3.5F,-3.1F,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_AXE_HEAD = ITEMS.register("purple_steel_axe_head",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_SHOVEL = ITEMS.register("purple_steel_shovel",
+            () -> new ShovelItem(ModTiers.PURPLE_STEEL, -2.5F,-3F,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_SHOVEL_HEAD = ITEMS.register("purple_steel_shovel_head",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_HOE = ITEMS.register("purple_steel_hoe",
+            () -> new TFCHoeItem(ModTiers.PURPLE_STEEL, (int) -2.5,-2F,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_HOE_HEAD = ITEMS.register("purple_steel_hoe_head",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
 
 
     public static void register(IEventBus eventBus) {
