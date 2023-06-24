@@ -5,11 +5,11 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Nickel-Iron Battery$() is the main storage method for $(thing)FE$().$(br)Maximum capacity of $(thing)4,000 FE$().$(br2)Fixed output on the top of the battery. All other sides input."
+      "text": "The $(thing)Nickel-Iron Battery$() is the main storage method for $(thing)FE$().$(br)Maximum capacity of $(thing)4,000 FE$().$(br2)Fixed output on the top of the battery. All other sides input.$(br2)To toggle automatic power output, press the $(thing)Auto$() button."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "rosia:crafting/nickel_iron_battery"
+      "recipe": "rosia:crafting/blocks/nickel_iron_battery"
     }
   ],
   "read_by_default": true,

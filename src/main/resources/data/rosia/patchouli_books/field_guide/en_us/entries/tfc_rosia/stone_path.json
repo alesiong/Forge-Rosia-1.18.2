@@ -9,7 +9,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "rosia:crafting/paths/andesite_path",
+      "recipe": "rosia:crafting/blocks/paths/andesite_path",
       "text": "There are 20 variants; one for each of the stone types."
     }
   ],

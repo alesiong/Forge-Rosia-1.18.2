@@ -1,4 +1,4 @@
-package com.jewey.rosia.screen.button;
+package com.jewey.rosia.screen.button.electric_forge;
 
 import com.jewey.rosia.common.blocks.entity.block_entity.ElectricForgeBlockEntity;
 import com.jewey.rosia.screen.ElectricForgeScreen;
@@ -12,14 +12,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraftforge.network.PacketDistributor;
 
 
-public class ElectricForgeButtonOff extends Button {
+public class ElectricForgeButtonW extends Button {
     private final ElectricForgeBlockEntity forge;
 
-    public ElectricForgeButtonOff(ElectricForgeBlockEntity forge, int guiLeft, int guiTop)
+    public ElectricForgeButtonW(ElectricForgeBlockEntity forge, int guiLeft, int guiTop, OnTooltip tooltip)
     {
-        super(guiLeft + 70, guiTop + 80, 35, 9, Component.nullToEmpty("Off"), button -> {
-            PacketHandler.send(PacketDistributor.SERVER.noArg(), new ScreenButtonPacket(6, null));
-        });
+        super(guiLeft + 106, guiTop + 61, 17, 17, Component.nullToEmpty("White"), button -> {
+            PacketHandler.send(PacketDistributor.SERVER.noArg(), new ScreenButtonPacket(1, null));
+        }, tooltip);
 
         this.forge = forge;
     }
@@ -31,7 +31,7 @@ public class ElectricForgeButtonOff extends Button {
         RenderSystem.setShaderTexture(0, ElectricForgeScreen.TEXTURE);
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 
-        blit(poseStack, x, y, 36, 206, width, height, 256, 256);
+        blit(poseStack, x, y, 72, 187, width, height, 256, 256);
 
         if (isHoveredOrFocused())
         {

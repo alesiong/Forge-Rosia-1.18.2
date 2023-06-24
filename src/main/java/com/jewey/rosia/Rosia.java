@@ -80,7 +80,7 @@ public class Rosia
         MenuScreens.register(ModMenuTypes.AUTO_QUERN_MENU.get(), AutoQuernScreen::new);
         MenuScreens.register(ModContainerTypes.FIRE_BOX.get(), FireBoxScreenFinal::new);
         MenuScreens.register(ModContainerTypes.STEAM_GENERATOR.get(), SteamGeneratorScreen::new);
-        MenuScreens.register(ModMenuTypes.NICKEL_IRON_BATTERY_MENU.get(), NickelIronBatteryScreen::new);
+        MenuScreens.register(ModContainerTypes.NICKEL_IRON_BATTERY.get(), NickelIronBatteryScreen::new);
         MenuScreens.register(ModContainerTypes.WATER_PUMP.get(), WaterPumpScreen::new);
         MenuScreens.register(ModMenuTypes.EXTRUDING_MACHINE_MENU.get(), ExtrudingMachineScreen::new);
         MenuScreens.register(ModMenuTypes.ROLLING_MACHINE_MENU.get(), RollingMachineScreen::new);

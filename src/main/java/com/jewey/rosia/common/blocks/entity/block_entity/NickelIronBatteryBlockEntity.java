@@ -1,16 +1,23 @@
 package com.jewey.rosia.common.blocks.entity.block_entity;
 
+import com.jewey.rosia.common.blocks.custom.nickel_iron_battery;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
+import com.jewey.rosia.common.blocks.entity.WrappedHandlerEnergy;
+import com.jewey.rosia.common.container.ElectricForgeContainer;
 import com.jewey.rosia.networking.ModMessages;
 import com.jewey.rosia.networking.packet.EnergySyncS2CPacket;
-import com.jewey.rosia.screen.NickelIronBatteryMenu;
+import com.jewey.rosia.screen.NickelIronBatteryContainer;
 import com.jewey.rosia.util.ModEnergyStorage;
+import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
+import net.dries007.tfc.util.Helpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
@@ -28,16 +35,19 @@ import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
+import java.util.Map;
+
+import static com.jewey.rosia.Rosia.MOD_ID;
 
 
-public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuProvider {
+public class NickelIronBatteryBlockEntity extends TickableInventoryBlockEntity<ItemStackHandler> implements MenuProvider {
 
     private final ItemStackHandler itemHandler = new ItemStackHandler(0) {};
     protected final ContainerData data;
 
+
     public NickelIronBatteryBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntities.NICKEL_IRON_BATTERY_BLOCK_ENTITY.get(), pPos, pBlockState);
+        super(ModBlockEntities.NICKEL_IRON_BATTERY_BLOCK_ENTITY.get(), pPos, pBlockState, defaultInventory(0), NAME);
         this.data = new ContainerData() {
             public int get(int index) {
                 return switch (index) {
@@ -59,17 +69,42 @@ public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuPro
         return new TextComponent("Battery");
     }
 
-    @Nullable
+    private static final TranslatableComponent NAME = Helpers.translatable(MOD_ID + ".block_entity.nickel_iron_battery");
+
+    public ContainerData getSyncableData()
+    {
+        return data;
+    }
+
+    @javax.annotation.Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
+    public AbstractContainerMenu createMenu(int windowID, Inventory playerInv, Player player)
+    {
         ModMessages.sendToClients(new EnergySyncS2CPacket(this.ENERGY_STORAGE.getEnergyStored(), getBlockPos()));
-        return new NickelIronBatteryMenu(pContainerId, pPlayerInventory, this, this.data);
+        return NickelIronBatteryContainer.create(this, playerInv, windowID);
     }
 
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
         if(cap == CapabilityEnergy.ENERGY) {
-            return lazyEnergyHandler.cast();
+            if(side == null) {
+                return lazyEnergyHandler.cast();
+            }
+
+            if(directionWrappedHandlerMap.containsKey(side)) {
+                Direction localDir = this.getBlockState().getValue(nickel_iron_battery.FACING);
+
+                if(side == Direction.UP || side == Direction.DOWN) {
+                    return directionWrappedHandlerMap.get(side).cast();
+                }
+
+                return switch (localDir) {
+                    default -> directionWrappedHandlerMap.get(side.getOpposite()).cast();
+                    case EAST -> directionWrappedHandlerMap.get(side.getClockWise()).cast();
+                    case SOUTH -> directionWrappedHandlerMap.get(side).cast();
+                    case WEST -> directionWrappedHandlerMap.get(side.getCounterClockWise()).cast();
+                };
+            }
         }
 
         return super.getCapability(cap, side);
@@ -81,15 +116,17 @@ public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuPro
             setChanged();
             ModMessages.sendToClients(new EnergySyncS2CPacket(this.energy, getBlockPos()));
         }
-        @Override
-        public boolean canReceive() {
-            return true;
-        }
-        @Override
-        public boolean canExtract() {
-            return true;
-        }
     };
+
+    private final Map<Direction, LazyOptional<WrappedHandlerEnergy>> directionWrappedHandlerMap =
+            //Handler for sided energy: extract, receive, canExtract, canReceive
+            //Determines what sides can perform actions
+            Map.of(Direction.DOWN, LazyOptional.of(() -> new WrappedHandlerEnergy(ENERGY_STORAGE, (i) -> false, (i) -> true, false, true)),
+                    Direction.UP, LazyOptional.of(() -> new WrappedHandlerEnergy(ENERGY_STORAGE,(i) -> true, (i) -> false, true, false)),
+                    Direction.NORTH, LazyOptional.of(() -> new WrappedHandlerEnergy(ENERGY_STORAGE, (i) -> false, (i) -> true, false, true)),
+                    Direction.SOUTH, LazyOptional.of(() -> new WrappedHandlerEnergy(ENERGY_STORAGE, (i) -> false, (i) -> true, false, true)),
+                    Direction.EAST, LazyOptional.of(() -> new WrappedHandlerEnergy(ENERGY_STORAGE, (i) -> false, (i) -> true, false, true)),
+                    Direction.WEST, LazyOptional.of(() -> new WrappedHandlerEnergy(ENERGY_STORAGE, (i) -> false, (i) -> true, false, true)));
 
     private static final int maxTransfer = 50;
 
@@ -104,14 +141,13 @@ public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuPro
     }
 
     public void outputEnergy() {
-        if (this.ENERGY_STORAGE.getEnergyStored() >= maxTransfer && this.ENERGY_STORAGE.canExtract()) {
+        if (this.ENERGY_STORAGE.getEnergyStored() >= maxTransfer && this.ENERGY_STORAGE.canExtract() && toggle) {
             final var direction = Direction.UP;
             final BlockEntity neighbor = this.level.getBlockEntity(this.worldPosition.relative(direction));
 
             if (neighbor != null) {
                 neighbor.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).ifPresent(storage -> {
-                    if (neighbor != this && storage.getEnergyStored() < storage.getMaxEnergyStored() && storage.canReceive()
-                            && storage.getEnergyStored() <= storage.getMaxEnergyStored() - maxTransfer) {
+                    if (neighbor != this && storage.canReceive() && storage.getEnergyStored() <= storage.getMaxEnergyStored() - maxTransfer) {
                         final int toSend = NickelIronBatteryBlockEntity.this.ENERGY_STORAGE.extractEnergy(maxTransfer,false);
                         final int received = storage.receiveEnergy(toSend, false);
 
@@ -129,7 +165,16 @@ public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuPro
         battery.setChanged();
     }
 
+    private boolean toggle = false;
 
+    public InteractionResult togglePush(){
+        if(!toggle) {
+            toggle = true;
+        } else {
+            toggle = false;
+        }
+        return InteractionResult.PASS;
+    }
 
     @Override
     public void onLoad() {
@@ -144,15 +189,17 @@ public class NickelIronBatteryBlockEntity extends BlockEntity implements MenuPro
     }
 
     @Override
-    protected void saveAdditional(@NotNull CompoundTag tag) {
-        tag.putInt("energy", ENERGY_STORAGE.getEnergyStored());
-        super.saveAdditional(tag);
+    public void loadAdditional(CompoundTag nbt) {
+        ENERGY_STORAGE.setEnergy(nbt.getInt("energy"));
+        toggle = nbt.getBoolean("toggle");
+        super.loadAdditional(nbt);
     }
 
     @Override
-    public void load(CompoundTag nbt) {
-        super.load(nbt);
-        ENERGY_STORAGE.setEnergy(nbt.getInt("energy"));
+    public void saveAdditional(@NotNull CompoundTag tag) {
+        tag.putInt("energy", ENERGY_STORAGE.getEnergyStored());
+        tag.putBoolean("toggle", toggle);
+        super.saveAdditional(tag);
     }
 
     public void drops() {

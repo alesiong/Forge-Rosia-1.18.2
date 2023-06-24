@@ -6,7 +6,7 @@ import com.jewey.rosia.common.container.WaterPumpContainer;
 import com.jewey.rosia.common.container.SteamGeneratorContainer;
 import com.jewey.rosia.screen.AutoQuernMenu;
 import com.jewey.rosia.screen.ExtrudingMachineMenu;
-import com.jewey.rosia.screen.NickelIronBatteryMenu;
+import com.jewey.rosia.screen.NickelIronBatteryContainer;
 import com.jewey.rosia.screen.RollingMachineMenu;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -56,7 +56,7 @@ public class EnergySyncS2CPacket {
             if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof NickelIronBatteryBlockEntity blockEntity) {
                 blockEntity.setEnergyLevel(energy);
 
-                if(Minecraft.getInstance().player.containerMenu instanceof NickelIronBatteryMenu menu &&
+                if(Minecraft.getInstance().player.containerMenu instanceof NickelIronBatteryContainer menu &&
                         menu.getBlockEntity().getBlockPos().equals(pos)) {
                     blockEntity.setEnergyLevel(energy);
                 }

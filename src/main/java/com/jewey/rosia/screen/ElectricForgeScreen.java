@@ -3,7 +3,7 @@ package com.jewey.rosia.screen;
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.entity.block_entity.ElectricForgeBlockEntity;
 import com.jewey.rosia.common.container.ElectricForgeContainer;
-import com.jewey.rosia.screen.button.*;
+import com.jewey.rosia.screen.button.electric_forge.*;
 import com.jewey.rosia.screen.renderer.EnergyInfoArea50Height;
 import com.jewey.rosia.util.MouseUtil;
 import com.mojang.blaze3d.vertex.PoseStack;

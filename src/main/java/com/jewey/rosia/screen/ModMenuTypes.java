@@ -17,9 +17,6 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<AutoQuernMenu>> AUTO_QUERN_MENU =
             registerMenuType(AutoQuernMenu::new, "auto_quern_menu");
 
-    public static final RegistryObject<MenuType<NickelIronBatteryMenu>> NICKEL_IRON_BATTERY_MENU =
-            registerMenuType(NickelIronBatteryMenu::new, "nickel_iron_battery_menu");
-
     public static final RegistryObject<MenuType<ExtrudingMachineMenu>> EXTRUDING_MACHINE_MENU =
             registerMenuType(ExtrudingMachineMenu::new, "extruding_machine_menu");
 

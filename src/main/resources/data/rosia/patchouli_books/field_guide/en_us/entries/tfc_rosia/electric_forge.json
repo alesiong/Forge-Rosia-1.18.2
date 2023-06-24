@@ -9,7 +9,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "rosia:crafting/electric_forge",
+      "recipe": "rosia:crafting/blocks/electric_forge",
       "text": "The $(thing)Electric Forge$() uses a large amount of $(thing)Purple Steel$(), making it challenging to obtain."
     },
     {

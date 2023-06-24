@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:crafting",
-      "recipe": "rosia:crafting/auto_quern",
+      "recipe": "rosia:crafting/blocks/auto_quern",
       "text": "The $(thing)Auto-Quern$() is a machine used to automatically grind items into powders and dyes."
     },
     {
@@ -15,7 +15,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "rosia:crafting/extruding_machine",
+      "recipe": "rosia:crafting/blocks/extruding_machine",
       "text": "The $(thing)Extruding Machine$() is a machine used to automatically form metal rods and wires. Requires metal that is hot enough to work."
     },
     {
@@ -25,7 +25,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "rosia:crafting/rolling_machine",
+      "recipe": "rosia:crafting/blocks/rolling_machine",
       "text": "The $(thing)Rolling Machine$() is a machine used to automatically form metal sheets. Requires metal that is hot enough to work."
     },
     {

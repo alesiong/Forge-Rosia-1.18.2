@@ -3,6 +3,8 @@ package com.jewey.rosia.screen;
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
 import com.jewey.rosia.common.container.SteamGeneratorContainer;
+import com.jewey.rosia.screen.button.nickel_iron_battery.BatteryEnergyOutputToggle;
+import com.jewey.rosia.screen.button.steam_generator.SteamGeneratorEnergyOutputToggle;
 import com.jewey.rosia.screen.renderer.EnergyInfoArea50Height;
 import com.jewey.rosia.screen.renderer.FluidInfoArea50Height;
 import com.jewey.rosia.util.MouseUtil;
@@ -38,6 +40,8 @@ public class SteamGeneratorScreen extends BlockEntityScreen<SteamGeneratorBlockE
         super.init();
         assignEnergyInfoArea();
         assignFluidInfoArea();
+        addRenderableWidget(new SteamGeneratorEnergyOutputToggle(blockEntity, getGuiLeft(), getGuiTop(),
+                RenderHelpers.makeButtonTooltip(this, Component.nullToEmpty("Toggle Output Push"))));
     }
 
     private void assignEnergyInfoArea() {
@@ -53,6 +57,8 @@ public class SteamGeneratorScreen extends BlockEntityScreen<SteamGeneratorBlockE
         renderFluidAreaTooltips(pPoseStack, pMouseX, pMouseY, leftPos, topPos);
         this.font.draw(pPoseStack, this.title, (float)this.titleLabelX, (float)this.titleLabelY, 4210752);
         this.font.draw(pPoseStack, this.playerInventoryTitle, (float)this.inventoryLabelX, (float)this.inventoryLabelY, 4210752);
+        //Button Label
+        this.font.draw(pPoseStack, "Auto", 146, 92, 1447446);
     }
 
     private void renderEnergyAreaTooltips(PoseStack pPoseStack, int pMouseX, int pMouseY, int leftPos, int topPos) {

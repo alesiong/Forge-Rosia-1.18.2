@@ -5,16 +5,16 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Steam Generator$() is the heart of your electrical network. When placed above a heat source, it consumes water and produces electricity, or $(thing)FE$().$(br2)Water can either be brought in with buckets using the input slot, or piped in from another source."
+      "text": "The $(thing)Steam Generator$() is the heart of your electrical network. When placed above a heat source, it consumes water and produces $(thing)Electricity$().$(br2)Water can either be brought in with buckets using the input slot, or piped in from another source."
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "rosia:crafting/steam_generator",
+      "recipe": "rosia:crafting/blocks/steam_generator",
       "text": "The higher the temperature, the faster the $(thing)Steam Generator$() consumes water and produces electricity."
     },
     {
       "type": "patchouli:text",
-      "text": "It is important to make sure you have enough $(thing)FE storage$() to capitalize on the entirety of your fuel's burn time.$(br2)Electricity for running machines is expensive, so try to not be wasteful.$(br2)The thermometer in the interface is different than other heat producing sources since it shows the temperature up to its highest functioning value."
+      "text": "It is important to make sure you have enough $(thing)FE storage$() to capitalize on the entirety of your fuel's burn time.$(br2)The thermometer in the interface is different than heat producing sources as it shows the temperature up to its highest functioning value.$(br2)To toggle automatic power output, press the $(thing)Auto$() button."
     },
     {
       "type": "patchouli:image",

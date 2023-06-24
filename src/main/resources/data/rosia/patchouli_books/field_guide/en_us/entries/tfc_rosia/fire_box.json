@@ -9,7 +9,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "rosia:crafting/fire_box",
+      "recipe": "rosia:crafting/blocks/fire_box",
       "text": "The $(thing)Fire Box$() has built-in ignition, allowing for easier use."
     },
     {

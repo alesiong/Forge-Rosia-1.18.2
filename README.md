@@ -13,6 +13,9 @@ Steam Generator - Generate electricity with steam power by consuming water and h
 #### Water Transportation
 Water Pump - Easily move water with electricity
 
+#### Controlled Heating
+Electric Forge - Heat metals with a controlled temperature range
+
 #### Automation
 Auto-Quern - Grind items into powders and dyes
 Extruding Machine - Form hot metal into rods

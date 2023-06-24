@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:crafting",
-      "recipe": "rosia:crafting/water_pump",
+      "recipe": "rosia:crafting/blocks/water_pump",
       "text": "The $(thing)Water Pump$() gives you the ability to move water with electricity. It has a speed of $(thing)30mB per tick$()."
     },
     {

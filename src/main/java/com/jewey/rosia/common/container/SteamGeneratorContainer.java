@@ -3,12 +3,16 @@ package com.jewey.rosia.common.container;
 import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
 import net.dries007.tfc.common.capabilities.Capabilities;
 import net.dries007.tfc.common.container.BlockEntityContainer;
+import net.dries007.tfc.common.container.ButtonHandlerContainer;
 import net.dries007.tfc.common.container.CallbackSlot;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import org.jetbrains.annotations.Nullable;
 
-public class SteamGeneratorContainer extends BlockEntityContainer<SteamGeneratorBlockEntity>
+public class SteamGeneratorContainer extends BlockEntityContainer<SteamGeneratorBlockEntity> implements ButtonHandlerContainer
 {
     public final SteamGeneratorBlockEntity blockEntity;
     private FluidStack fluidStack;
@@ -54,5 +58,12 @@ public class SteamGeneratorContainer extends BlockEntityContainer<SteamGenerator
     }
     public FluidStack getFluidStack() {
         return fluidStack;
+    }
+
+    @Override
+    public void onButtonPress(int buttonID, @Nullable CompoundTag compoundTag) {
+        if (player instanceof ServerPlayer serverPlayer) {
+            if (buttonID == 0) { blockEntity.togglePush(); }
+        }
     }
 }

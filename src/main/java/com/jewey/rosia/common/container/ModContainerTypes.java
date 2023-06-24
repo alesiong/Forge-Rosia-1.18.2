@@ -1,10 +1,8 @@
 package com.jewey.rosia.common.container;
 
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
-import com.jewey.rosia.common.blocks.entity.block_entity.ElectricForgeBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.WaterPumpBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.SteamGeneratorBlockEntity;
+import com.jewey.rosia.common.blocks.entity.block_entity.*;
+import com.jewey.rosia.screen.NickelIronBatteryContainer;
 import net.dries007.tfc.common.blockentities.InventoryBlockEntity;
 import net.dries007.tfc.common.container.BlockEntityContainer;
 import net.dries007.tfc.common.container.ItemStackContainer;
@@ -24,16 +22,28 @@ import static com.jewey.rosia.Rosia.MOD_ID;
 public class ModContainerTypes {
     public static final DeferredRegister<MenuType<?>> CONTAINERS = DeferredRegister.create(ForgeRegistries.CONTAINERS, MOD_ID);
 
+    public static final RegistryObject<MenuType<FireBoxContainer>>
+            FIRE_BOX = ModContainerTypes.<FireBoxBlockEntity, FireBoxContainer>registerBlock(
+                    "fire_box", ModBlockEntities.FIRE_BOX_BLOCK_ENTITY, FireBoxContainer::create);
 
-    public static final RegistryObject<MenuType<FireBoxContainer>> FIRE_BOX = ModContainerTypes.<FireBoxBlockEntity, FireBoxContainer>registerBlock("fire_box", ModBlockEntities.FIRE_BOX_BLOCK_ENTITY, FireBoxContainer::create);
+    public static final RegistryObject<MenuType<SteamGeneratorContainer>>
+            STEAM_GENERATOR = ModContainerTypes.<SteamGeneratorBlockEntity, SteamGeneratorContainer>registerBlock(
+                    "steam_generator", ModBlockEntities.STEAM_GENERATOR_BLOCK_ENTITY, SteamGeneratorContainer::create);
 
-    public static final RegistryObject<MenuType<SteamGeneratorContainer>> STEAM_GENERATOR = ModContainerTypes.<SteamGeneratorBlockEntity, SteamGeneratorContainer>registerBlock("steam_generator", ModBlockEntities.STEAM_GENERATOR_BLOCK_ENTITY, SteamGeneratorContainer::create);
+    public static final RegistryObject<MenuType<WaterPumpContainer>>
+            WATER_PUMP = ModContainerTypes.<WaterPumpBlockEntity, WaterPumpContainer>registerBlock(
+                    "pump", ModBlockEntities.WATER_PUMP_BLOCK_ENTITY, WaterPumpContainer::create);
 
-    public static final RegistryObject<MenuType<WaterPumpContainer>> WATER_PUMP = ModContainerTypes.<WaterPumpBlockEntity, WaterPumpContainer>registerBlock("pump", ModBlockEntities.WATER_PUMP_BLOCK_ENTITY, WaterPumpContainer::create);
+    public static final RegistryObject<MenuType<LeatherSatchelContainer>>
+            LEATHER_SATCHEL = registerItem("leather_satchel", LeatherSatchelContainer::create);
 
-    public static final RegistryObject<MenuType<LeatherSatchelContainer>> LEATHER_SATCHEL = registerItem("leather_satchel", LeatherSatchelContainer::create);
+    public static final RegistryObject<MenuType<ElectricForgeContainer>>
+            ELECTRIC_FORGE = ModContainerTypes.<ElectricForgeBlockEntity, ElectricForgeContainer>registerBlock(
+                    "electric_forge", ModBlockEntities.ELECTRIC_FORGE_BLOCK_ENTITY, ElectricForgeContainer::create);
 
-    public static final RegistryObject<MenuType<ElectricForgeContainer>> ELECTRIC_FORGE = ModContainerTypes.<ElectricForgeBlockEntity, ElectricForgeContainer>registerBlock("electric_forge", ModBlockEntities.ELECTRIC_FORGE_BLOCK_ENTITY, ElectricForgeContainer::create);
+    public static final RegistryObject<MenuType<NickelIronBatteryContainer>>
+            NICKEL_IRON_BATTERY = ModContainerTypes.<NickelIronBatteryBlockEntity, NickelIronBatteryContainer>registerBlock(
+                    "nickel_iron_battery", ModBlockEntities.NICKEL_IRON_BATTERY_BLOCK_ENTITY, NickelIronBatteryContainer::create);
 
     private static <T extends InventoryBlockEntity<?>, C extends BlockEntityContainer<T>> RegistryObject<MenuType<C>> registerBlock(String name, Supplier<BlockEntityType<T>> type, BlockEntityContainer.Factory<T, C> factory)
     {

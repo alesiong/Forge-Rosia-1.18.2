@@ -13,17 +13,17 @@ import net.minecraft.world.item.ItemStack;
 import javax.annotation.Nullable;
 
 public class LeatherSatchelContainer extends ItemStackContainer {
-    public static LeatherSatchelContainer create(ItemStack stack, InteractionHand hand, Inventory playerInv, int windowId)
+    public static LeatherSatchelContainer create(ItemStack stack, InteractionHand hand, int slot, Inventory playerInv, int windowId)
     {
-        return new LeatherSatchelContainer(stack, hand, playerInv, windowId).init(playerInv, 8);
+        return new LeatherSatchelContainer(stack, hand, slot, playerInv, windowId).init(playerInv, 8);
     }
 
     @Nullable
     private final VesselLike vessel;
 
-    private LeatherSatchelContainer(ItemStack stack, InteractionHand hand, Inventory playerInv, int windowId)
+    private LeatherSatchelContainer(ItemStack stack, InteractionHand hand, int slot, Inventory playerInv, int windowId)
     {
-        super(ModContainerTypes.LEATHER_SATCHEL.get(), windowId, playerInv, stack, hand);
+        super(ModContainerTypes.LEATHER_SATCHEL.get(), windowId, playerInv, stack, hand, slot);
 
         callback = vessel = VesselLike.get(stack);
     }

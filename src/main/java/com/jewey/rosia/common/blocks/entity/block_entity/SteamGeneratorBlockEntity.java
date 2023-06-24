@@ -22,6 +22,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -263,6 +264,7 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
         ENERGY_STORAGE.setEnergy(nbt.getInt("energy"));
         ticks = nbt.getFloat("ticks");
         FLUID_TANK.readFromNBT(nbt);
+        toggle = nbt.getBoolean("toggle");
         super.loadAdditional(nbt);
     }
 
@@ -276,6 +278,7 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
         nbt.putInt("energy", ENERGY_STORAGE.getEnergyStored());
         nbt.putFloat("ticks", ticks);
         nbt = FLUID_TANK.writeToNBT(nbt);
+        nbt.putBoolean("toggle", toggle);
         super.saveAdditional(nbt);
     }
 
@@ -419,15 +422,14 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
     }
 
     public void outputEnergy() {
-        if (this.ENERGY_STORAGE.getEnergyStored() >= maxTransfer && this.ENERGY_STORAGE.canExtract()) {
+        if (this.ENERGY_STORAGE.getEnergyStored() >= maxTransfer && this.ENERGY_STORAGE.canExtract() && toggle) {
             for (final var direction : Direction.values()) {
                 final BlockEntity neighbor = this.level.getBlockEntity(this.worldPosition.relative(direction));
                 if (neighbor == null) {
                     continue;
                 }
                 neighbor.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).ifPresent(storage -> {
-                    if (neighbor != this && storage.getEnergyStored() < storage.getMaxEnergyStored() && storage.canReceive()
-                            && storage.getEnergyStored() <= storage.getMaxEnergyStored() - maxTransfer) {
+                    if (neighbor != this && storage.canReceive() && storage.getEnergyStored() <= storage.getMaxEnergyStored() - maxTransfer) {
                         final int toSend = SteamGeneratorBlockEntity.this.ENERGY_STORAGE.extractEnergy(maxTransfer,false);
                         final int received = storage.receiveEnergy(toSend, false);
 
@@ -437,6 +439,19 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
             }
         }
     }
+
+    private boolean toggle = false;
+
+    public InteractionResult togglePush(){
+        if(!toggle) {
+            toggle = true;
+        } else {
+            toggle = false;
+        }
+        return InteractionResult.PASS;
+    }
+
+
 
     /**
      * Fluid stuff

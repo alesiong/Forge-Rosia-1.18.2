@@ -105,12 +105,12 @@ public class SatchelItem extends Item {
                     }
                     else
                     {
-                        Helpers.openScreen(serverPlayer, ModContainerProviders.LEATHER_SATCHEL.of(stack, hand), ItemStackContainerProvider.write(hand));
+                        ModContainerProviders.LEATHER_SATCHEL.openScreen(serverPlayer, hand);
                     }
                 }
                 else if (vessel.mode() == VesselLike.Mode.MOLTEN_ALLOY)
                 {
-                    Helpers.openScreen(serverPlayer, TFCContainerProviders.MOLD_LIKE_ALLOY.of(stack, hand), ItemStackContainerProvider.write(hand));
+                    TFCContainerProviders.MOLD_LIKE_ALLOY.openScreen(serverPlayer, hand);
                 }
                 else
                 {
@@ -297,7 +297,7 @@ public class SatchelItem extends Item {
         @Override
         public boolean isFluidValid(int tank, FluidStack stack)
         {
-            return Metal.get(stack.getFluid()) != null && Helpers.isFluid(stack.getFluid(), TFCTags.Fluids.USABLE_IN_VESSEL);
+            return Metal.get(stack.getFluid()) != null;
         }
 
         @Override
