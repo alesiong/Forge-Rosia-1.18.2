@@ -7,6 +7,8 @@ import com.jewey.rosia.common.blocks.entity.block_entity.*;
 import com.jewey.rosia.common.items.ModCreativeModeTab;
 import com.jewey.rosia.common.items.ModItems;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
+import net.dries007.tfc.common.blocks.wood.HorizontalSupportBlock;
+import net.dries007.tfc.common.blocks.wood.VerticalSupportBlock;
 import net.dries007.tfc.util.registry.RegistrationHelpers;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -71,11 +73,37 @@ public class ModBlocks {
 
     public static final Supplier<? extends Block> ELECTRIC_FORGE = register("electric_forge",
             () -> new electric_forge(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
-                    .randomTicks().sound(SoundType.METAL).lightLevel((state) -> state.getValue(fire_box.HEAT) * 2)
+                    .randomTicks().sound(SoundType.METAL).lightLevel((state) -> state.getValue(electric_forge.HEAT) * 2)
                     .pathType(BlockPathTypes.DAMAGE_FIRE).blockEntity(ModBlockEntities.ELECTRIC_FORGE_BLOCK_ENTITY)
                     .serverTicks(ElectricForgeBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
 
+    public static final Supplier<? extends Block> ELECTRIC_GRILL = register("electric_grill",
+            () -> new electric_grill(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
+                    .randomTicks().sound(SoundType.METAL).lightLevel((state) -> state.getValue(electric_grill.ON) ? 12 : 0)
+                    .pathType(BlockPathTypes.DAMAGE_FIRE).blockEntity(ModBlockEntities.ELECTRIC_GRILL_BLOCK_ENTITY)
+                    .serverTicks(ElectricGrillBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
 
+    public static final Supplier<? extends Block> FRIDGE = register("fridge",
+            () -> new fridge(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
+                    .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.FRIDGE_BLOCK_ENTITY)
+                    .serverTicks(FridgeBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
+
+    public static final Supplier<? extends Block> ELECTRIC_LANTERN = register("electric_lantern",
+            () -> new electric_lantern(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
+                    .randomTicks().sound(SoundType.METAL).lightLevel((state) -> state.getValue(electric_lantern.ON) ? 15 : 0)
+                    .blockEntity(ModBlockEntities.ELECTRIC_LANTERN_BLOCK_ENTITY)
+                    .serverTicks(ElectricLanternBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
+
+    // DON'T MAKE ITEMS FOR THE SUPPORT BEAMS IT SCREWS UP EVERYTHING!!!
+    public static final Supplier<? extends Block> IRON_SUPPORT_VERTICAL = registerBlockNoItem("iron_support_vertical",
+            () -> new VerticalSupportBlock(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f)
+                    .requiresCorrectToolForDrops().sound(SoundType.METAL)));
+    public static final Supplier<? extends Block> IRON_SUPPORT_HORIZONTAL = registerBlockNoItem("iron_support_horizontal",
+            () -> new HorizontalSupportBlock(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f)
+                    .requiresCorrectToolForDrops().sound(SoundType.METAL)));
+
+
+    // PATHS
     public static final RegistryObject<Block> ANDESITE_PATH = registerBlock("andesite_path",
             () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f,10)
                     .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
@@ -148,6 +176,9 @@ public class ModBlocks {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn, tab);
         return toReturn;
+    }
+    private static <T extends Block> RegistryObject<T> registerBlockNoItem(String name, Supplier<T> block) {
+        return BLOCKS.register(name, block);
     }
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {

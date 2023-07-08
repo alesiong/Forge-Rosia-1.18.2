@@ -48,6 +48,15 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<ElectricForgeBlockEntity>> ELECTRIC_FORGE_BLOCK_ENTITY =
             register("electric_forge_block_entity", ElectricForgeBlockEntity::new, ModBlocks.ELECTRIC_FORGE);
 
+    public static final RegistryObject<BlockEntityType<ElectricGrillBlockEntity>> ELECTRIC_GRILL_BLOCK_ENTITY =
+            register("electric_grill_block_entity", ElectricGrillBlockEntity::new, ModBlocks.ELECTRIC_GRILL);
+
+    public static final RegistryObject<BlockEntityType<FridgeBlockEntity>> FRIDGE_BLOCK_ENTITY =
+            register("fridge_block_entity", FridgeBlockEntity::new, ModBlocks.FRIDGE);
+
+    public static final RegistryObject<BlockEntityType<ElectricLanternBlockEntity>> ELECTRIC_LANTERN_BLOCK_ENTITY =
+            register("electric_lantern_block_entity", ElectricLanternBlockEntity::new, ModBlocks.ELECTRIC_LANTERN);
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

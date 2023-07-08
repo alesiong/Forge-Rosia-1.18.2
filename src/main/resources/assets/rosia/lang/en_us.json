@@ -44,6 +44,8 @@
   "item.rosia.purple_steel_shovel_head": "Purple Steel Shovel Head",
   "item.rosia.purple_steel_hoe_head": "Purple Steel Hoe Head",
 
+  "item.rosia.iron_support": "Iron Support",
+
 
   "block.rosia.andesite_path": "Andesite Path",
   "block.rosia.basalt_path": "Basalt Path",
@@ -75,6 +77,11 @@
   "block.rosia.extruding_machine": "Extruding Machine",
   "block.rosia.rolling_machine": "Rolling Machine",
   "block.rosia.electric_forge": "Electric Forge",
+  "block.rosia.electric_grill": "Electric Grill",
+  "block.rosia.fridge": "Fridge",
+  "block.rosia.electric_lantern": "Electric Lantern",
+  "block.rosia.iron_support_vertical": "Iron Support",
+  "block.rosia.iron_support_horizontal": "Iron Support",
 
   "fluid.rosia.invar_fluid": "Invar",
   "metal.rosia.invar": "Invar",
@@ -84,6 +91,7 @@
   "metal.rosia.purple_steel": "Purple Steel",
 
   "tfc.tooltip.food_trait.bound": "Leather Bound",
+  "tfc.tooltip.food_trait.refrigerated": "Refrigerated",
 
   "effect.rosia.path_speed": "Path Speed",
 

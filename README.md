@@ -4,23 +4,33 @@
 
 ### Features:
 
+#### New Alloys
+###### Invar - Strong alloy for creating machines  
+###### Purple Steel - Top tier tools and weapons. Also used in advanced machinery.
+
 #### Efficient Heat Generation
-Fire Box - Burn fuels with greater yield
+###### Fire Box - Burn fuels with greater yield
 
 #### Power Generation
-Steam Generator - Generate electricity with steam power by consuming water and heat
+###### Steam Generator - Generate electricity with steam power by consuming water and heat
 
 #### Water Transportation
-Water Pump - Easily move water with electricity
+###### Water Pump - Easily move water with electricity
 
 #### Controlled Heating
-Electric Forge - Heat metals with a controlled temperature range
+###### Electric Forge - Heat metals with a controlled temperature range
 
 #### Automation
-Auto-Quern - Grind items into powders and dyes
-Extruding Machine - Form hot metal into rods
-Rolling Machine - Form hot metal into sheets
+###### Auto-Quern - Grind items into powders and dyes
+###### Extruding Machine - Form hot metal into rods
+###### Rolling Machine - Form hot metal into sheets
+
+#### Food Preparation and Preservation
+###### Electric Grill - Cook food faster and in greater quantity   
+###### Fridge - Keep food fresh for longer
 
 #### QOL
-Stone Paths - Increase movement speed; perfect for long roads
-Leather Satchel - An inventory item with five slots
+###### Stone Paths - Increase movement speed; perfect for long roads
+###### Leather Satchel - An inventory item with five slots
+###### Electric Lantern - Cheap long-term lighting
+###### Iron Support Beams - Support beams with 11x7x11 range

@@ -5,7 +5,7 @@
   "pages": [
     {
       "type": "patchouli:text",
-      "text": "The $(thing)Electric Forge$() is an advanced device used to heat and melt items in a controlled environment.$(br2)The Electric Forge does not require a chimney to operate. Furthermore, a $(l:mechanics/bellows)Bellows$() has no effect on the temperature."
+      "text": "The $(thing)Electric Forge$() is an advanced device used to heat and melt items in a controlled environment.$(br2)Items heat $(thing)66%$() faster in the Electric Forge.$(br2)The Electric Forge does not require a chimney to operate. Furthermore, a $(l:mechanics/bellows)Bellows$() has no effect on the temperature."
     },
     {
       "type": "patchouli:crafting",
@@ -26,5 +26,5 @@
     }
   ],
   "read_by_default": true,
-  "sortnum": 9
+  "sortnum": 10
 }

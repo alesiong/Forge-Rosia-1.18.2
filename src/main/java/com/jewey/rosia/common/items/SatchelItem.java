@@ -2,14 +2,12 @@ package com.jewey.rosia.common.items;
 
 import com.jewey.rosia.common.capabilities.food.RosiaFoodTraits;
 import com.jewey.rosia.common.container.ModContainerProviders;
-import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.capabilities.*;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.capabilities.heat.HeatHandler;
 import net.dries007.tfc.common.capabilities.heat.IHeat;
 import net.dries007.tfc.common.capabilities.size.ItemSizeManager;
-import net.dries007.tfc.common.container.ItemStackContainerProvider;
 import net.dries007.tfc.common.container.TFCContainerProviders;
 import net.dries007.tfc.common.recipes.HeatingRecipe;
 import net.dries007.tfc.common.recipes.inventory.ItemStackInventory;
@@ -58,7 +56,9 @@ public class SatchelItem extends Item {
     public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack carried, Slot slot, ClickAction action, Player player, SlotAccess carriedSlot)
     {
         final VesselLike vessel = VesselLike.get(stack);
-        if (vessel != null && TFCConfig.SERVER.enableSmallVesselInventoryInteraction.get() && vessel.mode() == VesselLike.Mode.INVENTORY && vessel.getTemperature() == 0f && !player.isCreative() && action == ClickAction.SECONDARY)
+        if (vessel != null && TFCConfig.SERVER.enableSmallVesselInventoryInteraction.get()
+                && vessel.mode() == VesselLike.Mode.INVENTORY && vessel.getTemperature() == 0f
+                && !player.isCreative() && action == ClickAction.SECONDARY)
         {
             if (!carried.isEmpty())
             {
@@ -130,7 +130,7 @@ public class SatchelItem extends Item {
             final VesselLike vessel = VesselLike.get(stack);
             if (vessel != null && vessel.mode() == VesselLike.Mode.INVENTORY)
             {
-                return Helpers.getTooltipImage(vessel, 2, 3, 0, SatchelItem.SLOTS - 1);
+                return Helpers.getTooltipImage(vessel, 5, 1, 0, SatchelItem.SLOTS - 1);
             }
         }
         return super.getTooltipImage(stack);

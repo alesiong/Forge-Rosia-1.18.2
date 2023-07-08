@@ -58,10 +58,10 @@ public class LeatherSatchelContainer extends ItemStackContainer {
     {
         assert vessel != null;
 
-        addSlot(new CallbackSlot(vessel, vessel, 0, 80, 21));
-        addSlot(new CallbackSlot(vessel, vessel, 1, 71, 39));
-        addSlot(new CallbackSlot(vessel, vessel, 2, 89, 39));
-        addSlot(new CallbackSlot(vessel, vessel, 3, 71, 57));
-        addSlot(new CallbackSlot(vessel, vessel, 4, 89, 57));
+        addSlot(new CallbackSlot(vessel, vessel, 0, 44, 39));
+        addSlot(new CallbackSlot(vessel, vessel, 1, 62, 39));
+        addSlot(new CallbackSlot(vessel, vessel, 2, 80, 39));
+        addSlot(new CallbackSlot(vessel, vessel, 3, 98, 39));
+        addSlot(new CallbackSlot(vessel, vessel, 4, 116, 39));
     }
 }

@@ -1,9 +1,9 @@
 package com.jewey.rosia.common.items;
 
 import com.jewey.rosia.Rosia;
+import com.jewey.rosia.common.blocks.ModBlocks;
 import net.dries007.tfc.common.items.PropickItem;
 import net.dries007.tfc.common.items.TFCHoeItem;
-import net.dries007.tfc.common.items.ToolItem;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -96,6 +96,7 @@ public class ModItems {
     public static final RegistryObject<Item> RIFLE_AMMO = ITEMS.register("rifle_ammo",
             () -> new BulletItem(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
+
     //TOOLS & TOOL HEADS
     public static final RegistryObject<Item> PURPLE_STEEL_PICKAXE = ITEMS.register("purple_steel_pickaxe",
             () -> new PickaxeItem(ModTiers.PURPLE_STEEL, -3,-2.8F,
@@ -122,6 +123,12 @@ public class ModItems {
                     new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
     public static final RegistryObject<Item> PURPLE_STEEL_HOE_HEAD = ITEMS.register("purple_steel_hoe_head",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+
+    //DOWN HERE SO IT'S NEAR THE BLOCKS
+    public static final RegistryObject<StandingAndWallBlockItem> IRON_SUPPORT = ITEMS.register("iron_support",
+            () -> new StandingAndWallBlockItem(ModBlocks.IRON_SUPPORT_VERTICAL.get(), ModBlocks.IRON_SUPPORT_HORIZONTAL.get(),
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
 
 

@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:plant/kangaroo_paw"
+    }
+  ],
+  "output": {
+    "item": "minecraft:red_dye",
+    "count": 2
+  }
+}

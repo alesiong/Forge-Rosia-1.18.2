@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:plant/blue_ginger"
+    }
+  ],
+  "output": {
+    "item": "minecraft:purple_dye",
+    "count": 2
+  }
+}

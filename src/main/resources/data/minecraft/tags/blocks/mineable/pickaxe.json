@@ -10,6 +10,11 @@
     "rosia:extruding_machine",
     "rosia:rolling_machine",
     "rosia:electric_forge",
+    "rosia:electric_grill",
+    "rosia:fridge",
+    "rosia:electric_lantern",
+    "rosia:iron_support_vertical",
+    "rosia:iron_support_horizontal",
 
     "rosia:andesite_path",
     "rosia:basalt_path",

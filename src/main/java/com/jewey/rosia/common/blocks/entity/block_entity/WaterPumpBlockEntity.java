@@ -276,7 +276,7 @@ public class WaterPumpBlockEntity extends TickableInventoryBlockEntity<WaterPump
     }
 
     public void outputFluid() {
-        if (this.FLUID_TANK.getFluidAmount() >= FILL_AMOUNT) {
+        if (this.FLUID_TANK.getFluidAmount() >= 0) {
             for (final var direction : Direction.values()) {
                 final BlockEntity neighbor = this.level.getBlockEntity(this.worldPosition.relative(direction));
                 if (neighbor == null) {
@@ -284,10 +284,9 @@ public class WaterPumpBlockEntity extends TickableInventoryBlockEntity<WaterPump
                 }
 
                 neighbor.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, direction.getOpposite()).ifPresent(storage -> {
-                    if (neighbor != this && storage.getFluidInTank(1).getAmount() < storage.getTankCapacity(1)
-                            && storage.getFluidInTank(1).getAmount() <= storage.getTankCapacity(1) - FILL_AMOUNT) {
-                        WaterPumpBlockEntity.this.FLUID_TANK.drain(30, IFluidHandler.FluidAction.EXECUTE).getAmount();
-                        FluidStack toSendFluid = new FluidStack(Fluids.WATER, FILL_AMOUNT);
+                    if (neighbor != this && storage.getFluidInTank(1).getAmount() < storage.getTankCapacity(1)) {
+                        final int canReceive = Math.min(storage.getTankCapacity(1) - storage.getFluidInTank(1).getAmount(), FILL_AMOUNT);
+                        FluidStack toSendFluid = WaterPumpBlockEntity.this.FLUID_TANK.drain(canReceive, IFluidHandler.FluidAction.EXECUTE);
                         storage.fill(toSendFluid, IFluidHandler.FluidAction.EXECUTE);
 
                         WaterPumpBlockEntity.this.FLUID_TANK.setFluid(WaterPumpBlockEntity.this.FLUID_TANK.getFluidInTank(1));

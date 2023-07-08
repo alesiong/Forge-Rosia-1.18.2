@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=east": {"model": "rosia:block/fridge", "y": 90},
+    "facing=north": {"model": "rosia:block/fridge"},
+    "facing=south": {"model": "rosia:block/fridge", "y": 180},
+    "facing=west": {"model": "rosia:block/fridge", "y": 270}
+  }
+}

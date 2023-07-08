@@ -3,7 +3,7 @@
     "icon": {
       "item": "rosia:purple_steel_pickaxe"
     },
-    "title": "Harder, Better, Faster, Stronger",
+    "title": "Harder Better Faster Stronger",
     "description": "Craft your first purple steel tool",
     "frame": "task",
     "show_toast": true,

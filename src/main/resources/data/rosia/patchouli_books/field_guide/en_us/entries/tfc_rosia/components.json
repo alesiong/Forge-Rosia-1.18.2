@@ -33,7 +33,7 @@
     },
     {
       "type": "patchouli:crafting",
-      "recipe": "rosia:crafting/machine_frame",
+      "recipe": "rosia:crafting/blocks/machine_frame",
       "text": "$(thing)Machine Frames$() are at the core of crafting for every device. They are the main use for $(thing)Invar$()."
     }
   ],

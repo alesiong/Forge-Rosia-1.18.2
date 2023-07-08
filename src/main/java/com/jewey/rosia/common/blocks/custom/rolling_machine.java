@@ -28,6 +28,7 @@ import org.jetbrains.annotations.Nullable;
 public class rolling_machine extends BaseEntityBlock {
     public rolling_machine(ExtendedProperties pProperties) {
         super(pProperties.properties());
+        registerDefaultState(getStateDefinition().any().setValue(ON, false));
     }
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

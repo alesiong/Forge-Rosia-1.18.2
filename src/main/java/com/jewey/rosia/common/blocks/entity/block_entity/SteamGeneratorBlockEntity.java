@@ -87,34 +87,42 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
             generator.targetTemperature = HeatCapability.adjustTempTowards(generator.targetTemperature, 0);
         }
 
-        if(generator.temperature <= 0) {
-            generator.ticks = 0;
-        }
-        if(generator.ticks > 0) {
-            generator.ticks -= 1;
-        }
-
     //Power Generation
-        if (generator.temperature > 100 && generator.ticks == 0 && hasEnoughFluid(generator)
-                && generator.ENERGY_STORAGE.getEnergyStored() <= generator.ENERGY_STORAGE.getMaxEnergyStored()-5) {
-            //higher temperatures = higher "steam pressure" = faster power generation
-            int pressure = Mth.clamp((int) ((1800 - generator.temperature) / 80), 0, 23);
+        if (generator.temperature > 100 && hasEnoughFluid(generator)
+                && generator.ENERGY_STORAGE.getEnergyStored() < generator.ENERGY_STORAGE.getMaxEnergyStored()) {
 
+            int maxCap = generator.ENERGY_STORAGE.getMaxEnergyStored();
+            // Higher temperatures = faster power generation
             if(generator.temperature >= 2014) {
-            //at max temperature for coal 5 FE every tick
-                generator.setEnergyLevel(Math.min(generator.ENERGY_STORAGE.getEnergyStored()+5, generator.ENERGY_STORAGE.getMaxEnergyStored()));
-                generator.ticks += pressure;
-            } else {
-            //otherwise get 4 FE every-other-tick + pressure
-                generator.setEnergyLevel(Math.min(generator.ENERGY_STORAGE.getEnergyStored()+4, generator.ENERGY_STORAGE.getMaxEnergyStored()));
-                generator.ticks += pressure + 1;
+                // At max temperature for coal 5 FE/tick
+                generator.setEnergyLevel(Math.min(generator.ENERGY_STORAGE.getEnergyStored() + 5, maxCap));
+                generator.FLUID_TANK.drain(10, IFluidHandler.FluidAction.EXECUTE);
+            } else if (generator.temperature <= 650) {
+                // Min 0.5 FE/tick -> 100C and 650C
+                if (generator.tick <= 0) {
+                    generator.tick += 1;
+                    generator.setEnergyLevel(Math.min(generator.ENERGY_STORAGE.getEnergyStored() + 1, maxCap));
+                    generator.FLUID_TANK.drain(2, IFluidHandler.FluidAction.EXECUTE);
+                }
+            } else if (generator.temperature <= 1350) {
+                // Between 1 and 3 FE/tick -> 650C and 1350C
+                int X = (int) ((generator.temperature - 300)/350);
+                generator.setEnergyLevel(Math.min(generator.ENERGY_STORAGE.getEnergyStored() + X, maxCap));
+                generator.FLUID_TANK.drain((2 * X), IFluidHandler.FluidAction.EXECUTE);
+            } else if(generator.temperature <= 1950) {
+                // Between 3 and 4 FE/tick -> 1350C and 1950C
+                int X = (int) ((generator.temperature + 450)/600);
+                generator.setEnergyLevel(Math.min(generator.ENERGY_STORAGE.getEnergyStored() + X, maxCap));
+                generator.FLUID_TANK.drain((2 * X), IFluidHandler.FluidAction.EXECUTE);
             }
-            generator.FLUID_TANK.drain(10, IFluidHandler.FluidAction.EXECUTE);
 
             level.setBlock(pos, state.setValue(steam_generator.STEAM, true), Block.UPDATE_ALL);
+            if (generator.tick > 0) {
+                generator.tick -= 1;
+            }
         }
 
-        if(generator.ENERGY_STORAGE.getEnergyStored() >= generator.ENERGY_STORAGE.getMaxEnergyStored()-5
+        if(generator.ENERGY_STORAGE.getEnergyStored() >= generator.ENERGY_STORAGE.getMaxEnergyStored()
                 || !hasEnoughFluid(generator) || generator.temperature < 100) {
             level.setBlock(pos, state.setValue(steam_generator.STEAM, false), Block.UPDATE_ALL);
         }
@@ -160,7 +168,7 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
     private float temperature;
     private float targetTemperature;
     private boolean needsRecipeUpdate;
-    private float ticks;
+    private int tick;
 
     /**
      * Prevent the target temperature from "hovering" around a particular value.
@@ -178,7 +186,7 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
         temperature = targetTemperature = 0;
         lastFillTicks = 0;
         lastUpdateTick = Integer.MIN_VALUE;
-        ticks = 0;
+        tick = 0;
 
 
         // Heat can be accessed from all sides
@@ -262,7 +270,6 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
         lastUpdateTick = nbt.getLong("lastUpdateTick");
         needsRecipeUpdate = true;
         ENERGY_STORAGE.setEnergy(nbt.getInt("energy"));
-        ticks = nbt.getFloat("ticks");
         FLUID_TANK.readFromNBT(nbt);
         toggle = nbt.getBoolean("toggle");
         super.loadAdditional(nbt);
@@ -276,7 +283,6 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
         nbt.putInt("targetTemperatureStabilityTicks", targetTemperatureStabilityTicks);
         nbt.putLong("lastUpdateTick", lastUpdateTick);
         nbt.putInt("energy", ENERGY_STORAGE.getEnergyStored());
-        nbt.putFloat("ticks", ticks);
         nbt = FLUID_TANK.writeToNBT(nbt);
         nbt.putBoolean("toggle", toggle);
         super.saveAdditional(nbt);
@@ -422,15 +428,16 @@ public class SteamGeneratorBlockEntity extends TickableInventoryBlockEntity<Stea
     }
 
     public void outputEnergy() {
-        if (this.ENERGY_STORAGE.getEnergyStored() >= maxTransfer && this.ENERGY_STORAGE.canExtract() && toggle) {
+        if (this.ENERGY_STORAGE.getEnergyStored() > 0 && this.ENERGY_STORAGE.canExtract() && toggle) {
             for (final var direction : Direction.values()) {
                 final BlockEntity neighbor = this.level.getBlockEntity(this.worldPosition.relative(direction));
                 if (neighbor == null) {
                     continue;
                 }
                 neighbor.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).ifPresent(storage -> {
-                    if (neighbor != this && storage.canReceive() && storage.getEnergyStored() <= storage.getMaxEnergyStored() - maxTransfer) {
-                        final int toSend = SteamGeneratorBlockEntity.this.ENERGY_STORAGE.extractEnergy(maxTransfer,false);
+                    if (neighbor != this && storage.canReceive() && storage.getEnergyStored() < storage.getMaxEnergyStored()) {
+                        final int canReceive = Math.min(storage.getMaxEnergyStored() - storage.getEnergyStored(), maxTransfer);
+                        final int toSend = SteamGeneratorBlockEntity.this.ENERGY_STORAGE.extractEnergy(canReceive,false);
                         final int received = storage.receiveEnergy(toSend, false);
 
                         SteamGeneratorBlockEntity.this.ENERGY_STORAGE.setEnergy(SteamGeneratorBlockEntity.this.ENERGY_STORAGE.getEnergyStored() + toSend - received);

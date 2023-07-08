@@ -27,6 +27,7 @@ import org.jetbrains.annotations.Nullable;
 public class auto_quern extends BaseEntityBlock {
     public auto_quern(Properties pProperties) {
         super(pProperties);
+        registerDefaultState(getStateDefinition().any().setValue(ON, false));
     }
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;

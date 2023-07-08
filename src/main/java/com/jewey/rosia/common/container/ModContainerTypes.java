@@ -45,6 +45,14 @@ public class ModContainerTypes {
             NICKEL_IRON_BATTERY = ModContainerTypes.<NickelIronBatteryBlockEntity, NickelIronBatteryContainer>registerBlock(
                     "nickel_iron_battery", ModBlockEntities.NICKEL_IRON_BATTERY_BLOCK_ENTITY, NickelIronBatteryContainer::create);
 
+    public static final RegistryObject<MenuType<ElectricGrillContainer>>
+            ELECTRIC_GRILL = ModContainerTypes.<ElectricGrillBlockEntity, ElectricGrillContainer>registerBlock(
+            "electric_grill", ModBlockEntities.ELECTRIC_GRILL_BLOCK_ENTITY, ElectricGrillContainer::create);
+
+    public static final RegistryObject<MenuType<FridgeContainer>>
+            FRIDGE = ModContainerTypes.<FridgeBlockEntity, FridgeContainer>registerBlock(
+            "fridge", ModBlockEntities.FRIDGE_BLOCK_ENTITY, FridgeContainer::create);
+
     private static <T extends InventoryBlockEntity<?>, C extends BlockEntityContainer<T>> RegistryObject<MenuType<C>> registerBlock(String name, Supplier<BlockEntityType<T>> type, BlockEntityContainer.Factory<T, C> factory)
     {
         return RegistrationHelpers.registerBlockEntityContainer(CONTAINERS, name, type, factory);

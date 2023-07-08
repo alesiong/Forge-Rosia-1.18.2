@@ -106,7 +106,6 @@ public class NickelIronBatteryBlockEntity extends TickableInventoryBlockEntity<I
                 };
             }
         }
-
         return super.getCapability(cap, side);
     }
 
@@ -114,6 +113,7 @@ public class NickelIronBatteryBlockEntity extends TickableInventoryBlockEntity<I
         @Override
         public void onEnergyChanged() {
             setChanged();
+            assert level != null;
             ModMessages.sendToClients(new EnergySyncS2CPacket(this.energy, getBlockPos()));
         }
     };
@@ -141,14 +141,15 @@ public class NickelIronBatteryBlockEntity extends TickableInventoryBlockEntity<I
     }
 
     public void outputEnergy() {
-        if (this.ENERGY_STORAGE.getEnergyStored() >= maxTransfer && this.ENERGY_STORAGE.canExtract() && toggle) {
+        if (this.ENERGY_STORAGE.getEnergyStored() > 0 && this.ENERGY_STORAGE.canExtract() && toggle) {
             final var direction = Direction.UP;
             final BlockEntity neighbor = this.level.getBlockEntity(this.worldPosition.relative(direction));
 
             if (neighbor != null) {
                 neighbor.getCapability(CapabilityEnergy.ENERGY, direction.getOpposite()).ifPresent(storage -> {
-                    if (neighbor != this && storage.canReceive() && storage.getEnergyStored() <= storage.getMaxEnergyStored() - maxTransfer) {
-                        final int toSend = NickelIronBatteryBlockEntity.this.ENERGY_STORAGE.extractEnergy(maxTransfer,false);
+                    if (neighbor != this && storage.canReceive() && storage.getEnergyStored() < storage.getMaxEnergyStored()) {
+                        final int canReceive = Math.min(storage.getMaxEnergyStored() - storage.getEnergyStored(), maxTransfer);
+                        final int toSend = NickelIronBatteryBlockEntity.this.ENERGY_STORAGE.extractEnergy(canReceive,false);
                         final int received = storage.receiveEnergy(toSend, false);
 
                         NickelIronBatteryBlockEntity.this.ENERGY_STORAGE.setEnergy(NickelIronBatteryBlockEntity.this.ENERGY_STORAGE.getEnergyStored() + toSend - received);
@@ -160,7 +161,7 @@ public class NickelIronBatteryBlockEntity extends TickableInventoryBlockEntity<I
 
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, NickelIronBatteryBlockEntity battery) {
-        //output energy on block sides (up & down)
+        //output energy on block side UP
         battery.outputEnergy();
         battery.setChanged();
     }

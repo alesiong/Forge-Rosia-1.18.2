@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:plant/hibiscus"
+    }
+  ],
+  "output": {
+    "item": "minecraft:pink_dye",
+    "count": 2
+  }
+}

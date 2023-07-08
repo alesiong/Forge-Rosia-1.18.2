@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:plant/desert_flame"
+    }
+  ],
+  "output": {
+    "item": "minecraft:yellow_dye",
+    "count": 2
+  }
+}

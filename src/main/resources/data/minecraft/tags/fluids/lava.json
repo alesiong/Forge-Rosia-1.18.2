@@ -3,9 +3,9 @@
   "values": [
     "rosia:invar_flowing",
     "rosia:invar_fluid",
-    "rosia:purple_Steel_flowing",
-    "rosia:purple_Steel_fluid",
-    "rosia:weak_purple_Steel_flowing",
-    "rosia:weak_purple_Steel_fluid"
+    "rosia:purple_steel_flowing",
+    "rosia:purple_steel_fluid",
+    "rosia:weak_purple_steel_flowing",
+    "rosia:weak_purple_steel_fluid"
   ]
 }

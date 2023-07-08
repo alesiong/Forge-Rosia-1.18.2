@@ -85,6 +85,8 @@ public class Rosia
         MenuScreens.register(ModMenuTypes.EXTRUDING_MACHINE_MENU.get(), ExtrudingMachineScreen::new);
         MenuScreens.register(ModMenuTypes.ROLLING_MACHINE_MENU.get(), RollingMachineScreen::new);
         MenuScreens.register(ModContainerTypes.ELECTRIC_FORGE.get(), ElectricForgeScreen::new);
+        MenuScreens.register(ModContainerTypes.ELECTRIC_GRILL.get(), ElectricGrillScreen::new);
+        MenuScreens.register(ModContainerTypes.FRIDGE.get(), FridgeScreen::new);
 
         MenuScreens.register(ModContainerTypes.LEATHER_SATCHEL.get(), LeatherSatchelScreen::new);
 
@@ -98,6 +100,9 @@ public class Rosia
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.EXTRUDING_MACHINE.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ROLLING_MACHINE.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ELECTRIC_FORGE.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.ELECTRIC_GRILL.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.FRIDGE.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.ELECTRIC_LANTERN.get(), RenderType.solid());
 
 
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_BLOCK.get(), RenderType.solid());

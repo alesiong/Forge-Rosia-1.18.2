@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:plant/water_lily"
+    }
+  ],
+  "output": {
+    "item": "minecraft:white_dye",
+    "count": 2
+  }
+}

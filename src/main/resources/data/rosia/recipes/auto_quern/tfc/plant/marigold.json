@@ -1,0 +1,12 @@
+{
+  "type": "rosia:auto_quern",
+  "ingredients": [
+    {
+      "item": "tfc:plant/marigold"
+    }
+  ],
+  "output": {
+    "item": "minecraft:orange_dye",
+    "count": 2
+  }
+}
