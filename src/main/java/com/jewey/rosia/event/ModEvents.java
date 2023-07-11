@@ -1,9 +1,6 @@
 package com.jewey.rosia.event;
 
 import com.jewey.rosia.Rosia;
-import net.dries007.tfc.client.RenderHelpers;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraft.server.packs.PackType;
@@ -68,5 +65,4 @@ public class ModEvents {
             throw new RuntimeException(e);
         }
     }
-
 }

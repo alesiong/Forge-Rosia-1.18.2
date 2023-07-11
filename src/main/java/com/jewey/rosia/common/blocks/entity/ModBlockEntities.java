@@ -57,6 +57,9 @@ public class ModBlockEntities {
     public static final RegistryObject<BlockEntityType<ElectricLanternBlockEntity>> ELECTRIC_LANTERN_BLOCK_ENTITY =
             register("electric_lantern_block_entity", ElectricLanternBlockEntity::new, ModBlocks.ELECTRIC_LANTERN);
 
+    public static final RegistryObject<BlockEntityType<CharcoalKilnBlockEntity>> CHARCOAL_KILN_BLOCK_ENTITY =
+            register("charcoal_kiln_block_entity", CharcoalKilnBlockEntity::new, ModBlocks.CHARCOAL_KILN);
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

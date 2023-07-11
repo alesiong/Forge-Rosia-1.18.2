@@ -3,6 +3,6 @@
     "item": "rosia:purple_steel_sheet"
   },
   "heat_capacity": 6.5,
-  "forging_temperature": 1300,
-  "welding_temperature": 1450
+  "forging_temperature": 1100,
+  "welding_temperature": 1300
 }

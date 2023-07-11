@@ -8,6 +8,7 @@ import com.jewey.rosia.common.fluids.ModFluids;
 import com.jewey.rosia.common.entities.ModEntities;
 import com.jewey.rosia.common.items.ModItems;
 import com.jewey.rosia.effect.ModEffects;
+import com.jewey.rosia.event.ForgeEventHandler;
 import com.jewey.rosia.event.ModClientEvents;
 import com.jewey.rosia.event.ModEvents;
 import com.jewey.rosia.networking.ModMessages;
@@ -70,6 +71,7 @@ public class Rosia
 
         PacketHandler.init();
         ModEvents.init();
+        ForgeEventHandler.init();
         // Client Side Only
         if (FMLEnvironment.dist == Dist.CLIENT){
             ModClientEvents.init();
@@ -87,6 +89,7 @@ public class Rosia
         MenuScreens.register(ModContainerTypes.ELECTRIC_FORGE.get(), ElectricForgeScreen::new);
         MenuScreens.register(ModContainerTypes.ELECTRIC_GRILL.get(), ElectricGrillScreen::new);
         MenuScreens.register(ModContainerTypes.FRIDGE.get(), FridgeScreen::new);
+        MenuScreens.register(ModContainerTypes.CHARCOAL_KILN.get(), CharcoalKilnScreen::new);
 
         MenuScreens.register(ModContainerTypes.LEATHER_SATCHEL.get(), LeatherSatchelScreen::new);
 
@@ -103,6 +106,7 @@ public class Rosia
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ELECTRIC_GRILL.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.FRIDGE.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ELECTRIC_LANTERN.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.CHARCOAL_KILN.get(), RenderType.solid());
 
 
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_BLOCK.get(), RenderType.solid());

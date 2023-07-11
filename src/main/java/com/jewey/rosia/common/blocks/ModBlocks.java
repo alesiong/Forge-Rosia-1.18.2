@@ -94,6 +94,14 @@ public class ModBlocks {
                     .blockEntity(ModBlockEntities.ELECTRIC_LANTERN_BLOCK_ENTITY)
                     .serverTicks(ElectricLanternBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
 
+    public static final Supplier<? extends Block> CHARCOAL_KILN = register("charcoal_kiln",
+            () -> new charcoal_kiln(ExtendedProperties.of(Material.STONE, MaterialColor.COLOR_RED).strength(5f).requiresCorrectToolForDrops()
+                    .randomTicks().sound(SoundType.STONE).lightLevel((state) -> state.getValue(charcoal_kiln.LIT) ? 8 : 0)
+                    .blockEntity(ModBlockEntities.CHARCOAL_KILN_BLOCK_ENTITY)
+                    .serverTicks(CharcoalKilnBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
+
+
+
     // DON'T MAKE ITEMS FOR THE SUPPORT BEAMS IT SCREWS UP EVERYTHING!!!
     public static final Supplier<? extends Block> IRON_SUPPORT_VERTICAL = registerBlockNoItem("iron_support_vertical",
             () -> new VerticalSupportBlock(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f)

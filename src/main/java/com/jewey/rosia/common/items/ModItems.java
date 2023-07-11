@@ -2,10 +2,12 @@ package com.jewey.rosia.common.items;
 
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.ModBlocks;
-import net.dries007.tfc.common.items.PropickItem;
-import net.dries007.tfc.common.items.TFCHoeItem;
+import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.items.*;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.items.wrapper.PlayerArmorInvWrapper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -123,6 +125,81 @@ public class ModItems {
                     new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
     public static final RegistryObject<Item> PURPLE_STEEL_HOE_HEAD = ITEMS.register("purple_steel_hoe_head",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_CHISEL = ITEMS.register("purple_steel_chisel",
+            () -> new ChiselItem(ModTiers.PURPLE_STEEL, (int) -8.5,-1.5F,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_CHISEL_HEAD = ITEMS.register("purple_steel_chisel_head",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_HAMMER = ITEMS.register("purple_steel_hammer",
+            () -> new ToolItem(ModTiers.PURPLE_STEEL, -0.5F,-3F,
+                    TFCTags.Blocks.MINEABLE_WITH_HAMMER, new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_HAMMER_HEAD = ITEMS.register("purple_steel_hammer_head",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_SAW = ITEMS.register("purple_steel_saw",
+            () -> new AxeItem(ModTiers.PURPLE_STEEL, -5.5F,-3F,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_SAW_BLADE = ITEMS.register("purple_steel_saw_blade",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_SWORD = ITEMS.register("purple_steel_sword",
+            () -> new SwordItem(ModTiers.PURPLE_STEEL, 0,-2.4F,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_SWORD_BLADE = ITEMS.register("purple_steel_sword_blade",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_MACE = ITEMS.register("purple_steel_mace",
+            () -> new MaceItem(ModTiers.PURPLE_STEEL, (int) 1F,-3F,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_MACE_BLADE = ITEMS.register("purple_steel_mace_head",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_KNIFE = ITEMS.register("purple_steel_knife",
+            () -> new ToolItem(ModTiers.PURPLE_STEEL, -4.5F,-2F,
+                    TFCTags.Blocks.MINEABLE_WITH_KNIFE, new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_KNIFE_BLADE = ITEMS.register("purple_steel_knife_blade",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_SCYTHE = ITEMS.register("purple_steel_scythe",
+            () -> new ScytheItem(ModTiers.PURPLE_STEEL, -4F,-3.2F,
+                    TFCTags.Blocks.MINEABLE_WITH_SCYTHE, new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+    public static final RegistryObject<Item> PURPLE_STEEL_SCYTHE_BLADE = ITEMS.register("purple_steel_scythe_blade",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_SHEARS = ITEMS.register("purple_steel_shears",
+            () -> new ShearsItem(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB).durability(7500)));
+
+    //ARMORS
+    public static final RegistryObject<Item> PURPLE_STEEL_UNFINISHED_HELMET = ITEMS.register("purple_steel_unfinished_helmet",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_HELMET = ITEMS.register("purple_steel_helmet",
+            () -> new ArmorItem(ModArmorMaterials.PURPLE_STEEL, EquipmentSlot.HEAD,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_UNFINISHED_CHESTPLATE = ITEMS.register("purple_steel_unfinished_chestplate",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_CHESTPLATE = ITEMS.register("purple_steel_chestplate",
+            () -> new ArmorItem(ModArmorMaterials.PURPLE_STEEL, EquipmentSlot.CHEST,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_UNFINISHED_GREAVES = ITEMS.register("purple_steel_unfinished_greaves",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_GREAVES = ITEMS.register("purple_steel_greaves",
+            () -> new ArmorItem(ModArmorMaterials.PURPLE_STEEL, EquipmentSlot.LEGS,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_UNFINISHED_BOOTS = ITEMS.register("purple_steel_unfinished_boots",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> PURPLE_STEEL_BOOTS = ITEMS.register("purple_steel_boots",
+            () -> new ArmorItem(ModArmorMaterials.PURPLE_STEEL, EquipmentSlot.FEET,
+                    new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
 
 
     //DOWN HERE SO IT'S NEAR THE BLOCKS

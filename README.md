@@ -6,10 +6,13 @@
 
 #### New Alloys
 ###### Invar - Strong alloy for creating machines  
-###### Purple Steel - Top tier tools and weapons. Also used in advanced machinery.
+###### Purple Steel - Top tier tools, weapons, and armor. Also used in advanced machinery.
 
 #### Efficient Heat Generation
 ###### Fire Box - Burn fuels with greater yield
+
+#### Efficient Charcoal Creation
+###### Charcoal Kiln - Converts logs into charcoal faster and with higher yield
 
 #### Power Generation
 ###### Steam Generator - Generate electricity with steam power by consuming water and heat

@@ -3,6 +3,6 @@
     "item": "rosia:weak_purple_steel_ingot"
   },
   "heat_capacity": 3.25,
-  "forging_temperature": 1300,
-  "welding_temperature": 1450
+  "forging_temperature": 1100,
+  "welding_temperature": 1300
 }

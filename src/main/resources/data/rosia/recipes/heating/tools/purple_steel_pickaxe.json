@@ -7,5 +7,6 @@
     "fluid": "rosia:purple_steel_fluid",
     "amount": 100
   },
-  "temperature": 1549
+  "temperature": 1549,
+  "use_durability": true
 }
