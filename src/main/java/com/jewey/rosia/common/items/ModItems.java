@@ -3,14 +3,20 @@ package com.jewey.rosia.common.items;
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.ModBlocks;
 import net.dries007.tfc.common.TFCTags;
+import net.dries007.tfc.common.capabilities.food.Nutrient;
 import net.dries007.tfc.common.items.*;
+import net.dries007.tfc.util.Helpers;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.items.wrapper.PlayerArmorInvWrapper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import java.util.Locale;
+import java.util.Map;
+import java.util.function.Supplier;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -201,6 +207,20 @@ public class ModItems {
                     new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
 
 
+    // CANNED FOOD
+    public static final Map<Nutrient, RegistryObject<DynamicCanFood>> CANS = Helpers.mapOfKeys(Nutrient.class, nutrient ->
+            register("food/" + nutrient.name() + "_can",
+                    () -> new DynamicCanFood(new Item.Properties().food(new FoodProperties.Builder()
+                            .nutrition(4).saturationMod(0.3f).build()).tab(ModCreativeModeTab.ROSIA_TAB))));
+
+    public static final RegistryObject<DynamicCanFood> SOUP_CAN = register("food/soup_can",
+            () -> new DynamicCanFood(new Item.Properties().food(new FoodProperties.Builder()
+                            .nutrition(4).saturationMod(0.3f).build()).tab(ModCreativeModeTab.ROSIA_TAB)));
+
+    public static final RegistryObject<Item> TIN_CAN = ITEMS.register("tin_can",
+            () -> new Item(new Item.Properties().tab(ModCreativeModeTab.ROSIA_TAB)));
+
+
 
     //DOWN HERE SO IT'S NEAR THE BLOCKS
     public static final RegistryObject<StandingAndWallBlockItem> IRON_SUPPORT = ITEMS.register("iron_support",
@@ -211,6 +231,10 @@ public class ModItems {
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
+    }
+
+    private static <T extends Item> RegistryObject<T> register(String name, Supplier<T> item) {
+        return ITEMS.register(name.toLowerCase(Locale.ROOT), item);
     }
 
 
