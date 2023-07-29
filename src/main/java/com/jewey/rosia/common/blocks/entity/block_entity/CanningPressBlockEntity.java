@@ -6,14 +6,12 @@ import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.blocks.entity.WrappedHandler;
 import com.jewey.rosia.common.blocks.entity.WrappedHandlerEnergy;
 import com.jewey.rosia.common.capabilities.food.RosiaFoodTraits;
-import com.jewey.rosia.common.items.ModItems;
 import com.jewey.rosia.networking.ModMessages;
 import com.jewey.rosia.networking.packet.EnergySyncS2CPacket;
 import com.jewey.rosia.networking.packet.ItemStackSyncS2CPacket;
 import com.jewey.rosia.screen.CanningPressMenu;
 import com.jewey.rosia.util.ModEnergyStorage;
 import com.jewey.rosia.util.RosiaTags;
-import net.dries007.tfc.client.TFCSounds;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,12 +27,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.energy.CapabilityEnergy;
@@ -46,8 +42,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
 
 
 public class CanningPressBlockEntity extends BlockEntity implements MenuProvider {

@@ -37,6 +37,9 @@ public class ModContainerTypes {
     public static final RegistryObject<MenuType<LeatherSatchelContainer>>
             LEATHER_SATCHEL = registerItem("leather_satchel", LeatherSatchelContainer::create);
 
+    public static final RegistryObject<MenuType<ToolBeltContainer>>
+            TOOL_BELT = registerItem("tool_belt", ToolBeltContainer::create);
+
     public static final RegistryObject<MenuType<ElectricForgeContainer>>
             ELECTRIC_FORGE = ModContainerTypes.<ElectricForgeBlockEntity, ElectricForgeContainer>registerBlock(
                     "electric_forge", ModBlockEntities.ELECTRIC_FORGE_BLOCK_ENTITY, ElectricForgeContainer::create);

@@ -11,6 +11,7 @@ import com.jewey.rosia.screen.ExtrudingMachineMenu;
 import com.jewey.rosia.util.ModEnergyStorage;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.common.capabilities.heat.IHeat;
+import net.dries007.tfc.util.Helpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -53,7 +54,7 @@ public class ExtrudingMachineBlockEntity extends BlockEntity implements MenuProv
         public boolean isItemValid(int slot, @NotNull ItemStack stack) {
             return switch (slot) {
                 case 0 -> stack.getItem() == ModItems.STEEL_MACHINE_DIE.get();
-                case 1 -> true;
+                case 1 -> Helpers.mightHaveCapability(stack, HeatCapability.CAPABILITY);
                 case 2 -> false;
                 default -> super.isItemValid(slot, stack);
             };

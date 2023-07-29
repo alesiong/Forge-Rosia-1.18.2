@@ -6,9 +6,9 @@ import com.jewey.rosia.common.capabilities.TimerCapability;
 import com.jewey.rosia.common.container.CharcoalKilnContainer;
 import net.dries007.tfc.common.TFCTags;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
-import net.dries007.tfc.common.capabilities.heat.HeatCapability;
 import net.dries007.tfc.config.TFCConfig;
 import net.dries007.tfc.util.Helpers;
+import net.dries007.tfc.util.calendar.Calendars;
 import net.dries007.tfc.util.calendar.ICalendarTickable;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -115,7 +115,8 @@ public class CharcoalKilnBlockEntity extends TickableInventoryBlockEntity<ItemSt
                 final ItemStack inputStack = kiln.inventory.getStackInSlot(slot);
                 if (!inputStack.isEmpty() && Helpers.isItem(inputStack.getItem(), TFCTags.Items.LOG_PILE_LOGS)) {
                     level.setBlock(worldPosition, state.setValue(charcoal_kiln.LIT, true), 3);
-                    kiln.burnTicks = (int) (TFCConfig.SERVER.charcoalTicks.get() * 0.75); // Default time 18hr * 75% = 13.5hr
+                    kiln.burnTicks = getDuration();
+                    litTick = Calendars.get(level).getTicks();
                     return true;
                 }
             }
@@ -123,10 +124,15 @@ public class CharcoalKilnBlockEntity extends TickableInventoryBlockEntity<ItemSt
         return false;
     }
 
+    public int getDuration() {
+        return (int) (TFCConfig.SERVER.charcoalTicks.get() * 0.75); // Default time 18hr * 75% = 13.5hr
+    }
+
 
 
     private boolean needsSlotUpdate = false;
     private int burnTicks; // Ticks remaining on the conversion
+    private long litTick;
     private long lastPlayerTick; // Last player tick this forge was ticked (for purposes of catching up)
     private boolean needsRecipeUpdate; // Set to indicate on tick, the cached recipes need to be re-updated
 
@@ -190,6 +196,7 @@ public class CharcoalKilnBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void loadAdditional(CompoundTag nbt)
     {
         burnTicks = nbt.getInt("burnTicks");
+        litTick = nbt.getLong("litTick");
         lastPlayerTick = nbt.getLong("lastPlayerTick");
         super.loadAdditional(nbt);
     }
@@ -198,6 +205,7 @@ public class CharcoalKilnBlockEntity extends TickableInventoryBlockEntity<ItemSt
     public void saveAdditional(CompoundTag nbt)
     {
         nbt.putInt("burnTicks", burnTicks);
+        nbt.putLong("litTick", litTick);
         nbt.putLong("lastPlayerTick", lastPlayerTick);
         super.saveAdditional(nbt);
     }
@@ -221,5 +229,15 @@ public class CharcoalKilnBlockEntity extends TickableInventoryBlockEntity<ItemSt
     @Override
     public int getSlotStackLimit(int slot) {
         return 8;
+    }
+
+    public long getRemainingTicks() {
+        return getDuration() - getTicksSinceLit();
+    }
+
+    public long getTicksSinceLit()
+    {
+        assert level != null;
+        return Calendars.get(level).getTicks() - litTick;
     }
 }

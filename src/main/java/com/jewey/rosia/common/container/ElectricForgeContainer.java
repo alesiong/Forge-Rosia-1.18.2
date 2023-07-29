@@ -71,8 +71,12 @@ public class ElectricForgeContainer extends BlockEntityContainer<ElectricForgeBl
             if(buttonID == 3){ blockEntity.setTemp(serverPlayer, 1110); }
             if(buttonID == 4){ blockEntity.setTemp(serverPlayer, 940); }
             if(buttonID == 5){ blockEntity.setTemp(serverPlayer, 740); }
-            if(buttonID == 6){ blockEntity.setTemp0(serverPlayer, 0); }
-
+            if(buttonID == 6){ blockEntity.setTemp(serverPlayer, 590); }
+            if(buttonID == 7){ blockEntity.setTemp(serverPlayer, 490); }
+            if(buttonID == 8){ blockEntity.setTemp(serverPlayer, 220); }
+            if(buttonID == 9){ blockEntity.setTemp(serverPlayer, 90); }
+            if(buttonID == 10){ blockEntity.setTemp(serverPlayer, 50); }
+            if(buttonID == 11){ blockEntity.setTemp0(serverPlayer, 0); }
         }
     }
 }

@@ -2,10 +2,8 @@ package com.jewey.rosia.common.blocks.custom;
 
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.blocks.entity.block_entity.ElectricForgeBlockEntity;
-import com.jewey.rosia.common.blocks.entity.block_entity.FireBoxBlockEntity;
 import net.dries007.tfc.common.blocks.ExtendedProperties;
 import net.dries007.tfc.common.blocks.devices.DeviceBlock;
-import net.dries007.tfc.common.blocks.devices.IBellowsConsumer;
 import net.dries007.tfc.util.Helpers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;

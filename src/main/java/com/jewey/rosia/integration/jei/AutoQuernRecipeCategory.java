@@ -1,4 +1,4 @@
-package com.jewey.rosia.integration;
+package com.jewey.rosia.integration.jei;
 
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.ModBlocks;

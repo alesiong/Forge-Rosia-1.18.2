@@ -12,14 +12,14 @@ import net.minecraft.network.chat.Component;
 import net.minecraftforge.network.PacketDistributor;
 
 
-public class ElectricForgeButtonOff extends Button {
+public class ElectricForgeButtonBrightRed extends Button {
     private final ElectricForgeBlockEntity forge;
 
-    public ElectricForgeButtonOff(ElectricForgeBlockEntity forge, int guiLeft, int guiTop)
+    public ElectricForgeButtonBrightRed(ElectricForgeBlockEntity forge, int guiLeft, int guiTop, OnTooltip tooltip)
     {
-        super(guiLeft + 70, guiTop + 80, 35, 9, Component.nullToEmpty("Off"), button -> {
-            PacketHandler.send(PacketDistributor.SERVER.noArg(), new ScreenButtonPacket(11, null));
-        });
+        super(guiLeft + 73, guiTop + 69, 11, 7, Component.nullToEmpty("Temperature"), button -> {
+            PacketHandler.send(PacketDistributor.SERVER.noArg(), new ScreenButtonPacket(5, null));
+        }, tooltip);
 
         this.forge = forge;
     }
@@ -31,7 +31,7 @@ public class ElectricForgeButtonOff extends Button {
         RenderSystem.setShaderTexture(0, ElectricForgeScreen.TEXTURE);
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 
-        blit(poseStack, x, y, 36, 206, width, height, 256, 256);
+        blit(poseStack, x, y, 73, 188, width, height, 256, 256);
 
         if (isHoveredOrFocused())
         {

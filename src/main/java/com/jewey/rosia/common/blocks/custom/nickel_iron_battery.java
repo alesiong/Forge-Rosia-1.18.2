@@ -91,4 +91,15 @@ public class nickel_iron_battery extends BaseEntityBlock {
         super.appendHoverText(pStack, pLevel, components, pFlag);
     }
 
+    public boolean hasAnalogOutputSignal(BlockState pState) {
+        return true;
+    }
+
+    public int getAnalogOutputSignal(BlockState pBlockState, Level pLevel, BlockPos pPos) {
+        BlockEntity blockentity = pLevel.getBlockEntity(pPos);
+        if (blockentity instanceof NickelIronBatteryBlockEntity) {
+            return ((NickelIronBatteryBlockEntity)blockentity).getRedstoneSignal();
+        }
+        return 0;
+    }
 }

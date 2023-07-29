@@ -10,7 +10,6 @@ import com.jewey.rosia.networking.ModMessages;
 import com.jewey.rosia.networking.packet.EnergySyncS2CPacket;
 import com.jewey.rosia.util.ModEnergyStorage;
 import com.jewey.rosia.util.RosiaTags;
-import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.DelegateItemHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.size.ItemSizeManager;

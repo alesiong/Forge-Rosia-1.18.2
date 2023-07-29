@@ -35,12 +35,17 @@ public class ElectricForgeScreen extends BlockEntityScreen<ElectricForgeBlockEnt
         super.init();
         assignEnergyInfoArea();
         //render from top to bottom, right to left to avoid tooltip being hidden by buttons
-        addRenderableWidget(new ElectricForgeButtonBW(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(1550)))));
-        addRenderableWidget(new ElectricForgeButtonW(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(1410)))));
-        addRenderableWidget(new ElectricForgeButtonYW(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(1310)))));
-        addRenderableWidget(new ElectricForgeButtonY(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(1110)))));
-        addRenderableWidget(new ElectricForgeButtonO(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(940)))));
-        addRenderableWidget(new ElectricForgeButtonBR(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(740)))));
+        addRenderableWidget(new ElectricForgeButtonBrilliantWhite(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(1550)))));
+        addRenderableWidget(new ElectricForgeButtonWhite(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(1410)))));
+        addRenderableWidget(new ElectricForgeButtonYellowWhite(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(1310)))));
+        addRenderableWidget(new ElectricForgeButtonYellow(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(1110)))));
+        addRenderableWidget(new ElectricForgeButtonOrange(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(940)))));
+        addRenderableWidget(new ElectricForgeButtonBrightRed(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(740)))));
+        addRenderableWidget(new ElectricForgeButtonDarkRed(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(590)))));
+        addRenderableWidget(new ElectricForgeButtonFaintRed(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(490)))));
+        addRenderableWidget(new ElectricForgeButtonVeryHot(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(220)))));
+        addRenderableWidget(new ElectricForgeButtonHot(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(90)))));
+        addRenderableWidget(new ElectricForgeButtonWarming(blockEntity, getGuiLeft(), getGuiTop(), RenderHelpers.makeButtonTooltip(this, Objects.requireNonNull(TFCConfig.CLIENT.heatTooltipStyle.get().formatColored(50)))));
         addRenderableWidget(new ElectricForgeButtonOff(blockEntity, getGuiLeft(), getGuiTop()));
     }
 
@@ -65,7 +70,6 @@ public class ElectricForgeScreen extends BlockEntityScreen<ElectricForgeBlockEnt
     private boolean isMouseAboveArea(int pMouseX, int pMouseY, int leftPos, int topPos, int offsetX, int offsetY, int width, int height) {
         return MouseUtil.isMouseOver(pMouseX, pMouseY, leftPos + offsetX, topPos + offsetY, width, height);
     }
-
 
     @Override
     protected void renderBg(PoseStack poseStack, float partialTicks, int mouseX, int mouseY)

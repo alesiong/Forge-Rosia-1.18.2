@@ -1,9 +1,6 @@
 package com.jewey.rosia.screen.button.nickel_iron_battery;
 
-import com.jewey.rosia.Rosia;
-import com.jewey.rosia.common.blocks.entity.block_entity.ElectricForgeBlockEntity;
 import com.jewey.rosia.common.blocks.entity.block_entity.NickelIronBatteryBlockEntity;
-import com.jewey.rosia.screen.ElectricForgeScreen;
 import com.jewey.rosia.screen.NickelIronBatteryScreen;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -12,7 +9,6 @@ import net.dries007.tfc.network.ScreenButtonPacket;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.network.PacketDistributor;
 
 

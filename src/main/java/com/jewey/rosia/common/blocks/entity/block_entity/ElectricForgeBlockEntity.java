@@ -9,6 +9,7 @@ import com.jewey.rosia.networking.packet.EnergySyncS2CPacket;
 import com.jewey.rosia.util.ModEnergyStorage;
 import net.dries007.tfc.common.blockentities.TickableInventoryBlockEntity;
 import net.dries007.tfc.common.capabilities.Capabilities;
+import net.dries007.tfc.common.capabilities.PartialItemHandler;
 import net.dries007.tfc.common.capabilities.food.FoodCapability;
 import net.dries007.tfc.common.capabilities.food.FoodTraits;
 import net.dries007.tfc.common.capabilities.heat.HeatCapability;
@@ -97,7 +98,7 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
         // Always update temperature until the forge is not hot anymore
         if (forge.temperature > 0 || forge.burnTemperature > 0)
         {
-            forge.temperature = adjustDeviceTemp(forge.temperature, forge.burnTemperature, forge.airTicks, isRaining);
+            forge.temperature = adjustDeviceTemp(forge.temperature, forge.burnTemperature, 0, isRaining);
 
             HeatCapability.provideHeatTo(level, pos.above(), forge.temperature);
 
@@ -172,11 +173,8 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
     public static float adjustDeviceTemp(float temp, float baseTarget, int airTicks, boolean isRaining) {
         float target = targetDeviceTemp(baseTarget, airTicks, isRaining);
         if (temp != target) {
-            float deltaPositive = 2.0F;
-            float deltaNegative = 1.2F;
-            if (airTicks > 0) {
-                deltaNegative = 0.5F;
-            }
+            float deltaPositive = 2.0F;     // Raise temperature 2x faster (ON)
+            float deltaNegative = 4.0F;     // Lower temperature 4x faster (OFF)
 
             return adjustTempTowards(temp, target, deltaPositive, deltaNegative);
         } else {
@@ -215,7 +213,6 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
     private boolean needsSlotUpdate = false;
     private float temperature; // Current Temperature
     private float burnTemperature; // Temperature provided from the current item of fuel
-    private int airTicks;
     private long lastPlayerTick; // Last player tick this forge was ticked (for purposes of catching up)
     private boolean needsRecipeUpdate; // Set to indicate on tick, the cached recipes need to be re-updated
 
@@ -225,19 +222,19 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
 
         temperature = 0;
         burnTemperature = 0;
-        airTicks = 0;
         lastPlayerTick = Integer.MIN_VALUE;
         syncableData = new IntArrayBuilder().add(() -> (int) temperature, value -> temperature = value);
 
         Arrays.fill(cachedRecipes, null);
-    }
 
+        sidedInventory
+                .on(new PartialItemHandler(inventory).insert(0, 1, 2, 3, 4), Direction.UP)
+                .on(new PartialItemHandler(inventory).extract(0, 1, 2, 3, 4), Direction.DOWN)
+                .on(new PartialItemHandler(inventory).insert(SLOT_EXTRA_MAX).extract(SLOT_EXTRA_MAX), Direction.Plane.HORIZONTAL);
+    }
 
     @Override
-    public void onCalendarUpdate(long ticks)
-    {
-
-    }
+    public void onCalendarUpdate(long ticks) {}
 
     @Override
     @Deprecated
@@ -290,7 +287,6 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
     public void loadAdditional(CompoundTag nbt)
     {
         temperature = nbt.getFloat("temperature");
-        airTicks = nbt.getInt("airTicks");
         burnTemperature = nbt.getFloat("burnTemperature");
         lastPlayerTick = nbt.getLong("lastPlayerTick");
         ENERGY_STORAGE.setEnergy(nbt.getInt("energy"));
@@ -301,7 +297,6 @@ public class ElectricForgeBlockEntity extends TickableInventoryBlockEntity<ItemS
     public void saveAdditional(CompoundTag nbt)
     {
         nbt.putFloat("temperature", temperature);
-        nbt.putInt("airTicks", airTicks);
         nbt.putFloat("burnTemperature", burnTemperature);
         nbt.putLong("lastPlayerTick", lastPlayerTick);
         nbt.putInt("energy", ENERGY_STORAGE.getEnergyStored());

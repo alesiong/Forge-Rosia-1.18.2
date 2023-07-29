@@ -1,9 +1,9 @@
-package com.jewey.rosia.integration;
+package com.jewey.rosia.integration.jei;
 
 import com.jewey.rosia.Rosia;
 import com.jewey.rosia.common.blocks.ModBlocks;
 import com.jewey.rosia.common.items.ModItems;
-import com.jewey.rosia.recipe.ExtrudingMachineRecipe;
+import com.jewey.rosia.recipe.RollingMachineRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -19,18 +19,18 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import javax.annotation.Nonnull;
 
-public class ExtrudingMachineRecipeCategory implements IRecipeCategory<ExtrudingMachineRecipe> {
+public class RollingMachineRecipeCategory implements IRecipeCategory<RollingMachineRecipe> {
 
-    public final static ResourceLocation UID = new ResourceLocation(Rosia.MOD_ID, "extruding_machine");
+    public final static ResourceLocation UID = new ResourceLocation(Rosia.MOD_ID, "rolling_machine");
     public final static ResourceLocation TEXTURE =
             new ResourceLocation(Rosia.MOD_ID, "textures/gui/auto_quern_jei_2.png");
 
     private final IDrawable background;
     private final IDrawable icon;
 
-    public ExtrudingMachineRecipeCategory(IGuiHelper helper) {
+    public RollingMachineRecipeCategory(IGuiHelper helper) {
         this.background = helper.createDrawable(TEXTURE, 0, 0, 97, 26);
-        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(ModBlocks.EXTRUDING_MACHINE.get()));
+        this.icon = helper.createDrawableIngredient(VanillaTypes.ITEM, new ItemStack(ModBlocks.ROLLING_MACHINE.get()));
     }
 
     @Override
@@ -39,13 +39,13 @@ public class ExtrudingMachineRecipeCategory implements IRecipeCategory<Extruding
     }
 
     @Override
-    public Class<? extends ExtrudingMachineRecipe> getRecipeClass() {
-        return ExtrudingMachineRecipe.class;
+    public Class<? extends RollingMachineRecipe> getRecipeClass() {
+        return RollingMachineRecipe.class;
     }
 
     @Override
     public Component getTitle() {
-        return new TextComponent("Extruding Machine");
+        return new TextComponent("Rolling Machine");
     }
 
     @Override
@@ -59,9 +59,9 @@ public class ExtrudingMachineRecipeCategory implements IRecipeCategory<Extruding
     }
 
     @Override
-    public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull ExtrudingMachineRecipe recipe, @Nonnull IFocusGroup focusGroup) {
+    public void setRecipe(@Nonnull IRecipeLayoutBuilder builder, @Nonnull RollingMachineRecipe recipe, @Nonnull IFocusGroup focusGroup) {
         builder.addSlot(RecipeIngredientRole.INPUT, 25, 5).addIngredients(recipe.getIngredients().get(0));
-        builder.addSlot(RecipeIngredientRole.INPUT, 5, 5).addIngredients(Ingredient.of(ModItems.STEEL_MACHINE_DIE.get()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 5, 5).addIngredients(Ingredient.of(ModItems.STEEL_ROLLERS.get()));
 
         builder.addSlot(RecipeIngredientRole.OUTPUT, 77, 5).addItemStack(recipe.getResultItem());
     }

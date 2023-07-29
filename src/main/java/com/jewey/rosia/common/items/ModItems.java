@@ -76,6 +76,11 @@ public class ModItems {
     public static final RegistryObject<Item> LEATHER_SATCHEL = register("leather_satchel",
             () -> new SatchelItem(properties().stacksTo(1)));
 
+    public static final RegistryObject<Item> UNFINISHED_TOOL_BELT = register("unfinished_tool_belt");
+
+    public static final RegistryObject<Item> TOOL_BELT = register("tool_belt",
+            () -> new ToolBeltItem(properties().stacksTo(1)));
+
     public static final RegistryObject<Item> PURPLE_STEEL_RIFLE = register("purple_steel_rifle",
             () -> new RifleItem(properties().durability(2000)));
 

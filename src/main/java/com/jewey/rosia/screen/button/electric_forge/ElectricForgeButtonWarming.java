@@ -6,19 +6,19 @@ import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.dries007.tfc.network.PacketHandler;
 import net.dries007.tfc.network.ScreenButtonPacket;
-import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.gui.components.Button;
+import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraftforge.network.PacketDistributor;
 
 
-public class ElectricForgeButtonBW extends Button {
+public class ElectricForgeButtonWarming extends Button {
     private final ElectricForgeBlockEntity forge;
 
-    public ElectricForgeButtonBW(ElectricForgeBlockEntity forge, int guiLeft, int guiTop, net.minecraft.client.gui.components.Button.OnTooltip tooltip)
+    public ElectricForgeButtonWarming(ElectricForgeBlockEntity forge, int guiLeft, int guiTop, OnTooltip tooltip)
     {
-        super(guiLeft + 124, guiTop + 61, 17, 17, Component.nullToEmpty("Brilliant White"), button -> {
-            PacketHandler.send(PacketDistributor.SERVER.noArg(), new ScreenButtonPacket(0, null));
+        super(guiLeft + 38, guiTop + 69, 4, 7, Component.nullToEmpty("Temperature"), button -> {
+            PacketHandler.send(PacketDistributor.SERVER.noArg(), new ScreenButtonPacket(10, null));
         }, tooltip);
 
         this.forge = forge;
@@ -31,7 +31,7 @@ public class ElectricForgeButtonBW extends Button {
         RenderSystem.setShaderTexture(0, ElectricForgeScreen.TEXTURE);
         RenderSystem.setShaderColor(1f, 1f, 1f, 1f);
 
-        blit(poseStack, x, y, 90, 187, width, height, 256, 256);
+        blit(poseStack, x, y, 38, 188, width, height, 256, 256);
 
         if (isHoveredOrFocused())
         {

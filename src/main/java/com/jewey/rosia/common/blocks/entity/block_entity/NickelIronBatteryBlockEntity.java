@@ -3,7 +3,6 @@ package com.jewey.rosia.common.blocks.entity.block_entity;
 import com.jewey.rosia.common.blocks.custom.nickel_iron_battery;
 import com.jewey.rosia.common.blocks.entity.ModBlockEntities;
 import com.jewey.rosia.common.blocks.entity.WrappedHandlerEnergy;
-import com.jewey.rosia.common.container.ElectricForgeContainer;
 import com.jewey.rosia.networking.ModMessages;
 import com.jewey.rosia.networking.packet.EnergySyncS2CPacket;
 import com.jewey.rosia.screen.NickelIronBatteryContainer;
@@ -16,6 +15,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.util.Mth;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -210,5 +210,10 @@ public class NickelIronBatteryBlockEntity extends TickableInventoryBlockEntity<I
         }
 
         Containers.dropContents(this.level, this.worldPosition, inventory);
+    }
+
+    public int getRedstoneSignal() {
+        float E = (float) this.ENERGY_STORAGE.getEnergyStored() / this.ENERGY_STORAGE.getMaxEnergyStored();
+        return this.ENERGY_STORAGE.getEnergyStored() > 0 ? Mth.clamp(Mth.floor( E * 15), 1, 15) : 0;
     }
 }

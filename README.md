@@ -6,7 +6,7 @@
 
 #### New Alloys
 ###### Invar - Strong alloy for creating machines  
-###### Purple Steel - Top tier tools, weapons, and armor. Also used in advanced machinery.
+###### Purple Steel - Top tier tools, weapons, and armor. Also used in advanced machinery
 
 #### Efficient Heat Generation
 ###### Fire Box - Burn fuels with greater yield
@@ -36,5 +36,6 @@
 #### QOL
 ###### Stone Paths - Increase movement speed; perfect for long roads
 ###### Leather Satchel - An inventory item with five slots
+###### Tool Belt - An inventory item with five slots for carrying tools
 ###### Electric Lantern - Cheap long-term lighting
 ###### Iron Support Beams - Support beams with 11x7x11 range

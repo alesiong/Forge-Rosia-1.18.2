@@ -191,9 +191,9 @@ public class FireBoxBlockEntity extends TickableInventoryBlockEntity<ItemStackHa
         lastPlayerTick = Integer.MIN_VALUE;
         syncableData = new IntArrayBuilder().add(() -> (int) temperature, value -> temperature = value);
 
-        sidedInventory.on(new PartialItemHandler(inventory)
-                .insert(SLOT_FUEL_MIN, 1, SLOT_FUEL_MAX), Direction.Plane.HORIZONTAL);
-
+        sidedInventory
+                .on(new PartialItemHandler(inventory).insert(SLOT_FUEL_MIN, 1, SLOT_FUEL_MAX), Direction.Plane.HORIZONTAL)
+                .on(new PartialItemHandler(inventory).extract(OUTPUT_SLOT), Direction.DOWN);
     }
 
     public void intakeAir(int amount)

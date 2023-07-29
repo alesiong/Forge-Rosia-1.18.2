@@ -1,26 +1,21 @@
 {
-  "type": "tfc:extra_products_shaped_crafting",
+  "type": "tfc:extra_products_shapeless_crafting",
   "extra_products": [{
     "item": "tfc:ceramic/bowl"
   }],
   "recipe": {
-      "type": "tfc:advanced_shaped_crafting",
-      "pattern": [
-        "   ",
-        " Y ",
-        " X "
-      ],
-      "key": {
-        "X": {
+      "type": "tfc:advanced_shapeless_crafting",
+      "ingredients": [
+        {
           "item": "rosia:tin_can"
         },
-        "Y": {
+        {
           "type": "tfc:not_rotten",
           "ingredient": {
             "tag": "tfc:soups"
           }
         }
-      },
+      ],
       "result": {
         "stack": {
           "item": "rosia:food/soup_can",
@@ -44,8 +39,6 @@
             ]
           }
         ]
-      },
-      "input_row": 0,
-      "input_column": 0
+      }
     }
 }
