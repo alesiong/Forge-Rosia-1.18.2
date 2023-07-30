@@ -65,6 +65,9 @@ public class ModBlockEntities {
                     BlockEntityType.Builder.of(CanningPressBlockEntity::new,
                             ModBlocks.CANNING_PRESS.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<ElectricLoomBlockEntity>> ELECTRIC_LOOM_BLOCK_ENTITY =
+            register("electric_loom_block_entity", ElectricLoomBlockEntity::new, ModBlocks.ELECTRIC_LOOM);
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

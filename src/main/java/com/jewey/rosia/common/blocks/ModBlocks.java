@@ -72,6 +72,11 @@ public class ModBlocks {
                     .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.ROLLING_MACHINE_BLOCK_ENTITY)
                     .serverTicks(RollingMachineBlockEntity::serverTick).noOcclusion()), ModCreativeModeTab.ROSIA_TAB);
 
+    public static final Supplier<? extends Block> ELECTRIC_LOOM = register("electric_loom",
+            () -> new electric_loom(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
+                    .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.ELECTRIC_LOOM_BLOCK_ENTITY)
+                    .serverTicks(ElectricLoomBlockEntity::serverTick).noOcclusion()), ModCreativeModeTab.ROSIA_TAB);
+
     public static final Supplier<? extends Block> ELECTRIC_FORGE = register("electric_forge",
             () -> new electric_forge(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
                     .randomTicks().sound(SoundType.METAL).lightLevel((state) -> state.getValue(electric_forge.HEAT) * 2)

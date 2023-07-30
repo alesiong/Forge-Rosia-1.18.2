@@ -71,6 +71,9 @@ public class ModItems {
     public static final RegistryObject<Item> STEEL_ROLLERS = register("steel_rollers",
             () -> new Item(properties().durability(500)));
 
+    public static final RegistryObject<Item> STEEL_LOOM_PARTS = register("steel_loom_parts",
+            () -> new Item(properties().durability(500)));
+
     public static final RegistryObject<Item> SATCHEL_PART = register("satchel_part");
 
     public static final RegistryObject<Item> LEATHER_SATCHEL = register("leather_satchel",

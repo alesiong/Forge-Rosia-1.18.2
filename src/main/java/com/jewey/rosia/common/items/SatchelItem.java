@@ -45,6 +45,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class SatchelItem extends Item {
+    @Nullable
+    public static VesselLike getInventoryVessel(ItemStack stack)
+    {
+        final VesselLike vessel = VesselLike.get(stack);
+        return vessel != null && vessel.mode() == VesselLike.Mode.INVENTORY && vessel.getTemperature() == 0f ? vessel : null;
+    }
+
     public static final int SLOTS = 5;
 
     public SatchelItem(Properties properties)
@@ -53,23 +60,60 @@ public class SatchelItem extends Item {
     }
 
     @Override
+    public boolean overrideStackedOnOther(ItemStack stack, Slot slot, ClickAction action, Player player)
+    {
+        final VesselLike vessel = getInventoryVessel(stack);
+        if (vessel != null && TFCConfig.SERVER.enableSmallVesselInventoryInteraction.get() && !player.isCreative() && action == ClickAction.SECONDARY)
+        {
+            for (int i = SLOTS - 1; i >= 0; i--)
+            {
+                final ItemStack current = vessel.getStackInSlot(i);
+                if (!current.isEmpty())
+                {
+                    final ItemStack oldStack = current.copy();
+                    final ItemStack leftover = slot.safeInsert(current);
+                    if (leftover.getCount() != oldStack.getCount())
+                    {
+                        vessel.setStackInSlot(i, leftover);
+                        // Update slots, if we're in a crafting menu, to update output slots. See #2378
+                        player.containerMenu.slotsChanged(slot.container);
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
     public boolean overrideOtherStackedOnMe(ItemStack stack, ItemStack carried, Slot slot, ClickAction action, Player player, SlotAccess carriedSlot)
     {
-        final VesselLike vessel = VesselLike.get(stack);
-        if (vessel != null && TFCConfig.SERVER.enableSmallVesselInventoryInteraction.get()
-                && vessel.mode() == VesselLike.Mode.INVENTORY && vessel.getTemperature() == 0f
-                && !player.isCreative() && action == ClickAction.SECONDARY)
+        final VesselLike vessel = getInventoryVessel(stack);
+        if (vessel != null && TFCConfig.SERVER.enableSmallVesselInventoryInteraction.get() && !player.isCreative() && action == ClickAction.SECONDARY)
         {
             if (!carried.isEmpty())
             {
+                boolean slotsChanged = false;
+                final ItemStack oldCarried = carried.copy();
                 for (int i = 0; i < SLOTS; i++)
                 {
-                    final ItemStack current = vessel.getStackInSlot(i);
-                    if (current.isEmpty())
+                    final ItemStack leftover = vessel.insertItem(i, carried, false);
+                    if (leftover.getCount() != oldCarried.getCount() || slotsChanged)
                     {
-                        carriedSlot.set(vessel.insertItem(i, carried, false));
-                        return true;
+                        slotsChanged = true;
+                        carriedSlot.set(leftover);
+                        carried = leftover;
                     }
+                    if (carried.isEmpty())
+                    {
+                        break;
+                    }
+                }
+                if (slotsChanged)
+                {
+                    // Update slots, if we're in a crafting menu, to update output slots. See #2378
+                    player.containerMenu.slotsChanged(slot.container);
+                    return true;
                 }
             }
             else
@@ -80,6 +124,8 @@ public class SatchelItem extends Item {
                     if (!current.isEmpty())
                     {
                         carriedSlot.set(vessel.extractItem(i, 64, false));
+                        // Update slots, if we're in a crafting menu, to update output slots. See #2378
+                        player.containerMenu.slotsChanged(slot.container);
                         return true;
                     }
                 }
@@ -87,6 +133,7 @@ public class SatchelItem extends Item {
         }
         return false;
     }
+
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)

@@ -112,6 +112,14 @@ public class EnergySyncS2CPacket {
                     blockEntity.setEnergyLevel(energy);
                 }
             }
+            if(Minecraft.getInstance().level.getBlockEntity(pos) instanceof ElectricLoomBlockEntity blockEntity) {
+                blockEntity.setEnergyLevel(energy);
+
+                if(Minecraft.getInstance().player.containerMenu instanceof ElectricLoomMenu menu &&
+                        menu.getBlockEntity().getBlockPos().equals(pos)) {
+                    blockEntity.setEnergyLevel(energy);
+                }
+            }
         });
         return true;
     }

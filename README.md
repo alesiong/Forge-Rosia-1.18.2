@@ -27,6 +27,7 @@
 ###### Auto-Quern - Grind items into powders and dyes
 ###### Extruding Machine - Form hot metal into rods
 ###### Rolling Machine - Form hot metal into sheets
+###### Electric Loom - Weave string into cloth
 
 #### Food Preparation and Preservation
 ###### Canned Food - Can food to preserve it longer

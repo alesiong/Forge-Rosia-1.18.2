@@ -1,6 +1,7 @@
 package com.jewey.rosia.integration.jei;
 
 import com.jewey.rosia.common.blocks.ModBlocks;
+import com.jewey.rosia.recipe.ElectricLoomRecipe;
 import com.jewey.rosia.recipe.ExtrudingMachineRecipe;
 import com.jewey.rosia.recipe.RollingMachineRecipe;
 import mezz.jei.api.IModPlugin;
@@ -31,6 +32,7 @@ public class JEIRosiaPlugin implements IModPlugin {
         registration.addRecipeCategories(new AutoQuernRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new ExtrudingMachineRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
         registration.addRecipeCategories(new RollingMachineRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
+        registration.addRecipeCategories(new ElectricLoomRecipeCategory(registration.getJeiHelpers().getGuiHelper()));
     }
 
     @Override
@@ -45,6 +47,9 @@ public class JEIRosiaPlugin implements IModPlugin {
 
         List<RollingMachineRecipe> rollingMachineRecipes = rm.getAllRecipesFor(RollingMachineRecipe.Type.INSTANCE);
         registration.addRecipes(new RecipeType<>(RollingMachineRecipeCategory.UID, RollingMachineRecipe.class), rollingMachineRecipes);
+
+        List<ElectricLoomRecipe> electricLoomRecipes = rm.getAllRecipesFor(ElectricLoomRecipe.Type.INSTANCE);
+        registration.addRecipes(new RecipeType<>(ElectricLoomRecipeCategory.UID, ElectricLoomRecipe.class), electricLoomRecipes);
     }
 
     @Override
@@ -53,5 +58,6 @@ public class JEIRosiaPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.AUTO_QUERN.get()), AutoQuernRecipeCategory.UID);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.EXTRUDING_MACHINE.get()), ExtrudingMachineRecipeCategory.UID);
         registration.addRecipeCatalyst(new ItemStack(ModBlocks.ROLLING_MACHINE.get()), RollingMachineRecipeCategory.UID);
+        registration.addRecipeCatalyst(new ItemStack(ModBlocks.ELECTRIC_LOOM.get()), ElectricLoomRecipeCategory.UID);
     }
 }

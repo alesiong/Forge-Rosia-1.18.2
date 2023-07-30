@@ -25,6 +25,7 @@ public class ClientSetup {
         MenuScreens.register(ModContainerTypes.FRIDGE.get(), FridgeScreen::new);
         MenuScreens.register(ModContainerTypes.CHARCOAL_KILN.get(), CharcoalKilnScreen::new);
         MenuScreens.register(ModMenuTypes.CANNING_PRESS_MENU.get(), CanningPressScreen::new);
+        MenuScreens.register(ModMenuTypes.ELECTRIC_LOOM_MENU.get(), ElectricLoomScreen::new);
             //ITEM INVENTORY
         MenuScreens.register(ModContainerTypes.LEATHER_SATCHEL.get(), LeatherSatchelScreen::new);
         MenuScreens.register(ModContainerTypes.TOOL_BELT.get(), ToolBeltScreen::new);
@@ -46,6 +47,7 @@ public class ClientSetup {
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ELECTRIC_LANTERN.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.CHARCOAL_KILN.get(), RenderType.solid());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.CANNING_PRESS.get(), RenderType.solid());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.ELECTRIC_LOOM.get(), RenderType.solid());
 
         //FLUID RENDER
         ItemBlockRenderTypes.setRenderLayer(ModFluids.INVAR_BLOCK.get(), RenderType.solid());

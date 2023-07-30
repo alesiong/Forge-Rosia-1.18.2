@@ -23,6 +23,7 @@
   "item.rosia.steel_grindstone": "Steel Grindstone",
   "item.rosia.steel_machine_die": "Steel Machine Die",
   "item.rosia.steel_rollers": "Steel Rollers",
+  "item.rosia.steel_loom_parts": "Steel Loom Parts",
   "item.rosia.motor": "Motor",
 
   "item.rosia.satchel_part": "Satchel Part",
@@ -119,6 +120,7 @@
   "block.rosia.iron_support_horizontal": "Iron Support",
   "block.rosia.charcoal_kiln": "Charcoal Kiln",
   "block.rosia.canning_press": "Canning Press",
+  "block.rosia.electric_loom": "Electric Loom",
 
   "fluid.rosia.invar_fluid": "Invar",
   "metal.rosia.invar": "Invar",

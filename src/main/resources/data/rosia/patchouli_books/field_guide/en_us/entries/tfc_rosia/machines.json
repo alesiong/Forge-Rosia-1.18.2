@@ -32,6 +32,16 @@
       "type": "patchouli:spotlight",
       "item": "rosia:steel_rollers",
       "text": "The $(thing)Steel Rollers$() are tools used within the $(thing)Rolling Machine$(). Made on the anvil."
+    },
+    {
+      "type": "patchouli:crafting",
+      "recipe": "rosia:crafting/blocks/electric_loom",
+      "text": "The $(thing)Electric Loom$() is a machine used to automatically weave different kinds of string into cloth. Also used in making paper."
+    },
+    {
+      "type": "patchouli:spotlight",
+      "item": "rosia:steel_loom_parts",
+      "text": "The $(thing)Steel Loom Parts$() are components used within the $(thing)Electric Loom$(). Made on the anvil."
     }
   ],
   "read_by_default": true,

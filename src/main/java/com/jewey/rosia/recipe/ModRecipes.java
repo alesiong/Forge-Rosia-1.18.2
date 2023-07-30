@@ -20,6 +20,9 @@ public class ModRecipes {
     public static final RegistryObject<RecipeSerializer<RollingMachineRecipe>> ROLLING_MACHINE_SERIALIZER =
             SERIALIZERS.register("rolling_machine", () ->RollingMachineRecipe.Serializer.INSTANCE);
 
+    public static final RegistryObject<RecipeSerializer<ElectricLoomRecipe>> ELECTRIC_LOOM_SERIALIZER =
+            SERIALIZERS.register("electric_loom", () ->ElectricLoomRecipe.Serializer.INSTANCE);
+
 
     public static void register(IEventBus eventBus) {
         SERIALIZERS.register(eventBus);

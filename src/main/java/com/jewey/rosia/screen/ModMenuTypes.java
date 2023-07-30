@@ -22,8 +22,12 @@ public class ModMenuTypes {
 
     public static final RegistryObject<MenuType<RollingMachineMenu>> ROLLING_MACHINE_MENU =
             registerMenuType(RollingMachineMenu::new, "rolling_machine_menu");
+
     public static final RegistryObject<MenuType<CanningPressMenu>> CANNING_PRESS_MENU =
             registerMenuType(CanningPressMenu::new, "canning_press_menu");
+
+    public static final RegistryObject<MenuType<ElectricLoomMenu>> ELECTRIC_LOOM_MENU =
+            registerMenuType(ElectricLoomMenu::new, "electric_loom_menu");
 
 
 
