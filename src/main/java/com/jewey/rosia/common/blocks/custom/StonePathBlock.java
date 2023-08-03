@@ -25,7 +25,8 @@ public class StonePathBlock extends Block {
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
         if(!pLevel.isClientSide()){
             if(pEntity instanceof LivingEntity livingEntity){
-                livingEntity.addEffect(new MobEffectInstance(ModEffects.PATH_SPEED.get()));
+                livingEntity.addEffect(new MobEffectInstance(ModEffects.PATH_SPEED.get(),
+                        10, 0, false, false, false)); // This makes the effect invisible and no particles
             }
         }
 

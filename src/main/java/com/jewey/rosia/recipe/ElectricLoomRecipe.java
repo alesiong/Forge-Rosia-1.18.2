@@ -109,11 +109,11 @@ public class ElectricLoomRecipe implements Recipe<SimpleContainer> {
         public ElectricLoomRecipe fromNetwork(@NotNull ResourceLocation id, FriendlyByteBuf buf) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
 
-            final int inputCount = buf.readVarInt();
-
             inputs.replaceAll(ignored -> Ingredient.fromNetwork(buf));
 
             ItemStack output = buf.readItem();
+
+            final int inputCount = buf.readVarInt();
             return new ElectricLoomRecipe(id, output, inputCount, inputs);
         }
 
@@ -123,8 +123,8 @@ public class ElectricLoomRecipe implements Recipe<SimpleContainer> {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
             }
-            buf.writeVarInt(recipe.inputCount);
             buf.writeItemStack(recipe.getResultItem(), false);
+            buf.writeVarInt(recipe.inputCount);
         }
 
         @Override
