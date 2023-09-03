@@ -60,6 +60,10 @@ public class ModContainerTypes {
             CHARCOAL_KILN = ModContainerTypes.<CharcoalKilnBlockEntity, CharcoalKilnContainer>registerBlock(
             "charcoal_kiln", ModBlockEntities.CHARCOAL_KILN_BLOCK_ENTITY, CharcoalKilnContainer::create);
 
+    public static final RegistryObject<MenuType<BreadMachineContainer>>
+            BREAD_MACHINE = ModContainerTypes.<BreadMachineBlockEntity, BreadMachineContainer>registerBlock(
+            "bread_machine", ModBlockEntities.BREAD_MACHINE_BLOCK_ENTITY, BreadMachineContainer::create);
+
     private static <T extends InventoryBlockEntity<?>, C extends BlockEntityContainer<T>> RegistryObject<MenuType<C>> registerBlock(String name, Supplier<BlockEntityType<T>> type, BlockEntityContainer.Factory<T, C> factory)
     {
         return RegistrationHelpers.registerBlockEntityContainer(CONTAINERS, name, type, factory);

@@ -197,7 +197,9 @@ dependencies {
     compileOnly(fg.deobf("curse.maven:top-245211:${top_version}"))
     // Only use Jade at runtime
     runtimeOnly(fg.deobf("curse.maven:jade-324717:${jade_version}"))
+    runtimeOnly(fg.deobf("vazkii.patchouli:Patchouli:${patchouliVersion}"))
 
+    implementation fg.deobf("curse.maven:firmalife-453394:${firmalife_identifier}")
 
 
     // Real mod deobf dependency examples - these get remapped to your current mappings

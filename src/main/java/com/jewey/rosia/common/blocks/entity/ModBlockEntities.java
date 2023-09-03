@@ -69,6 +69,9 @@ public class ModBlockEntities {
             register("electric_loom_block_entity", ElectricLoomBlockEntity::new, ModBlocks.ELECTRIC_LOOM);
 
 
+    public static final RegistryObject<BlockEntityType<BreadMachineBlockEntity>> BREAD_MACHINE_BLOCK_ENTITY =
+            register("bread_machine_block_entity", BreadMachineBlockEntity::new, ModBlocks.BREAD_MACHINE);
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);
     }

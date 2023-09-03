@@ -110,7 +110,10 @@ public class ModBlocks {
                     .blockEntity(ModBlockEntities.CHARCOAL_KILN_BLOCK_ENTITY)
                     .serverTicks(CharcoalKilnBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
 
-
+    public static final Supplier<? extends Block> BREAD_MACHINE = register("bread_machine",
+            () -> new bread_machine(ExtendedProperties.of(Material.METAL, MaterialColor.METAL).strength(5f).requiresCorrectToolForDrops()
+                    .randomTicks().sound(SoundType.METAL).blockEntity(ModBlockEntities.BREAD_MACHINE_BLOCK_ENTITY)
+                    .serverTicks(BreadMachineBlockEntity::serverTick)), ModCreativeModeTab.ROSIA_TAB);
 
     // DON'T MAKE ITEMS FOR THE SUPPORT BEAMS IT SCREWS UP EVERYTHING!!!
     public static final Supplier<? extends Block> IRON_SUPPORT_VERTICAL = registerBlockNoItem("iron_support_vertical",
@@ -123,10 +126,10 @@ public class ModBlocks {
 
     // PATHS
     public static final RegistryObject<Block> ANDESITE_PATH = registerBlock("andesite_path",
-            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f,10)
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
                     .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
     public static final RegistryObject<Block> BASALT_PATH = registerBlock("basalt_path",
-            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f,10)
+            () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
                     .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
     public static final RegistryObject<Block> CHALK_PATH = registerBlock("chalk_path",
             () -> new StonePathBlock(BlockBehaviour.Properties.of(Material.STONE).strength(5f, 10)
@@ -184,9 +187,7 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops().sound(SoundType.STONE)), ModCreativeModeTab.ROSIA_TAB);
 
 
-
-    private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory)
-    {
+    private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> blockSupplier, @Nullable Function<T, ? extends BlockItem> blockItemFactory) {
         return RegistrationHelpers.registerBlock(ModBlocks.BLOCKS, ModItems.ITEMS, name, blockSupplier, blockItemFactory);
     }
 
@@ -195,6 +196,7 @@ public class ModBlocks {
         registerBlockItem(name, toReturn, tab);
         return toReturn;
     }
+
     private static <T extends Block> RegistryObject<T> registerBlockNoItem(String name, Supplier<T> block) {
         return BLOCKS.register(name, block);
     }
@@ -208,8 +210,7 @@ public class ModBlocks {
         return register(name, blockSupplier, block -> {
             if (block instanceof MultiblockDevice device) {
                 return device.blockItemSupplier(group).get();
-            }
-            else {
+            } else {
                 return new BlockItem(block, new Item.Properties().tab(group));
             }
         });

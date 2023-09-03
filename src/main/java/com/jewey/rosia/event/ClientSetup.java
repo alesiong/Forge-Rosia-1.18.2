@@ -26,6 +26,8 @@ public class ClientSetup {
         MenuScreens.register(ModContainerTypes.CHARCOAL_KILN.get(), CharcoalKilnScreen::new);
         MenuScreens.register(ModMenuTypes.CANNING_PRESS_MENU.get(), CanningPressScreen::new);
         MenuScreens.register(ModMenuTypes.ELECTRIC_LOOM_MENU.get(), ElectricLoomScreen::new);
+        MenuScreens.register(ModContainerTypes.BREAD_MACHINE.get(), BreadGeneratorScreen::new);
+
             //ITEM INVENTORY
         MenuScreens.register(ModContainerTypes.LEATHER_SATCHEL.get(), LeatherSatchelScreen::new);
         MenuScreens.register(ModContainerTypes.TOOL_BELT.get(), ToolBeltScreen::new);
